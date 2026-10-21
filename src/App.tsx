@@ -38,68 +38,16 @@ export function App() {
     setSelectedPatientId(id);
   };
 
-  const screensList = [
-    { id: 'login', label: '1. Login' },
-    { id: 'dashboard', label: '2. Dashboard' },
-    { id: 'prescription', label: '3. Prescription' },
-    { id: 'submit-open-chart', label: '4. Submit & Chart' },
-    { id: 'old-records', label: '5. Old Records' },
-    { id: 'new-prescription', label: '6. New Rx' },
-    { id: 'health-insights', label: '7. Health Insights' },
-    { id: 'disease-epi', label: '8. Disease Epi' },
-    { id: 'drug-trends', label: '9. Drug Trends' },
-    { id: 'personal-profile', label: '10. Profile' },
-    { id: 'qualifications', label: '11. Qualifications' },
-    { id: 'settings', label: '12. Settings' },
-  ];
-
   return (
     <div className="min-h-screen bg-background text-on-surface flex flex-col antialiased">
       
-      {/* 12-Screen Global Switcher Header Bar (Always available for reviewer convenience) */}
-      <div className="bg-surface-container border-b border-outline-variant/60 px-4 py-2 overflow-x-auto flex items-center justify-between gap-3 text-xs z-50">
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <span className="text-[10px] font-mono font-bold text-primary bg-primary-fixed px-2 py-0.5 rounded uppercase tracking-wider">
-            Stitch 12-Screens:
-          </span>
-          <div className="flex items-center gap-1">
-            {screensList.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => setCurrentScreen(s.id as ScreenId)}
-                className={`px-2.5 py-1 rounded-lg font-mono font-bold text-[11px] whitespace-nowrap transition-all ${
-                  currentScreen === s.id
-                    ? 'bg-primary text-on-primary shadow-xs'
-                    : 'bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high border border-outline-variant/50'
-                }`}
-              >
-                {s.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="hidden lg:flex items-center gap-2 text-[11px] font-mono text-outline flex-shrink-0">
-          <span>Stitch Project: <strong className="text-primary font-bold">8626820118209556628</strong></span>
-          <span>•</span>
-          <a 
-            href="https://github.com/Yashjain329/Dr.Route" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-secondary hover:underline font-bold"
-          >
-            GitHub Repo ↗
-          </a>
-        </div>
-      </div>
-
       {/* Screen Render */}
       {currentScreen === 'login' ? (
         <LoginScreen onLogin={() => setCurrentScreen('dashboard')} />
       ) : (
         <div className="flex flex-1">
           
-          {/* Collapsible Clinical Sidebar */}
+          {/* Collapsible Clinical Sidebar (Exact 4 main options matching Stitch UI) */}
           <Sidebar
             currentScreen={currentScreen}
             onNavigate={(screen) => setCurrentScreen(screen)}
@@ -108,9 +56,9 @@ export function App() {
           />
 
           {/* Main Content Area */}
-          <div className="flex-1 lg:pl-72 flex flex-col min-w-0">
+          <div className="flex-1 lg:pl-64 flex flex-col min-w-0">
             
-            {/* Top Clinical Header */}
+            {/* Top Clinical Header matching Stitch UI */}
             <Header
               currentScreen={currentScreen}
               onNavigate={(screen) => setCurrentScreen(screen)}
@@ -208,7 +156,7 @@ export function App() {
                 <div className="flex items-center justify-center sm:justify-start gap-2">
                   <span className="font-bold text-primary font-headline">Dr.Route Healthcare Navigation</span>
                   <span>•</span>
-                  <span>National Health Stack ABDM M1–M3</span>
+                  <span>National Health Stack ABDM Integrated</span>
                 </div>
                 <div>
                   Licensed to {mockDoctor.hospital} • Secure 256-Bit SSL Workstation Verified

@@ -143,9 +143,6 @@ export const SubmitOpenChartScreen: React.FC<SubmitOpenChartScreenProps> = ({
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-mono font-bold bg-primary text-primary-fixed px-2 py-0.5 rounded">
-                4th Screen
-              </span>
               <span className="text-xs font-mono font-bold text-secondary uppercase tracking-wider">
                 Prescription &amp; Chart
               </span>

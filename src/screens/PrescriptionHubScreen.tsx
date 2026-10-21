@@ -33,14 +33,9 @@ export const PrescriptionHubScreen: React.FC<PrescriptionHubScreenProps> = ({
       {/* Header Context Banner */}
       <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono font-bold bg-primary text-primary-fixed px-2 py-0.5 rounded">
-              3rd Screen
-            </span>
-            <span className="text-xs font-mono font-semibold text-secondary uppercase tracking-wider">
-              Clinical Prescription Suite
-            </span>
-          </div>
+          <span className="text-xs font-mono font-semibold text-secondary uppercase tracking-wider">
+            Clinical Prescription Suite
+          </span>
           <h1 className="text-2xl font-extrabold text-primary font-headline tracking-tight">
             Prescription Selection &amp; Clinical Records
           </h1>
@@ -55,7 +50,7 @@ export const PrescriptionHubScreen: React.FC<PrescriptionHubScreenProps> = ({
           className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/60 text-primary text-xs font-mono font-bold shadow-xs transition-all active:scale-95 whitespace-nowrap"
         >
           <Activity className="w-4 h-4 text-primary" />
-          <span>4th - Submit &amp; Open Chart →</span>
+          <span>Submit &amp; Open Chart →</span>
         </button>
       </div>
 
@@ -71,9 +66,6 @@ export const PrescriptionHubScreen: React.FC<PrescriptionHubScreenProps> = ({
               <div className="w-14 h-14 rounded-2xl bg-surface-container text-primary flex items-center justify-center border border-outline-variant shrink-0 shadow-xs">
                 <FolderSearch className="w-7 h-7" />
               </div>
-              <span className="text-[10px] font-mono font-bold bg-surface-container text-primary px-2 py-0.5 rounded-full">
-                5th Screen
-              </span>
             </div>
 
             <div>
@@ -106,9 +98,6 @@ export const PrescriptionHubScreen: React.FC<PrescriptionHubScreenProps> = ({
               <div className="w-14 h-14 rounded-2xl bg-primary text-on-primary flex items-center justify-center shadow-xs shrink-0">
                 <FileEdit className="w-7 h-7" />
               </div>
-              <span className="text-[10px] font-mono font-bold bg-primary-fixed text-primary px-2 py-0.5 rounded-full">
-                6th Screen
-              </span>
             </div>
 
             <div>
@@ -147,7 +136,7 @@ export const PrescriptionHubScreen: React.FC<PrescriptionHubScreenProps> = ({
                   Health Insights
                 </h3>
                 <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-surface-container text-primary border border-primary font-bold">
-                  Interactive Analytics • 7th Screen
+                  Interactive Analytics
                 </span>
               </div>
               <p className="text-xs font-body text-on-surface-variant">

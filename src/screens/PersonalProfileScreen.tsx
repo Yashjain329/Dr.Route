@@ -34,9 +34,6 @@ export const PersonalProfileScreen: React.FC<PersonalProfileScreenProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-surface-container-lowest p-4 rounded-2xl border border-outline-variant/60 shadow-clinical">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono font-bold bg-primary text-primary-fixed px-2 py-0.5 rounded">
-              10th Screen
-            </span>
             <span className="text-xs font-mono font-bold text-secondary uppercase tracking-wider">
               Doctor Profile
             </span>
@@ -115,21 +112,21 @@ export const PersonalProfileScreen: React.FC<PersonalProfileScreenProps> = ({
           className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-on-primary shadow-xs"
         >
           <User className="w-4 h-4" />
-          <span>10th - Personal Information</span>
+          <span>Personal Information</span>
         </button>
         <button
           onClick={() => onNavigate('qualifications')}
           className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"
         >
           <GraduationCap className="w-4 h-4" />
-          <span>11th - Qualification &amp; Experience</span>
+          <span>Qualification &amp; Experience</span>
         </button>
         <button
           onClick={() => onNavigate('settings')}
           className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"
         >
           <Settings className="w-4 h-4" />
-          <span>12th - Doctor Settings</span>
+          <span>Doctor Settings</span>
         </button>
       </div>
 

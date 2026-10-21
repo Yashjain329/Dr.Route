@@ -52,9 +52,6 @@ export const DrugTrendsScreen: React.FC<DrugTrendsScreenProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-surface-container-lowest p-4 rounded-2xl border border-outline-variant/60 shadow-clinical">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono font-bold bg-primary text-primary-fixed px-2 py-0.5 rounded">
-              9th Screen
-            </span>
             <span className="text-xs font-mono font-bold text-secondary uppercase tracking-wider">
               Pharmacy Analytics
             </span>
@@ -69,10 +66,10 @@ export const DrugTrendsScreen: React.FC<DrugTrendsScreenProps> = ({
 
         <div className="flex items-center gap-2">
           <button 
-            onClick={() => onNavigate('personal-profile')}
+            onClick={() => onNavigate('disease-epi')}
             className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-secondary-container text-on-secondary-container text-xs font-mono font-bold hover:bg-secondary/20 transition-colors"
           >
-            <span>10th - Profile →</span>
+            <span>← Disease Epidemiology</span>
           </button>
           <button 
             onClick={() => alert('WHO AWaRe Drug Stewardship Audit Log Downloaded.')}

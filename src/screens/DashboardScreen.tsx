@@ -140,14 +140,9 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
       {/* Top Banner Greeting */}
       <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono font-bold bg-primary text-primary-fixed px-2 py-0.5 rounded">
-              2nd Screen
-            </span>
-            <h1 className="text-2xl font-extrabold text-primary font-headline tracking-tight">
-              OPD Dashboard
-            </h1>
-          </div>
+          <h1 className="text-2xl font-extrabold text-primary font-headline tracking-tight">
+            OPD Dashboard
+          </h1>
           <p className="text-sm font-body text-on-surface-variant">
             Good morning, <span className="font-semibold text-on-surface">Dr. Deshraj Burdak!</span> Here's your today's OPD clinical overview.
           </p>

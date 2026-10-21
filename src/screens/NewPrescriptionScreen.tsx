@@ -211,9 +211,6 @@ export const NewPrescriptionScreen: React.FC<NewPrescriptionScreenProps> = ({
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-mono font-bold bg-primary text-primary-fixed px-2 py-0.5 rounded">
-                6th Screen
-              </span>
               <span className="text-xs font-mono font-bold text-secondary uppercase tracking-wider">
                 Clinical Workspace
               </span>
@@ -796,7 +793,7 @@ export const NewPrescriptionScreen: React.FC<NewPrescriptionScreenProps> = ({
               className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-mono text-xs font-bold shadow-clinical transition-all active:scale-95"
             >
               <Send className="w-4 h-4" />
-              <span>Submit Prescription &amp; Open Master Chart (4th)</span>
+              <span>Submit Prescription &amp; Open Master Chart</span>
             </button>
           </div>
         </div>
