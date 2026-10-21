@@ -1,0 +1,501 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CareOne SuperApp - Hospital Details &amp; Government Schemes</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Plus Jakarta Sans & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary": "#001217",
+            "tertiary-container": "#002931",
+            "secondary-container": "#86f2e4",
+            "surface": "#f8f9ff",
+            "secondary": "#006a61",
+            "inverse-surface": "#213145",
+            "on-secondary-fixed-variant": "#005049",
+            "on-surface": "#0b1c30",
+            "on-primary-fixed-variant": "#314769",
+            "surface-container-highest": "#d3e4fe",
+            "inverse-primary": "#b1c7f0",
+            "tertiary-fixed-dim": "#4cd7f6",
+            "inverse-on-surface": "#eaf1ff",
+            "tertiary-fixed": "#acedff",
+            "on-error-container": "#93000a",
+            "outline": "#74777f",
+            "on-secondary": "#ffffff",
+            "secondary-fixed-dim": "#6bd8cb",
+            "primary-container": "#0b2545",
+            "background": "#f8f9ff",
+            "on-tertiary-fixed-variant": "#004e5c",
+            "surface-bright": "#f8f9ff",
+            "on-secondary-fixed": "#00201d",
+            "surface-variant": "#d3e4fe",
+            "primary": "#001026",
+            "error": "#ba1a1a",
+            "on-primary-container": "#778db2",
+            "secondary-fixed": "#89f5e7",
+            "surface-tint": "#495f82",
+            "on-tertiary-container": "#0099b3",
+            "on-error": "#ffffff",
+            "surface-dim": "#cbdbf5",
+            "surface-container-high": "#dce9ff",
+            "on-background": "#0b1c30",
+            "outline-variant": "#c4c6cf",
+            "primary-fixed": "#d5e3ff",
+            "on-surface-variant": "#44474e",
+            "error-container": "#ffdad6",
+            "primary-fixed-dim": "#b1c7f0",
+            "surface-container-low": "#eff4ff",
+            "on-secondary-container": "#006f66",
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container": "#e5eeff",
+            "on-tertiary-fixed": "#001f26",
+            "on-primary-fixed": "#001c3b",
+            "on-tertiary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "margin": "1rem",
+            "space-xl": "2rem",
+            "gutter": "1rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Plus Jakarta Sans"],
+            "display": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "label-sm": ["Inter"],
+            "body-sm": ["Inter"],
+            "metric-display": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "title-md": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Inter"],
+            "label-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "display": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "metric-display": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .custom-scroll {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Mobile Viewport Container (Standard Mobile 375px-430px centered) -->
+<div class="max-w-md mx-auto bg-surface-container-lowest min-h-screen flex flex-col relative pb-28 shadow-xl">
+<!-- Top Sticky Header Bar (Task focused sub-page with Back Navigation) -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest/95 backdrop-blur-md px-margin py-space-sm flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm">
+<button aria-label="Go back" class="w-10 h-10 rounded-full flex items-center justify-center text-primary hover:bg-surface-container active:scale-95 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+</button>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-primary tracking-tight">Hospital Details &amp; Schemes</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block"></span>
+            Empanelled &amp; Verified
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Bookmark hospital" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="bookmark">bookmark</span>
+</button>
+<button aria-label="Share page" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="share">share</span>
+</button>
+</div>
+</header>
+<!-- Hospital Hero Image & Live Badges -->
+<section class="relative w-full h-56 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Modern high-end multi-speciality hospital facade at sunset with warm amber illumination, glass architecture, and reflecting fountain pool with lush botanical landscape under a clear evening twilight sky in clinical modern photographic style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD6abDtOtWBNgo0J7wojCEEpTK44U0jMMhaWVXMAgdwPSFJZ-mFQw70b3kv5CSpueL63KG6rJMvWL94XASOQ5rwJIgo1sbbi3XO0_t0yzd-_US5oEykRrEITAAoGragxYCNXnWirtzQ_pDalgKEOijJOjITjMbIZotftRqkaqIERuYgJnMANTfenpaHkNVIRbXsliwNPCxJoMg2C68AIOX5zV5Ez4y6sVZdTj2_SdgmhqcvQ2WiUObBg">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+<!-- Top Overlay Chips -->
+<div class="absolute top-3 left-3 right-3 flex justify-between items-center">
+<!-- 24x7 Emergency Pill -->
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-lowest/95 shadow-md border border-outline-variant/40">
+<span class="w-2.5 h-2.5 rounded-full bg-error animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-error">24x7 EMERGENCY ACTIVE</span>
+</span>
+<!-- Photos Count -->
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/70 backdrop-blur-md text-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs" data-icon="photo_camera">photo_camera</span>
+          32 Photos
+        </span>
+</div>
+<!-- Bottom Accreditation Strip in Banner -->
+<div class="absolute bottom-3 left-3 right-3 flex items-center gap-2 overflow-x-auto custom-scroll">
+
+
+
+</div>
+</section>
+<!-- Main Content Canvas -->
+<main class="px-margin pt-space-md space-y-space-lg">
+<!-- Hospital Overview Card -->
+<section class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-space-md shadow-sm">
+<div class="flex items-start justify-between gap-2">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold leading-tight">Max Super Speciality Hospital, Saket</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Quaternary Care Multi-Speciality Institute</p>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-surface-container-low text-secondary font-headline-sm text-headline-sm font-bold border border-secondary-container">
+            ★ 4.8
+          </span>
+</div>
+<div class="mt-space-sm flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+<span class="">3,420+ verified reviews</span>
+<span class="">•</span>
+<span class="text-secondary font-bold">Top Ranked in Cardiology &amp; Oncology</span>
+</div>
+<!-- Address & Distance Section -->
+<div class="mt-space-md pt-space-sm border-t border-outline-variant/40 flex items-start justify-between gap-3">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-on-surface-variant mt-0.5" data-icon="location_on">location_on</span>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium leading-relaxed">
+                1, 2, Press Enclave Marg, Saket Institutional Area, New Delhi - 110017
+              </p>
+<p class="font-label-md text-label-md text-secondary font-semibold mt-0.5">2.4 km away • 12 mins via Outer Ring Rd</p>
+</div>
+</div>
+<button class="shrink-0 px-3 py-1.5 rounded-full border border-secondary text-secondary font-label-md text-label-md hover:bg-secondary-container/20 active:scale-95 transition-transform flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-sm" data-icon="directions">directions</span>
+            Directions
+          </button>
+</div>
+<!-- Metric Grid -->
+<div class="mt-space-md grid grid-cols-3 gap-2 bg-surface-container-low p-2.5 rounded-xl border border-outline-variant/40 text-center">
+<div>
+<span class="font-metric-display text-metric-display text-primary block leading-none">550+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-1 block">Total Beds</span>
+</div>
+<div class="border-x border-outline-variant/50 px-1">
+<span class="font-metric-display text-metric-display text-secondary block leading-none">140+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-1 block">ICU Beds</span>
+</div>
+<div>
+<span class="font-metric-display text-metric-display text-primary block leading-none">35+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-1 block">Operation Theatres</span>
+</div>
+</div>
+<!-- Desk Helpline -->
+<div class="mt-space-sm flex items-center justify-between bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/50">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="call">call</span>
+</span>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">DIRECT RECEPTION &amp; ADMISSION DESK</span>
+<span class="font-title-md text-title-md text-primary font-bold">+91 11 4055 4055</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-1 rounded">&nbsp;8AM-<br>9PM</span>
+</div>
+</section>
+<!-- PRIMARY SPOTLIGHT: Government Cards & Schemes Accepted -->
+<section class="space-y-space-md">
+<!-- Section Header with Official Crest Icon -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-secondary text-on-secondary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-base" data-icon="shield" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold leading-tight">Government Schemes Accepted</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Official Public Healthcare Empanelment</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container-high text-secondary font-bold">
+            6 Schemes Active
+          </span>
+</div>
+<!-- Scheme 1: Ayushman Bharat (PM-JAY) Featured Banner Card -->
+<div class="bg-gradient-to-br from-surface-container-lowest to-surface-container-low border-2 border-secondary/40 rounded-xl p-space-md shadow-md relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-28 h-28 rounded-full bg-secondary-container/30 blur-2xl pointer-events-none"></div>
+<!-- Top Status Bar -->
+<div class="flex items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-primary-container text-surface-container-lowest font-label-sm text-label-sm font-bold tracking-wide">
+                PRADHAN MANTRI JAN AROGYA YOJANA
+              </span>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block"></span>
+              100% Cashless
+            </span>
+</div>
+<h4 class="font-headline-md text-headline-md text-primary font-bold mt-2">Ayushman Bharat (AB-PMJAY)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Empanelled for advanced secondary &amp; tertiary procedures.</p>
+<!-- Coverage & Details Matrix -->
+<div class="mt-3 grid grid-cols-2 gap-2 bg-surface-container-lowest/80 p-3 rounded-lg border border-outline-variant/40">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Financial Coverage</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">Up to ₹5 Lakh</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">per family / year</span>
+</div>
+<div class="border-l border-outline-variant/40 pl-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Ayushman Helpdesk</span>
+<span class="font-title-md text-title-md text-primary font-bold block">Counter 4, Gate 2</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Ayushman Mitra on Duty</span>
+</div>
+</div>
+<!-- Mandatory Documents Checklist -->
+<div class="mt-3 pt-2.5 border-t border-outline-variant/40">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold block mb-1">DOCUMENTS REQUIRED AT ADMISSION:</span>
+<div class="flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                Ayushman Golden Card / ABHA ID
+              </span>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                Aadhaar Card
+              </span>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                Doctor Referral Slip
+              </span>
+</div>
+</div>
+</div>
+<!-- Scheme 2: CGHS (Central Government Health Scheme) -->
+<div class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-space-md shadow-sm">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">
+                  CENTRAL GOVT EMPLOYEES &amp; PENSIONERS
+                </span>
+<span class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Active
+                </span>
+</div>
+<h4 class="font-title-md text-title-md text-primary font-bold mt-1">CGHS (Central Government Health Scheme)</h4>
+</div>
+<span class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-base" data-icon="local_hospital">local_hospital</span>
+</span>
+</div>
+<div class="mt-2.5 text-body-sm text-body-sm text-on-surface-variant space-y-1">
+<p class="">• <span class="font-semibold text-on-surface">Facilities:</span> Cashless IPD for Cardiology, Oncology, Orthopaedics &amp; Neuro.</p>
+<p class="">• <span class="font-semibold text-on-surface">OPD Rates:</span> Subsidised NABH-approved CGHS package charges.</p>
+<p class="">• <span class="font-semibold text-on-surface">Dedicated Counter:</span> CGHS Nodal Desk, Ground Floor, Wing B (Ext: 1044).</p>
+</div>
+</div>
+<!-- Scheme 3: ECHS (Ex-Servicemen Contributory Health Scheme) -->
+<div class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-space-md shadow-sm">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">
+                  DEFENCE VETERANS &amp; DEPENDENTS
+                </span>
+<span class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Active
+                </span>
+</div>
+<h4 class="font-title-md text-title-md text-primary font-bold mt-1">ECHS (Ex-Servicemen Health Scheme)</h4>
+</div>
+<span class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-base" data-icon="military_tech">military_tech</span>
+</span>
+</div>
+<div class="mt-2.5 text-body-sm text-body-sm text-on-surface-variant space-y-1">
+<p class="">• <span class="font-semibold text-on-surface">Admission Status:</span> 100% Cashless with ECHS polyclinic referral letter.</p>
+<p class="">• <span class="font-semibold text-on-surface">Emergency Admission:</span> Instant bedside cashless authorization within 24 hours.</p>
+</div>
+</div>
+<!-- Scheme 4 & 5: DGEHS, ESI & CAPF Quick Grid -->
+<div class="grid grid-cols-2 gap-2">
+<!-- DGEHS -->
+<div class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-3 shadow-sm">
+<span class="font-label-sm text-label-sm text-secondary font-bold block uppercase">Delhi Govt</span>
+<h5 class="font-title-md text-title-md text-primary font-bold mt-0.5">DGEHS Scheme</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">Empanelled for OPD/IPD on credit basis for all grades.</p>
+<span class="mt-2 inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-xs" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              Desk at Lobby
+            </span>
+</div>
+<!-- CAPF / ESIC -->
+<div class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-3 shadow-sm">
+<span class="font-label-sm text-label-sm text-secondary font-bold block uppercase">CAPF &amp; ESIC Tie-Up</span>
+<h5 class="font-title-md text-title-md text-primary font-bold mt-0.5">Paramilitary &amp; ESI</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">Accepted with zonal ESIC referral or force smart ID card.</p>
+<span class="mt-2 inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-xs" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              Emergency Covered
+            </span>
+</div>
+</div>
+</section>
+<!-- Step-by-Step Guidance for Cashless Admission -->
+<section class="bg-surface-container-low rounded-xl p-space-md border border-outline-variant/60">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold">How to Claim Cashless Bed</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">3-Step Process</span>
+</div>
+<div class="space-y-3">
+<!-- Step 1 -->
+<div class="flex items-start gap-3">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center shrink-0 mt-0.5">1</span>
+<div>
+<p class="font-title-md text-title-md text-primary font-semibold">Report to Government / TPA Desk</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Present Ayushman Golden Card / CGHS plastic card / ABHA ID at Counter 2 or 4.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-start gap-3">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center shrink-0 mt-0.5">2</span>
+<div>
+<p class="font-title-md text-title-md text-primary font-semibold">Biometric or OTP Verification</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ayushman Mitra verifies identity via Aadhaar biometric scanner or SMS OTP.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-start gap-3">
+<span class="w-6 h-6 rounded-full bg-secondary text-on-secondary font-label-md text-label-md flex items-center justify-center shrink-0 mt-0.5">3</span>
+<div>
+<p class="font-title-md text-title-md text-secondary font-semibold">Instant Cashless Admission</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pre-auth confirmed digitally. Patient admitted with zero upfront deposit.</p>
+</div>
+</div>
+</div>
+<!-- Ayushman Mitra Callout Button -->
+
+</section>
+<!-- Private Insurance & TPAs -->
+<section class="space-y-space-sm">
+
+
+</section>
+<!-- OPD Consultation & Charges Transparency Card -->
+<section class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-space-md shadow-sm space-y-space-sm">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold">OPD &amp; Booking Charges</h3>
+<div class="space-y-2">
+<div class="flex items-center justify-between py-1 border-b border-outline-variant/40">
+<div>
+<span class="font-title-md text-title-md text-primary font-medium">Specialist Consultation Fee</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Valid for 7 days follow-up</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">₹XYZ</span>
+</div>
+<div class="flex items-center justify-between py-1 border-b border-outline-variant/40">
+<div>
+<span class="font-title-md text-title-md text-secondary font-medium flex items-center gap-1">&nbsp;Dr.Route Priority Token
+                <span class="material-symbols-outlined text-xs" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Zero convenience charge</span>
+</div>
+<span class="font-title-md text-title-md text-secondary font-bold">FREE (₹0)</span>
+</div>
+
+</div>
+</section>
+<!-- Key Specialities Pills Carousel -->
+<section class="space-y-2">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold">Key Centers of Excellence</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 rounded-full bg-surface-container text-primary font-label-md text-label-md font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="cardiology">cardiology</span>
+            Cardiac Sciences
+          </span>
+<span class="px-3 py-1.5 rounded-full bg-surface-container text-primary font-label-md text-label-md font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="neurology">neurology</span>
+            Neurosciences
+          </span>
+<span class="px-3 py-1.5 rounded-full bg-surface-container text-primary font-label-md text-label-md font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="orthopedics">orthopedics</span>
+            Orthopaedics &amp; Joint
+          </span>
+<span class="px-3 py-1.5 rounded-full bg-surface-container text-primary font-label-md text-label-md font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="oncology">oncology</span>
+            Oncology (Cancer Care)
+          </span>
+<span class="px-3 py-1.5 rounded-full bg-surface-container text-primary font-label-md text-label-md font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="nephrology">nephrology</span>
+            Kidney &amp; Renal Care
+          </span>
+</div>
+</section>
+<!-- Trust & Verification Footer -->
+<div class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/40 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center shrink-0 overflow-hidden p-1.5"><img src="https://lh3.googleusercontent.com/aida/AEtjO1WBjz7XXfXWBDWbAcrDL9jJZJ10NnCpdyIPUEQ1CCQO4x6auoyfT4HUN0hhQRsvVE8GkPX80ehG5MD83ONU8y2ofKP13DGNLTxlrs8XIMHuvPNVoxWV8DqSteN-C0iGxfVCefF-QFhCdz6wGIeCrekBuRU1sCI2KFtfQlO7bwUOhuip4bSI-aE9M6V5izHlBN-g2SShKDnONibTDc9co_6ihck_4HDV8E9OZ0FFk4dKVInQ-NBKNjnL6f2L" alt="Dr.Route Logo" class="w-full h-full object-contain"></div>
+<div>
+<h4 class="font-title-md text-title-md text-primary font-bold">Dr.Route Verified Desk</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">All government empanelment and cashless claim counters are verified weekly by our healthcare network inspectors.</p>
+</div>
+</div>
+</main>
+<!-- Fixed Bottom Dual Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-md shadow-lg border-t border-outline-variant/30 py-space-sm px-margin">
+<div class="max-w-md mx-auto flex items-center gap-3">
+<!-- Call Desk Action -->
+<button aria-label="Call Hospital Desk" class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-surface-container active:scale-95 transition-transform shrink-0" type="button">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+</button>
+<!-- Primary Booking / Bed Allocation CTA -->
+<button class="flex-1 h-12 rounded-full bg-secondary text-on-secondary font-title-md text-title-md font-bold flex items-center justify-center gap-2 hover:bg-on-secondary-container active:scale-95 transition-transform shadow-md" type="button"><span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+          Book Appointment
+        </button>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+</body></html>

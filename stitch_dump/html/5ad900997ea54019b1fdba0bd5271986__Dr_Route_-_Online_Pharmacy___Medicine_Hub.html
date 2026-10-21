@@ -1,0 +1,296 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Dr.Route - Online Pharmacy &amp; Express Medicine Delivery</title>
+<!-- Google Fonts & Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS with CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Exact Tailwind Configuration Token Injection -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed": "#00201d",
+            "outline": "#74777f",
+            "on-tertiary-fixed-variant": "#004e5c",
+            "surface-container-highest": "#d3e4fe",
+            "surface-dim": "#cbdbf5",
+            "on-surface": "#0b1c30",
+            "secondary-fixed-dim": "#6bd8cb",
+            "error-container": "#ffdad6",
+            "tertiary-container": "#002931",
+            "background": "#f8f9ff",
+            "tertiary-fixed": "#acedff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#dce9ff",
+            "on-tertiary-fixed": "#001f26",
+            "on-secondary-container": "#006f66",
+            "outline-variant": "#c4c6cf",
+            "surface-variant": "#d3e4fe",
+            "surface-tint": "#495f82",
+            "primary-fixed": "#d5e3ff",
+            "inverse-primary": "#b1c7f0",
+            "on-tertiary-container": "#0099b3",
+            "secondary": "#006a61",
+            "on-secondary": "#ffffff",
+            "on-background": "#0b1c30",
+            "tertiary-fixed-dim": "#4cd7f6",
+            "on-secondary-fixed-variant": "#005049",
+            "on-primary-container": "#778db2",
+            "error": "#ba1a1a",
+            "surface-container-low": "#eff4ff",
+            "surface": "#f8f9ff",
+            "surface-bright": "#f8f9ff",
+            "on-error": "#ffffff",
+            "tertiary": "#001217",
+            "on-primary-fixed-variant": "#314769",
+            "primary-fixed-dim": "#b1c7f0",
+            "inverse-surface": "#213145",
+            "secondary-fixed": "#89f5e7",
+            "on-error-container": "#93000a",
+            "surface-container": "#e5eeff",
+            "on-surface-variant": "#44474e",
+            "primary-container": "#0b2545",
+            "on-primary-fixed": "#001c3b",
+            "primary": "#001026",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "secondary-container": "#86f2e4",
+            "inverse-on-surface": "#eaf1ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "gutter": "1rem",
+            "space-xl": "2rem",
+            "space-xs": "0.25rem",
+            "margin": "1rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Inter"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "metric-display": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "title-md": ["Inter"],
+            "display": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "metric-display": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "display": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.filled {
+      font-variation-settings: 'FILL' 1;
+    }
+    /* Hide scrollbar for category & pill rails */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased flex justify-center min-h-screen">
+<!-- Mobile Container Context -->
+<div class="w-full max-w-md bg-background min-h-screen flex flex-col relative pb-24 shadow-2xl">
+<!-- TOP APP BAR / BRAND HEADER -->
+<header class="bg-surface-container-lowest sticky top-0 z-40 px-margin py-space-sm shadow-sm flex flex-col gap-space-xs">
+<!-- SuperApp Navigation Context & Brand Line -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<button aria-label="Go back" class="p-1 rounded-full text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex items-center gap-1.5">
+<div class="h-8 w-auto flex items-center justify-center"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ2fCY3NkD64WLc8PR7koWc5Xg9DyemUxBJhZI0xZ-h0uPUZu8_VaoW8udXwuWg5pSgLRMtbr0tEwf3WFILkPW8Xv3_WQHJgzAGpI0m0wZfdus6KdZypo3QQNpXdtjp1k5lg1SBRHYYPrqau3P8fgzbpJ1OiuMz1ILws2EPSXsxMUg_hoDZqL2nyWHRzJD7BSbAqo5jdwRo7iSERkykbHPYR-SASo6Yqe8fNHddaBN8KceWn11JsQvP8w2wfn67NqvBdQ" alt="Dr.Route Logo" class="h-8 w-auto object-contain rounded"></div>
+<div>
+<span class="font-headline-sm text-headline-sm text-primary tracking-tight font-bold">Dr.Route</span>
+<span class="font-label-sm text-label-sm text-secondary block -mt-1 font-semibold">PHARMACY EXPRESS</span>
+</div>
+</div>
+</div>
+<!-- Top Actions: Notifications / Cart -->
+<div class="flex items-center gap-space-xs">
+<button aria-label="Order Cart" class="relative p-2 rounded-full text-primary hover:bg-surface-container active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="absolute top-1 right-1 w-4 h-4 bg-secondary text-on-secondary rounded-full flex items-center justify-center font-label-sm text-[9px] font-bold ring-2 ring-surface-container-lowest">2</span>
+</button>
+</div>
+</div>
+<!-- Live Delivery Location Strip -->
+<div class="flex items-center justify-between bg-surface-container-low px-space-sm py-1.5 rounded-full border border-surface-variant">
+<div class="flex items-center gap-1.5 overflow-hidden">
+<span class="material-symbols-outlined text-secondary text-[16px] filled" data-icon="near_me">near_me</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium truncate">
+<span class="text-on-surface-variant">Deliver to:</span> <strong class="text-primary">Indiranagar, Blr</strong>
+</p>
+</div>
+
+</div>
+</header>
+<!-- MAIN SCROLLABLE CONTENT CANVAS -->
+<main class="flex-1 px-margin space-y-space-md pt-space-sm">
+<!-- SEARCH BAR COMPONENT -->
+<section aria-label="Search Medicine">
+<div class="relative flex items-center bg-surface-container-lowest rounded-full border border-outline-variant shadow-sm focus-within:border-secondary focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
+<div class="pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+</div>
+<input class="w-full py-2.5 pl-2.5 pr-20 bg-transparent border-0 font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:ring-0 focus:outline-none" placeholder="Search medicines, salts, health brands..." type="text">
+<div class="absolute right-2 flex items-center gap-1">
+<button aria-label="Scan Prescription" class="p-1.5 text-on-surface-variant hover:text-secondary rounded-full active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="photo_camera">photo_camera</span>
+</button>
+<button aria-label="Voice Search" class="p-1.5 text-on-surface-variant hover:text-secondary rounded-full active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="mic">mic</span>
+</button>
+</div>
+</div>
+</section>
+<!-- PRESCRIPTION UPLOAD HERO CARD (HIGH PRIORITY) -->
+<div class="grid grid-cols-2 gap-2.5 items-stretch"><div class="bg-surface-container-high/80 border border-secondary/30 rounded-xl p-2.5 flex flex-col justify-between shadow-sm text-on-surface"><div><div class="flex items-center gap-1.5 mb-1.5"><div class="w-6 h-6 rounded-full bg-secondary/15 flex items-center justify-center text-secondary flex-shrink-0"><span class="material-symbols-outlined text-[16px] filled" data-icon="info">info</span></div><span class="text-[9px] font-bold uppercase tracking-wider text-secondary bg-secondary-fixed/50 px-1.5 py-0.5 rounded">OTC Only</span></div><h3 class="text-primary font-bold text-label-md leading-tight mb-1">Direct Order Notice</h3><p class="text-on-surface-variant text-[11px] leading-snug">Only OTC &amp; daily healthcare essentials can be ordered directly.<br><span class="text-primary font-medium">Prescription required for Rx medicines.</span></p></div><div class="mt-2 pt-1.5 border-t border-outline-variant/30 flex items-center gap-1 text-[10px] text-secondary font-medium"><span class="material-symbols-outlined text-[13px] filled" data-icon="verified_user">verified_user</span><span class="">Doctor slip needed for Rx</span></div></div><div class="bg-gradient-to-br from-primary-container to-[#133E6E] rounded-xl p-2.5 text-on-primary shadow-md relative overflow-hidden flex flex-col justify-between"><div class="absolute -right-6 -bottom-6 w-20 h-20 bg-secondary-container/10 rounded-full blur-xl pointer-events-none"></div><div class="relative z-10"><div class="flex items-center justify-between mb-1.5"><span class="bg-secondary text-on-secondary px-1.5 py-0.5 rounded-full font-label-sm text-[9px] font-bold flex items-center gap-0.5"><span class="material-symbols-outlined text-[10px] filled" data-icon="bolt">bolt</span> OTC Direct</span><span class="font-label-sm text-[10px] text-secondary-fixed flex items-center gap-0.5"><span class="material-symbols-outlined text-[12px] filled" data-icon="verified">verified</span> Genuine</span></div><h3 class="font-headline-sm text-[13px] leading-tight text-white font-bold mb-1">Direct OTC Medicine &amp; Essentials</h3><p class="font-body-sm text-[11px] leading-snug text-inverse-primary/90">Daily fever, pain relief, cough syrups &amp; vitamins with 15-min delivery.</p></div><div class="relative z-10 mt-2"><button class="w-full bg-secondary hover:bg-on-secondary-container text-on-secondary font-label-md text-[11px] py-1.5 px-2 rounded-full flex items-center justify-center gap-1 shadow-sm active:scale-95 transition-transform duration-150" type="button"><span class="material-symbols-outlined text-[14px] filled" data-icon="flash_on">flash_on</span>Instant Order</button></div></div></div>
+<!-- EXPRESS DELIVERY & SAFETY PROMISE BAR -->
+<section aria-label="Delivery Guarantee" class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-space-sm shadow-sm"><div class="grid grid-cols-3 divide-x divide-outline-variant/40 py-0.5"><div class="flex flex-col items-center text-center px-1.5"><div class="flex items-center gap-1 text-secondary mb-0.5"><span class="material-symbols-outlined text-[16px] filled" data-icon="electric_bolt">electric_bolt</span><span class="font-label-sm text-[11px] text-primary font-bold tracking-tight whitespace-nowrap">Under 60 Min</span></div><span class="font-label-sm text-on-surface-variant text-[10px] leading-tight">Express delivery</span></div><div class="flex flex-col items-center text-center px-1.5"><div class="flex items-center gap-1 text-secondary mb-0.5"><span class="material-symbols-outlined text-[16px] filled" data-icon="verified_user">verified_user</span><span class="font-label-sm text-[11px] text-primary font-bold tracking-tight whitespace-nowrap">100% Genuine</span></div><span class="font-label-sm text-on-surface-variant text-[10px] leading-tight">Verified batch test</span></div><div class="flex flex-col items-center text-center px-1.5"><div class="flex items-center gap-1 text-secondary mb-0.5"><span class="material-symbols-outlined text-[16px] filled" data-icon="ac_unit">ac_unit</span><span class="font-label-sm text-[11px] text-primary font-bold tracking-tight whitespace-nowrap">Cold-Chain</span></div><span class="font-label-sm text-on-surface-variant text-[10px] leading-tight">2°C - 8°C box</span></div></div></section>
+<!-- MEDICINE CATEGORIES GRID -->
+<section aria-label="OTC Medicine Categories" class="space-y-space-xs"><div class="flex items-center justify-between"><h2 class="font-title-md text-title-md text-primary font-bold">Browse OTC Categories</h2><a class="font-label-md text-label-md text-secondary hover:underline flex items-center" href="#all-categories">View All <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span></a></div><div class="grid grid-cols-4 gap-2.5"><div class="flex flex-col items-center p-2 rounded-xl bg-surface-container-lowest border border-outline-variant/50 hover:border-secondary transition-colors cursor-pointer group"><div class="w-12 h-12 rounded-full bg-secondary-fixed/40 flex items-center justify-center text-secondary mb-1.5 group-hover:scale-105 transition-transform"><span class="material-symbols-outlined text-[22px]" data-icon="healing">healing</span></div><span class="font-label-sm text-label-sm text-on-surface text-center leading-tight">Pain &amp; Fever</span></div><div class="flex flex-col items-center p-2 rounded-xl bg-surface-container-lowest border border-outline-variant/50 hover:border-secondary transition-colors cursor-pointer group"><div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-primary mb-1.5 group-hover:scale-105 transition-transform"><span class="material-symbols-outlined text-[22px]" data-icon="thermostat">thermostat</span></div><span class="font-label-sm text-label-sm text-on-surface text-center leading-tight">Cold &amp; Cough</span></div><div class="flex flex-col items-center p-2 rounded-xl bg-surface-container-lowest border border-outline-variant/50 hover:border-secondary transition-colors cursor-pointer group"><div class="w-12 h-12 rounded-full bg-secondary-container/40 flex items-center justify-center text-secondary mb-1.5 group-hover:scale-105 transition-transform"><span class="material-symbols-outlined text-[22px]" data-icon="sentiment_satisfied">sentiment_satisfied</span></div><span class="font-label-sm text-label-sm text-on-surface text-center leading-tight">Digestive &amp; Acidity</span></div><div class="flex flex-col items-center p-2 rounded-xl bg-surface-container-lowest border border-outline-variant/50 hover:border-secondary transition-colors cursor-pointer group"><div class="w-12 h-12 rounded-full bg-tertiary-fixed/40 flex items-center justify-center text-on-tertiary-container mb-1.5 group-hover:scale-105 transition-transform"><span class="material-symbols-outlined text-[22px]" data-icon="pill">pill</span></div><span class="font-label-sm text-label-sm text-on-surface text-center leading-tight">Vitamins &amp; Minerals</span></div><div class="flex flex-col items-center p-2 rounded-xl bg-surface-container-lowest border border-outline-variant/50 hover:border-secondary transition-colors cursor-pointer group"><div class="w-12 h-12 rounded-full bg-error-container/40 flex items-center justify-center text-error mb-1.5 group-hover:scale-105 transition-transform"><span class="material-symbols-outlined text-[22px]" data-icon="medical_services">medical_services</span></div><span class="font-label-sm text-label-sm text-on-surface text-center leading-tight">First Aid &amp; Creams</span></div><div class="flex flex-col items-center p-2 rounded-xl bg-surface-container-lowest border border-outline-variant/50 hover:border-secondary transition-colors cursor-pointer group"><div class="w-12 h-12 rounded-full bg-[#ECFDF5] flex items-center justify-center text-[#0D9488] mb-1.5 group-hover:scale-105 transition-transform"><span class="material-symbols-outlined text-[22px]" data-icon="eco">eco</span></div><span class="font-label-sm text-label-sm text-on-surface text-center leading-tight">Ayurveda &amp; Immunity</span></div><div class="flex flex-col items-center p-2 rounded-xl bg-surface-container-lowest border border-outline-variant/50 hover:border-secondary transition-colors cursor-pointer group"><div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary mb-1.5 group-hover:scale-105 transition-transform"><span class="material-symbols-outlined text-[22px]" data-icon="child_care">child_care</span></div><span class="font-label-sm text-label-sm text-on-surface text-center leading-tight">Baby Care</span></div><div class="flex flex-col items-center p-2 rounded-xl bg-surface-container-lowest border border-outline-variant/50 hover:border-secondary transition-colors cursor-pointer group"><div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-primary mb-1.5 group-hover:scale-105 transition-transform"><span class="material-symbols-outlined text-[22px]" data-icon="nutrition">nutrition</span></div><span class="font-label-sm text-label-sm text-on-surface text-center leading-tight">Health Drinks</span></div></div></section>
+<!-- ORDER AGAIN / FREQUENT ESSENTIALS (HORIZONTAL CAROUSEL) -->
+<section aria-label="Popular OTC Essentials" class="space-y-space-xs"><div class="flex items-center justify-between"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-secondary text-[20px] filled" data-icon="replay">replay</span><h2 class="font-title-md text-title-md text-primary font-bold">Quick OTC Re-order</h2></div><span class="font-label-sm text-label-sm text-secondary font-semibold">No Doctor Slip Needed</span></div><div class="flex gap-space-sm overflow-x-auto no-scrollbar pb-1 -mx-margin px-margin"><div class="w-40 flex-shrink-0 bg-surface-container-lowest rounded-xl p-3 border border-outline-variant/60 shadow-sm flex flex-col justify-between"><div><div class="flex justify-between items-start mb-1"><span class="bg-[#ECFDF5] text-[#0D9488] font-label-sm text-[9px] px-1.5 py-0.5 rounded font-bold flex items-center gap-0.5"><span class="material-symbols-outlined text-[11px] filled" data-icon="check_circle">check_circle</span> OTC Safe</span><span class="material-symbols-outlined text-[16px] text-outline hover:text-error cursor-pointer" data-icon="favorite_border">favorite_border</span></div><div class="h-28 w-full rounded-xl bg-surface-container flex items-center justify-center mb-2 overflow-hidden"><img class="w-full h-28 object-cover rounded-xl" alt="Dolo 650 OTC Pack" src="https://lh3.googleusercontent.com/aida/AEtjO1XY4JkWcDqwi9S0izaLBgpyCmnhtA5Cjkxp2Wy8hvU3VTK9IszO2giJhtY3w8TrYgn8WV0XAJYVK0lZn93A6LnIXRaVyPcka5mRg9Crza3byHFcVrfdJt_D66X4-QByTWEGRcfX-spjKHDm8jM5AtKFd4UrHjx9-GTVlh3esxZg3vD5kg4wn98Yx_TDEL8FwYab3ficYNU9iUfTJT-hBEB2UCw_3IlsHDl18-z9cAxlWn_D5yttU2Pw4ac"></div><h3 class="font-label-md text-label-md text-on-surface font-bold truncate">Dolo 650 OTC Pack</h3><p class="font-label-sm text-label-sm text-on-surface-variant">Strip of 15 tablets</p></div><div class="mt-3 pt-2 border-t border-outline-variant/30"><div class="flex items-center justify-between mb-1.5"><div><span class="font-title-md text-title-md text-primary font-bold">₹XYZ</span><span class="font-label-sm text-label-sm text-outline line-through ml-0.5">₹XYZ</span></div><span class="text-[9px] font-label-sm text-secondary font-semibold">15% OFF</span></div><button class="w-full bg-primary hover:bg-primary-container text-white text-[11px] font-label-sm font-bold py-1.5 px-2 rounded-lg flex items-center justify-center gap-1 active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-[14px]" data-icon="add_shopping_cart">add_shopping_cart</span>Add to Cart</button></div></div><div class="w-40 flex-shrink-0 bg-surface-container-lowest rounded-xl p-3 border border-outline-variant/60 shadow-sm flex flex-col justify-between"><div><div class="flex justify-between items-start mb-1"><span class="bg-[#ECFDF5] text-[#0D9488] font-label-sm text-[9px] px-1.5 py-0.5 rounded font-bold flex items-center gap-0.5"><span class="material-symbols-outlined text-[11px] filled" data-icon="check_circle">check_circle</span> OTC Safe</span><span class="material-symbols-outlined text-[16px] text-outline hover:text-error cursor-pointer" data-icon="favorite_border">favorite_border</span></div><div class="h-28 w-full rounded-xl bg-surface-container flex items-center justify-center mb-2 overflow-hidden"><img class="w-full h-28 object-cover rounded-xl" alt="Shelcal 500 Calcium Tablets" src="https://lh3.googleusercontent.com/aida/AEtjO1XYNDBrM-O_6v_CYQ1aKYYkFqp-KODicuXrwgtCAAhPVH8Sy8zfyxUTZGg86BAq0oKeDe7P0jScwLfe5WWlUZxHpCh_5x2Y3dSMUzDklWiAGeDJ3krS6WS-QE9MvS0O2djFJ8N5z2zEold5dgdGutpzblANU07tLiOqT4fFN24my507rfSoTqV4HlE6GmA6oujgBqjjXWqHniDiZ0bEYfxRxccZZAoR-1kxOH9D6dqxrKu2gtUz_cIYjPNL"></div><h3 class="font-label-md text-label-md text-on-surface font-bold truncate">Shelcal 500 Calcium</h3><p class="font-label-sm text-label-sm text-on-surface-variant">Strip of 15 tablets</p></div><div class="mt-3 pt-2 border-t border-outline-variant/30"><div class="flex items-center justify-between mb-1.5"><div><span class="font-title-md text-title-md text-primary font-bold">₹XYZ</span><span class="font-label-sm text-label-sm text-outline line-through ml-0.5">₹XYZ</span></div><span class="text-[9px] font-label-sm text-secondary font-semibold">20% OFF</span></div><button class="w-full bg-primary hover:bg-primary-container text-white text-[11px] font-label-sm font-bold py-1.5 px-2 rounded-lg flex items-center justify-center gap-1 active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-[14px]" data-icon="add_shopping_cart">add_shopping_cart</span>Add to Cart</button></div></div><div class="w-40 flex-shrink-0 bg-surface-container-lowest rounded-xl p-3 border border-outline-variant/60 shadow-sm flex flex-col justify-between"><div><div class="flex justify-between items-start mb-1"><span class="bg-[#ECFDF5] text-[#0D9488] font-label-sm text-[9px] px-1.5 py-0.5 rounded font-bold flex items-center gap-0.5"><span class="material-symbols-outlined text-[11px] filled" data-icon="check_circle">check_circle</span> OTC Safe</span><span class="material-symbols-outlined text-[16px] text-outline hover:text-error cursor-pointer" data-icon="favorite_border">favorite_border</span></div><div class="h-28 w-full rounded-xl bg-surface-container flex items-center justify-center mb-2 overflow-hidden"><img class="w-full h-28 object-cover rounded-xl" alt="Eno Fast Relief Antacid" src="https://lh3.googleusercontent.com/aida/AEtjO1XY4JkWcDqwi9S0izaLBgpyCmnhtA5Cjkxp2Wy8hvU3VTK9IszO2giJhtY3w8TrYgn8WV0XAJYVK0lZn93A6LnIXRaVyPcka5mRg9Crza3byHFcVrfdJt_D66X4-QByTWEGRcfX-spjKHDm8jM5AtKFd4UrHjx9-GTVlh3esxZg3vD5kg4wn98Yx_TDEL8FwYab3ficYNU9iUfTJT-hBEB2UCw_3IlsHDl18-z9cAxlWn_D5yttU2Pw4ac"></div><h3 class="font-label-md text-label-md text-on-surface font-bold truncate">Eno Fast Relief Antacid</h3><p class="font-label-sm text-label-sm text-on-surface-variant">Pack of 6 sachets</p></div><div class="mt-3 pt-2 border-t border-outline-variant/30"><div class="flex items-center justify-between mb-1.5"><div><span class="font-title-md text-title-md text-primary font-bold">₹XYZ</span><span class="font-label-sm text-label-sm text-outline line-through ml-0.5">₹XYZ</span></div><span class="text-[9px] font-label-sm text-secondary font-semibold">10% OFF</span></div><button class="w-full bg-primary hover:bg-primary-container text-white text-[11px] font-label-sm font-bold py-1.5 px-2 rounded-lg flex items-center justify-center gap-1 active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-[14px]" data-icon="add_shopping_cart">add_shopping_cart</span>Add to Cart</button></div></div><div class="w-40 flex-shrink-0 bg-surface-container-lowest rounded-xl p-3 border border-outline-variant/60 shadow-sm flex flex-col justify-between"><div><div class="flex justify-between items-start mb-1"><span class="bg-[#ECFDF5] text-[#0D9488] font-label-sm text-[9px] px-1.5 py-0.5 rounded font-bold flex items-center gap-0.5"><span class="material-symbols-outlined text-[11px] filled" data-icon="check_circle">check_circle</span> OTC Safe</span><span class="material-symbols-outlined text-[16px] text-outline hover:text-error cursor-pointer" data-icon="favorite_border">favorite_border</span></div><div class="h-28 w-full rounded-xl bg-surface-container flex items-center justify-center mb-2 overflow-hidden"><img class="w-full h-28 object-cover rounded-xl" alt="Evion 400mg Vitamin E" src="https://lh3.googleusercontent.com/aida/AEtjO1XYNDBrM-O_6v_CYQ1aKYYkFqp-KODicuXrwgtCAAhPVH8Sy8zfyxUTZGg86BAq0oKeDe7P0jScwLfe5WWlUZxHpCh_5x2Y3dSMUzDklWiAGeDJ3krS6WS-QE9MvS0O2djFJ8N5z2zEold5dgdGutpzblANU07tLiOqT4fFN24my507rfSoTqV4HlE6GmA6oujgBqjjXWqHniDiZ0bEYfxRxccZZAoR-1kxOH9D6dqxrKu2gtUz_cIYjPNL"></div><h3 class="font-label-md text-label-md text-on-surface font-bold truncate">Evion 400mg Vitamin E</h3><p class="font-label-sm text-label-sm text-on-surface-variant">Strip of 10 capsules</p></div><div class="mt-3 pt-2 border-t border-outline-variant/30"><div class="flex items-center justify-between mb-1.5"><div><span class="font-title-md text-title-md text-primary font-bold">₹XYZ</span><span class="font-label-sm text-label-sm text-outline line-through ml-0.5">₹XYZ</span></div><span class="text-[9px] font-label-sm text-secondary font-semibold">10% OFF</span></div><button class="w-full bg-primary hover:bg-primary-container text-white text-[11px] font-label-sm font-bold py-1.5 px-2 rounded-lg flex items-center justify-center gap-1 active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-[14px]" data-icon="add_shopping_cart">add_shopping_cart</span>Add to Cart</button></div></div></div></section>
+<!-- POPULAR HEALTH DEALS & CURATED BUNDLES (BENTO STYLE) -->
+<section aria-label="Curated Health Bundles" class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-title-md text-title-md text-primary font-bold">Care Bundles &amp; Kits</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Curated by top general physicians</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-label-sm text-label-sm font-bold">Save up to 35%</span>
+</div>
+<div class="grid grid-cols-1 gap-space-sm">
+<!-- Bundle 1: Diabetes Kit -->
+
+<!-- Bundle 2: Monsoon Immunity Box -->
+<div class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-space-md shadow-sm flex items-center justify-between hover:shadow-md transition-shadow">
+<div class="space-y-1 max-w-[210px]">
+<div class="inline-flex items-center gap-1 bg-[#ECFDF5] text-[#0D9488] px-2 py-0.5 rounded font-label-sm text-[10px] font-bold">
+<span class="material-symbols-outlined text-[12px] filled" data-icon="shield">shield</span> Seasonal Shield
+              </div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold">Complete Immunity Pack</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight">Vitamin C + Zinc + Chyawanprash + Herbal Steam Inhaler</p>
+<div class="flex items-center gap-2 pt-1">
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">₹XYZ</span>
+<span class="font-body-sm text-body-sm text-outline line-through">₹XYZ</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<div class="w-24 h-24 rounded-2xl overflow-hidden border border-outline-variant/40 bg-surface-container-low flex-shrink-0"><img class="w-24 h-24 object-cover rounded-2xl" alt="Complete Immunity Pack wellness kit" src="https://lh3.googleusercontent.com/aida/AEtjO1XY4JkWcDqwi9S0izaLBgpyCmnhtA5Cjkxp2Wy8hvU3VTK9IszO2giJhtY3w8TrYgn8WV0XAJYVK0lZn93A6LnIXRaVyPcka5mRg9Crza3byHFcVrfdJt_D66X4-QByTWEGRcfX-spjKHDm8jM5AtKFd4UrHjx9-GTVlh3esxZg3vD5kg4wn98Yx_TDEL8FwYab3ficYNU9iUfTJT-hBEB2UCw_3IlsHDl18-z9cAxlWn_D5yttU2Pw4ac"></div>
+<button class="bg-primary hover:bg-primary-container text-white font-label-md text-label-md px-3.5 py-1.5 rounded-full active:scale-95 transition-transform flex items-center gap-1" type="button">
+<span class="">Add Kit</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- VERIFIED PHARMACY TRUST BADGE -->
+<section class="bg-surface-container-low rounded-xl p-space-sm border border-outline-variant/50 flex items-center gap-3 shadow-sm"><div class="w-12 h-12 rounded-xl bg-[#ECFDF5] border border-secondary/30 flex items-center justify-center text-[#0D9488] flex-shrink-0 shadow-sm"><span class="material-symbols-outlined text-[26px] filled" data-icon="verified_user">verified_user</span></div><div class="flex-1"><div class="flex items-center justify-between mb-0.5"><h4 class="font-label-md text-label-md text-primary font-bold truncate">Registered Retail Partner</h4><span class="bg-secondary text-on-secondary text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider flex-shrink-0">100% OTC</span></div><p class="font-label-sm text-label-sm text-on-surface-variant font-medium">Lic: #KA-BLR-29188 • Certified Safe</p><p class="font-body-sm text-[11px] text-on-surface-variant leading-snug mt-1"><strong class="text-primary font-semibold">Genuine OTC &amp; Wellness:</strong> Direct purchase without doctor prescription.</p></div></section>
+</main>
+<!-- PERSISTENT FLOATING EMERGENCY SOS BAR (DESIGN SYSTEM ANCHOR) -->
+<!-- Integrated directly into bottom layout above tab navigation for high-stakes healthcare triage -->
+<!-- BOTTOM NAVIGATION BAR (MATCHING THE SHARED COMPONENT SPEC EXACTLY) -->
+<!--
+      Shared Components JSON specifies:
+      - labels: ["Home", "Self Care", "SOS", "Transport", "Account"]
+      - icons: ["home", "ecg_heart", "emergency", "local_taxi", "person"]
+      - style_bg_color: "bg-surface-container-lowest dark:bg-primary-container"
+      - style_active_navigation: "flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-space-sm py-space-xs"
+      - style_inactive_navigation: "flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-space-sm py-space-xs"
+      Active Tab Logic: Since this is an online medicine express order inside primary healthcare services ecosystem, "Home" is the parent top-level anchor.
+    -->
+<nav class="fixed bottom-0 left-0 right-0 w-full z-50 flex justify-around items-center px-space-xs py-space-xs max-w-md mx-auto bg-surface-container-lowest dark:bg-primary-container shadow-lg dark:shadow-none border-t border-outline-variant dark:border-outline">
+<!-- Tab 1: Home (Active context anchor) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-space-sm py-space-xs transition-transform active:scale-95 duration-150" href="#home">
+<span class="material-symbols-outlined text-[20px] filled" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<!-- Tab 2: Self Care -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-space-sm py-space-xs hover:bg-surface-container active:scale-95 transition-transform duration-150" href="#self-care">
+<span class="material-symbols-outlined text-[20px]" data-icon="ecg_heart">ecg_heart</span>
+<span class="font-label-sm text-label-sm">Self Care</span>
+</a>
+<!-- Tab 3: SOS (Emergency Trigger with urgent styling) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-space-sm py-space-xs hover:bg-surface-container active:scale-95 transition-transform duration-150 relative" href="#sos">
+<div class="w-8 h-8 rounded-full bg-error text-on-error flex items-center justify-center shadow-md animate-pulse">
+<span class="material-symbols-outlined text-[20px] filled" data-icon="emergency">emergency</span>
+</div>
+<span class="font-label-sm text-label-sm text-error font-bold mt-0.5">SOS</span>
+</a>
+<!-- Tab 4: Transport -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-space-sm py-space-xs hover:bg-surface-container active:scale-95 transition-transform duration-150" href="javascript:void(0)">
+<span class="material-symbols-outlined text-[20px]" data-icon="folder_shared">folder_shared</span>
+<span class="font-label-sm text-label-sm">Records</span>
+</a>
+<!-- Tab 5: Account -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-space-sm py-space-xs hover:bg-surface-container active:scale-95 transition-transform duration-150" href="#account">
+<span class="material-symbols-outlined text-[20px]" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Account</span>
+</a>
+</nav>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

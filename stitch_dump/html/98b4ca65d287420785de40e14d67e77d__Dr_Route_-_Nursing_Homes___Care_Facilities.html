@@ -1,0 +1,193 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Nursing Homes &amp; Assisted Living Hub - Dr.Route</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-container": "#002931",
+            "outline-variant": "#c4c6cf",
+            "on-tertiary": "#ffffff",
+            "inverse-primary": "#b1c7f0",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-highest": "#d3e4fe",
+            "on-error-container": "#93000a",
+            "on-tertiary-fixed": "#001f26",
+            "on-tertiary-container": "#0099b3",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed-variant": "#005049",
+            "secondary": "#006a61",
+            "surface-container": "#e5eeff",
+            "surface-bright": "#f8f9ff",
+            "secondary-fixed-dim": "#6bd8cb",
+            "on-surface-variant": "#44474e",
+            "surface-container-high": "#dce9ff",
+            "secondary-fixed": "#89f5e7",
+            "surface-dim": "#cbdbf5",
+            "on-primary-container": "#778db2",
+            "tertiary-fixed": "#acedff",
+            "on-background": "#0b1c30",
+            "secondary-container": "#86f2e4",
+            "surface-tint": "#495f82",
+            "on-primary-fixed-variant": "#314769",
+            "primary-fixed-dim": "#b1c7f0",
+            "error": "#ba1a1a",
+            "on-error": "#ffffff",
+            "outline": "#74777f",
+            "inverse-surface": "#213145",
+            "tertiary-fixed-dim": "#4cd7f6",
+            "on-tertiary-fixed-variant": "#004e5c",
+            "on-surface": "#0b1c30",
+            "on-secondary-fixed": "#00201d",
+            "on-secondary-container": "#006f66",
+            "primary-container": "#0b2545",
+            "surface-container-low": "#eff4ff",
+            "primary": "#001026",
+            "tertiary": "#001217",
+            "surface-variant": "#d3e4fe",
+            "on-primary-fixed": "#001c3b",
+            "surface": "#f8f9ff",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "background": "#f8f9ff",
+            "inverse-on-surface": "#eaf1ff",
+            "primary-fixed": "#d5e3ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "gutter": "1rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "title-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "metric-display": ["Plus Jakarta Sans"],
+            "display": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "metric-display": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1;
+    }
+    /* Hide scrollbar for category chip rail */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-md min-h-screen pb-28 selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Mobile Screen Container -->
+<div class="max-w-md mx-auto min-h-screen bg-background relative flex flex-col shadow-2xl">
+<!-- Top Sticky App Bar & Navigation Header -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest/95 backdrop-blur-md px-margin pt-3 pb-3 border-b border-outline-variant/30 transition-all duration-200"><div class="flex items-center justify-between gap-2 mb-2.5"><div class="flex items-center gap-2"><button aria-label="Go Back" class="w-9 h-9 rounded-full flex items-center justify-center text-primary hover:bg-surface-container active:scale-95 transition-transform"><span class="material-symbols-outlined text-[22px]">arrow_back</span></button><div><div class="flex items-center gap-1"><h1 class="font-headline-sm text-[17px] font-bold text-primary tracking-tight">Nursing Homes &amp; Care</h1><img alt="Dr.Route Logo" class="w-4 h-4 rounded-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDopY-76UIRyNp3LNTyl-fGwaiFeG7IPSV1pDfyYsrC_RxNAd-MRIxc2ruJVoL2lVly009gr7cO1BoeyHUdev9ihavMsblWxFOHuVY_cwsg3I3ADtm0uRBKC7AUKMSAUJF0ohXftUCrmdwEpj47sRoTsmpFew1swrv-_bwutYvThUf6XveaNze4Xx1N5baAWU3682M_CYMyOvsAg3VUynKYMiG361un8tUqFUltzB-QkkXu2jWA1MhJNdVkE4wVvnQoi0o"></div><div class="flex items-center gap-1 text-[11px] text-on-surface-variant font-medium"><span class="material-symbols-outlined text-[13px] text-secondary">location_on</span><span class="">Bengaluru • Within 10 km</span><span class="material-symbols-outlined text-[14px]">₹XYZ<span class="text-[10px] font-normal">/day</span></span></div></div></div><div class="flex items-center gap-1"><button aria-label="Notifications" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform"><span class="material-symbols-outlined text-[22px]">notifications</span></button><button aria-label="Share" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform"><span class="material-symbols-outlined text-[20px]">share</span></button></div></div><div class="flex items-center gap-2"><div class="relative flex-1"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span><input class="w-full h-10 pl-9 pr-8 text-body-sm bg-surface-container-low border border-outline-variant/40 rounded-xl focus:border-secondary focus:ring-2 focus:ring-secondary/20 placeholder:text-outline outline-none transition-all" placeholder="Search nursing home, care type (Elder Care, ICU...)" type="text"><button class="absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-secondary"><span class="material-symbols-outlined text-[18px]">mic</span></button></div><button aria-label="Filter options" class="h-10 w-10 bg-surface-container border border-outline-variant/40 rounded-xl text-primary flex items-center justify-center hover:bg-surface-container-high active:scale-95 transition-transform shrink-0"><span class="material-symbols-outlined text-[18px]">tune</span></button></div></header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-margin py-3 space-y-4"><!-- Top Featured Hero Card (Dark Navy Promoted Partner) --><section class="relative rounded-2xl overflow-hidden bg-primary text-white shadow-lg p-4 space-y-3"><div class="flex items-center justify-between"><div class="flex items-center gap-1.5"><span class="bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-wider uppercase">Featured Partner</span><span class="text-[10px] text-outline-variant tracking-wider">AD • PROMOTED</span></div><div class="flex items-center gap-1 bg-white/10 backdrop-blur-sm px-2 py-0.5 rounded-full text-[11px] font-bold text-amber-300"><span class="material-symbols-outlined text-[13px] fill">star</span><span class="">4.9</span></div><button aria-label="Save to Wishlist" class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/30 active:scale-95 transition-all ml-1.5"><span class="material-symbols-outlined text-[18px]">bookmark_border</span></button></div><div class="relative h-32 w-full rounded-xl overflow-hidden shadow-sm my-1"><img src="https://lh3.googleusercontent.com/aida/AEtjO1WriR2R-dc0m9Z7WfsKMaz-eOyIYeJqHxAgnII-t4_gOGvgflWwA74M2i2uTuPff3NtiFKNbS4tfSrsfsjfpvkTE47X1QtwAAmVkIb0UzTNk-uvrlBEEzbyAxTNCmvGcPG1buKwxOhp36OZ9Spc_heZgtUEjxHg-jJZZr8-qrIdsESnDsfUAboS_1yD0VZs7P6hFV5RE-LCwpN7hwkMU3worcamglBwjxLXqLSeR9l-oBXJCo7JoFvpfwtT" alt="Aarogya Vridhi Senior Living &amp; Nursing Care" class="w-full h-full object-cover"><div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"></div></div><div><h2 class="font-headline-sm text-[18px] font-bold text-white leading-tight">Aarogya Vridhi Senior Living &amp; Nursing Care</h2><p class="font-body-sm text-[12px] text-inverse-on-surface/90 mt-0.5">NABH Accredited • 24×7 Geriatric &amp; Post-Op Recovery Centre</p></div><!-- 3-Column Highlight Metric Boxes --><div class="grid grid-cols-3 gap-2 pt-1"><div class="bg-secondary-container text-on-secondary-container rounded-xl p-2 text-center border border-secondary shadow-sm"><div class="text-[10px] uppercase font-bold tracking-wider text-secondary">Daily Charge</div><div class="font-bold text-[14px] text-primary mt-0.5">₹XYZ<span class="text-[10px] font-normal">/day</span></div></div><div class="bg-white/10 backdrop-blur-sm rounded-xl p-2 text-center border border-white/10"><div class="text-[10px] text-inverse-on-surface/80 leading-tight uppercase font-medium">RN Nurse</div><div class="font-bold text-[13px] text-secondary-fixed mt-0.5">100% Verified</div></div><div class="bg-white/10 backdrop-blur-sm rounded-xl p-2 text-center border border-white/10"><div class="text-[10px] text-inverse-on-surface/80 leading-tight uppercase font-medium">Admission Fee</div><div class="font-bold text-[13px] text-secondary-fixed mt-0.5">₹XYZ Free</div></div></div><!-- Direct Helpline Card Inside --><div class="bg-white/10 backdrop-blur-sm rounded-xl p-2.5 border border-white/10 flex items-center justify-between gap-2"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[16px]">call</span></div><div><a class="font-bold text-[13px] text-white hover:underline block leading-tight" href="tel:+911141414141">+91 11 4141 4141</a><span class="text-[10px] text-inverse-on-surface/80">Helpdesk 24×7 • Visit 9 AM - 7 PM</span></div></div><button class="px-2.5 py-1 rounded-lg bg-white/15 hover:bg-white/20 text-white font-label-sm text-[11px] transition-colors">Details</button></div><!-- Hero Primary Action Button --><button class="w-full h-11 bg-secondary hover:opacity-95 text-white font-semibold text-[13px] rounded-xl flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition-all"><span class="">Book Admission / Visit</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></button><!-- Carousel Indicator Dots --><div class="flex items-center justify-center gap-1.5 pt-0.5"><span class="w-4 h-1.5 rounded-full bg-secondary"></span><span class="w-1.5 h-1.5 rounded-full bg-white/30"></span><span class="w-1.5 h-1.5 rounded-full bg-white/30"></span></div></section><!-- 3-Button Filter Row (Exact One-Line Selector) --><div class="grid grid-cols-3 gap-1.5 w-full py-1"><button class="py-2 px-1 text-center rounded-xl bg-primary text-white font-semibold text-[11px] shadow-sm active:scale-95 transition-all flex flex-col sm:flex-row items-center justify-center gap-1"><span class="material-symbols-outlined text-[16px]">domain</span><span class="leading-tight text-center">All Nursing</span></button><button class="py-2 px-1 text-center rounded-xl bg-surface-container border border-outline-variant/60 text-on-surface font-semibold text-[11px] hover:bg-surface-container-high active:scale-95 transition-all flex flex-col sm:flex-row items-center justify-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">elderly</span><span class="leading-tight text-center">Assisted Living</span></button><button class="py-2 px-1 text-center rounded-xl bg-surface-container border border-outline-variant/60 text-on-surface font-semibold text-[11px] hover:bg-surface-container-high active:scale-95 transition-all flex flex-col sm:flex-row items-center justify-center gap-1"><span class="material-symbols-outlined text-[16px] text-secondary">psychology</span><span class="leading-tight text-center">Memory Care</span></button></div><!-- Section Header --><div class="flex items-center justify-between pt-1"><div class="space-y-0.5"><h2 class="font-headline-sm text-[16px] font-bold text-primary">Partner Nursing Homes</h2><p class="font-body-sm text-[11px] text-on-surface-variant">Verified live bed inventory &amp; Dr.Route Care queue • Saved sync to Account Wishlist</p></div><button class="flex items-center gap-0.5 font-label-md text-[11px] text-secondary font-semibold bg-surface-container px-2 py-1 rounded-lg border border-outline-variant/30"><span class="material-symbols-outlined text-[13px]">swap_vert</span><span class="">Sort By Dist.</span></button></div><!-- Nursing Home Listing Cards (Hospital Format) --><div class="space-y-4"><!-- Card 1 --><article class="bg-surface-container-lowest rounded-2xl border border-outline-variant/40 shadow-sm overflow-hidden hover:shadow-md transition-shadow"><div class="relative h-40 w-full"><img alt="Aarogya Vridhi Senior Living &amp; Rehab" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WriR2R-dc0m9Z7WfsKMaz-eOyIYeJqHxAgnII-t4_gOGvgflWwA74M2i2uTuPff3NtiFKNbS4tfSrsfsjfpvkTE47X1QtwAAmVkIb0UzTNk-uvrlBEEzbyAxTNCmvGcPG1buKwxOhp36OZ9Spc_heZgtUEjxHg-jJZZr8-qrIdsESnDsfUAboS_1yD0VZs7P6hFV5RE-LCwpN7hwkMU3worcamglBwjxLXqLSeR9l-oBXJCo7JoFvpfwtT"><div class="absolute top-2.5 left-2.5 flex items-center gap-1.5"><span class="bg-surface-container-lowest/90 text-primary backdrop-blur-md px-2 py-0.5 rounded-md font-label-sm text-[10px] font-semibold flex items-center gap-0.5"><span class="material-symbols-outlined text-[12px] text-secondary">near_me</span>2.4 km</span></div><div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between"><div class="flex items-center gap-0.5 bg-primary/85 text-amber-300 backdrop-blur-md px-1.5 py-0.5 rounded-md text-[11px] font-bold shadow-sm"><span class="material-symbols-outlined text-[12px] fill">star</span><span class="">4.9</span></div></div><button aria-label="Save to Wishlist" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant/30 flex items-center justify-center text-primary shadow-sm hover:bg-surface-container-lowest active:scale-95 transition-all"><span class="material-symbols-outlined text-[18px]">bookmark_border</span></button></div><div class="p-3.5 space-y-2.5"><div><div class="flex items-start justify-between gap-1"><h3 class="font-headline-sm text-[16px] font-bold text-primary leading-snug">₹XYZ<span class="text-[11px] font-normal text-on-surface-variant"> / day</span></h3><span class="material-symbols-outlined text-secondary text-[18px] shrink-0">verified</span></div><p class="font-body-sm text-[11px] text-on-surface-variant flex items-center gap-1 mt-0.5"><span class="material-symbols-outlined text-[13px] text-secondary shrink-0">location_on</span>Indiranagar, Bengaluru • 24×7 Emergency &amp; Elderly Care</p></div><div class="bg-surface-container-low p-2.5 rounded-xl border border-secondary/30 flex items-center justify-between gap-2"><div class="flex items-center gap-2"><div class="bg-secondary-container px-2.5 py-1 rounded-lg border border-secondary/40 text-center"><div class="text-[10px] font-bold uppercase tracking-wider text-secondary">Daily Stay Charge</div><div class="text-[16px] font-bold text-primary leading-tight">₹XYZ<span class="text-[11px] font-normal text-on-surface-variant"> / day</span></div></div><div class="text-[11px] text-on-surface-variant leading-tight">Admission Fee: <strong class="text-secondary font-semibold">₹XYZ Free</strong><br><span class="text-[10px] text-outline">OPD &amp; In-patient Care</span></div></div><span class="bg-secondary-container/40 text-on-secondary-container font-semibold px-2 py-1 rounded text-[10px] shrink-0">Elder Care Desk</span></div><div class="bg-surface-container rounded-xl p-2.5 border border-outline-variant/40 flex items-center justify-between gap-2"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[16px]">₹XYZ<span class="text-[11px] font-normal text-on-surface-variant"> / day</span></span></div><div><a class="font-bold text-[12px] text-primary hover:underline block leading-tight" href="tel:+911140554055">+91 11 4055 4055</a><span class="text-[10px] text-on-surface-variant">8:00 AM - 9:00 PM (All Days)</span></div></div><a class="px-3 py-1 rounded-lg bg-secondary text-white font-label-sm text-[11px] font-semibold hover:opacity-95 shadow-xs" href="tel:+911140554055">Call Now</a></div><div class="grid grid-cols-2 gap-2 pt-0.5"><button class="h-9 px-3 rounded-xl border border-outline-variant/60 text-primary font-label-md text-[12px] font-semibold hover:bg-surface-container active:scale-95 transition-all">Details</button><button class="h-9 px-3 rounded-xl bg-primary text-white font-label-md text-[12px] font-semibold shadow-sm hover:opacity-95 active:scale-95 transition-all flex items-center justify-center gap-1"><span class="">Book Appointment</span><span class="material-symbols-outlined text-[14px]">₹XYZ<span class="text-[10px] font-normal">/day</span></span></button></div></div></article><!-- Card 2 --><article class="bg-surface-container-lowest rounded-2xl border border-outline-variant/40 shadow-sm overflow-hidden hover:shadow-md transition-shadow"><div class="relative h-40 w-full"><img alt="Sanjeevani Elder Care &amp; Rehabilitation" class="w-full h-full object-cover" data-alt="An orthopedic physical therapist in a clinical uniform supporting an elderly Indian woman as she practices walking using parallel rehabilitation bars in a brightly lit modern nursing clinic with floor-to-ceiling windows and clean hygienic flooring." src="https://lh3.googleusercontent.com/aida/AEtjO1XEdWkACHkGtW19w-TqcM81H4XOzaBwFjkL9Fu6DucrrQDLxMN43zmhY8LTfYsLk5kgc2F-IWlhRDVQCbCYFlJEmkNkjzkSPHHjAUAYMnvj20U_egsJFZGzlbMgaVm2NHJSmZaExoU688i2cJYkuDDN70ybu7_JgKiAHhLKK1vG3_dBm7gbm5hEBe_l1fJnLKxJuj4Ie8aqIgPwo9qtQ27k56VPNATkX4N5fbQm4E3KZpSoMb1FByn2-kY7"><div class="absolute top-2.5 left-2.5 flex items-center gap-1.5"><span class="bg-surface-container-lowest/90 text-primary backdrop-blur-md px-2 py-0.5 rounded-md font-label-sm text-[10px] font-semibold flex items-center gap-0.5"><span class="material-symbols-outlined text-[12px] text-secondary">near_me</span>4.1 km</span></div><div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between"><div class="flex items-center gap-0.5 bg-primary/85 text-amber-300 backdrop-blur-md px-1.5 py-0.5 rounded-md text-[11px] font-bold shadow-sm"><span class="material-symbols-outlined text-[12px] fill">star</span><span class="">4.8</span></div></div><button aria-label="Save to Wishlist" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant/30 flex items-center justify-center text-primary shadow-sm hover:bg-surface-container-lowest active:scale-95 transition-all"><span class="material-symbols-outlined text-[18px]">bookmark_border</span></button></div><div class="p-3.5 space-y-2.5"><div><div class="flex items-start justify-between gap-1"><h3 class="font-headline-sm text-[16px] font-bold text-primary leading-snug">₹XYZ<span class="text-[11px] font-normal text-on-surface-variant"> / day</span></h3><span class="material-symbols-outlined text-secondary text-[18px] shrink-0">verified</span></div><p class="font-body-sm text-[11px] text-on-surface-variant flex items-center gap-1 mt-0.5"><span class="material-symbols-outlined text-[13px] text-secondary shrink-0">location_on</span>HSR Layout Sector 3 • Ortho, Neuro &amp; Tracheostomy Care</p></div><div class="bg-surface-container-low p-2.5 rounded-xl border border-secondary/30 flex items-center justify-between gap-2"><div class="flex items-center gap-2"><div class="bg-secondary-container px-2.5 py-1 rounded-lg border border-secondary/40 text-center"><div class="text-[10px] font-bold uppercase tracking-wider text-secondary">Daily Stay Charge</div><div class="text-[16px] font-bold text-primary leading-tight">₹XYZ<span class="text-[11px] font-normal text-on-surface-variant"> / day</span></div></div><div class="text-[11px] text-on-surface-variant leading-tight">Assessment Fee: <strong class="text-secondary font-semibold">₹XYZ Free</strong><br><span class="text-[10px] text-outline">Neuro &amp; Ortho Rehab</span></div></div><span class="bg-secondary-container/40 text-on-secondary-container font-semibold px-2 py-1 rounded text-[10px] shrink-0">Rehab Support</span></div><div class="bg-surface-container rounded-xl p-2.5 border border-outline-variant/40 flex items-center justify-between gap-2"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[16px]">₹XYZ<span class="text-[11px] font-normal text-on-surface-variant"> / day</span></span></div><div><a class="font-bold text-[12px] text-primary hover:underline block leading-tight" href="tel:+911147135000">+91 11 4713 5000</a><span class="text-[10px] text-on-surface-variant">8:30 AM - 8:00 PM • Emergency 24×7</span></div></div><a class="px-3 py-1 rounded-lg bg-secondary text-white font-label-sm text-[11px] font-semibold hover:opacity-95 shadow-xs" href="tel:+911147135000">Call Now</a></div><div class="grid grid-cols-2 gap-2 pt-0.5"><button class="h-9 px-3 rounded-xl border border-outline-variant/60 text-primary font-label-md text-[12px] font-semibold hover:bg-surface-container active:scale-95 transition-all">Details</button><button class="h-9 px-3 rounded-xl bg-primary text-white font-label-md text-[12px] font-semibold shadow-sm hover:opacity-95 active:scale-95 transition-all flex items-center justify-center gap-1"><span class="">Book Appointment</span><span class="material-symbols-outlined text-[14px]">₹XYZ<span class="text-[10px] font-normal">/day</span></span></button></div></div></article><!-- Card 3 --><article class="bg-surface-container-lowest rounded-2xl border border-outline-variant/40 shadow-sm overflow-hidden hover:shadow-md transition-shadow"><div class="relative h-40 w-full"><img alt="Smriti Dementia &amp; Senior Sanctuary" class="w-full h-full object-cover" data-alt="A tranquil sensory garden and memory care therapy room in an upscale assisted living facility with soothing mint-green pastel walls, soft natural light, memory memory photo frames, comfortable armchairs, and a smiling care attendant engaging with an elderly gentleman in peaceful surroundings." src="https://lh3.googleusercontent.com/aida/AEtjO1U7WGVYHhghhPJw6qpbSpFpzSay_UlsEXH23rJImoB-oCztmnKQ3fYlLaZ_89cy5lfDvECXib0CAfrlWqyCqLhmSxC8rWsjxH5zZrhJDb9yLLJ8vjWOL98-Jv_jGTaBdFuAcetOtbdSZhbp9vD4SPd9gKRA6ik7YtboZfCCZkg8nSF8DN9n-hmf7HnEE8AkwLko8ngeVBu7Qaa08SBYsQhvpRY-yrFioSlwpKUA0Py5GOO7rQPW8odXi1mn"><div class="absolute top-2.5 left-2.5 flex items-center gap-1.5"><span class="bg-surface-container-lowest/90 text-primary backdrop-blur-md px-2 py-0.5 rounded-md font-label-sm text-[10px] font-semibold flex items-center gap-0.5"><span class="material-symbols-outlined text-[12px] text-secondary">near_me</span>5.8 km</span></div><div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between"><span class="bg-secondary text-white px-2 py-0.5 rounded-md font-label-sm text-[10px] font-bold shadow-sm">Memory Wing Open • RFID Secured</span><div class="flex items-center gap-0.5 bg-primary/85 text-amber-300 backdrop-blur-md px-1.5 py-0.5 rounded-md text-[11px] font-bold shadow-sm"><span class="material-symbols-outlined text-[12px] fill">star</span><span class="">4.7</span></div></div><button aria-label="Save to Wishlist" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant/30 flex items-center justify-center text-primary shadow-sm hover:bg-surface-container-lowest active:scale-95 transition-all"><span class="material-symbols-outlined text-[18px]">bookmark_border</span></button></div><div class="p-3.5 space-y-2.5"><div><div class="flex items-start justify-between gap-1"><h3 class="font-headline-sm text-[16px] font-bold text-primary leading-snug">₹XYZ<span class="text-[11px] font-normal text-on-surface-variant"> / day</span></h3><span class="material-symbols-outlined text-secondary text-[18px] shrink-0">verified</span></div><p class="font-body-sm text-[11px] text-on-surface-variant flex items-center gap-1 mt-0.5"><span class="material-symbols-outlined text-[13px] text-secondary shrink-0">location_on</span>Whitefield, Bengaluru • Alzheimer &amp; Dementia Specialists</p></div><div class="bg-surface-container-low p-2.5 rounded-xl border border-secondary/30 flex items-center justify-between gap-2"><div class="flex items-center gap-2"><div class="bg-secondary-container px-2.5 py-1 rounded-lg border border-secondary/40 text-center"><div class="text-[10px] font-bold uppercase tracking-wider text-secondary">Daily Stay Charge</div><div class="text-[16px] font-bold text-primary leading-tight">₹XYZ<span class="text-[11px] font-normal text-on-surface-variant"> / day</span></div></div><div class="text-[11px] text-on-surface-variant leading-tight">Full Suite: <strong class="text-primary font-semibold">₹XYZ/mo</strong><br>Evaluation Fee: <strong class="text-secondary font-semibold">₹XYZ Free</strong></div></div><span class="bg-secondary-container/40 text-on-secondary-container font-semibold px-2 py-1 rounded text-[10px] shrink-0">Memory Care</span></div><div class="bg-surface-container rounded-xl p-2.5 border border-outline-variant/40 flex items-center justify-between gap-2"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[16px]">₹XYZ<span class="text-[11px] font-normal text-on-surface-variant"> / day</span></span></div><div><a class="font-bold text-[12px] text-primary hover:underline block leading-tight" href="tel:+911126925858">+91 11 2692 5858</a><span class="text-[10px] text-on-surface-variant">9:00 AM - 8:30 PM</span></div></div><a class="px-3 py-1 rounded-lg bg-secondary text-white font-label-sm text-[11px] font-semibold hover:opacity-95 shadow-xs" href="tel:+911126925858">Call Now</a></div><div class="grid grid-cols-2 gap-2 pt-0.5"><button class="h-9 px-3 rounded-xl border border-outline-variant/60 text-primary font-label-md text-[12px] font-semibold hover:bg-surface-container active:scale-95 transition-all">Details</button><button class="h-9 px-3 rounded-xl bg-primary text-white font-label-md text-[12px] font-semibold shadow-sm hover:opacity-95 active:scale-95 transition-all flex items-center justify-center gap-1"><span class="">Book Appointment</span><span class="material-symbols-outlined text-[14px]">₹XYZ<span class="text-[10px] font-normal">/day</span></span></button></div></div></article></div><!-- Footer Branding --><footer class="pt-4 pb-2 text-center"><div class="flex items-center justify-center gap-1.5 text-on-surface-variant text-[11px]"><img alt="Dr.Route Logo" class="w-4 h-4 rounded-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDopY-76UIRyNp3LNTyl-fGwaiFeG7IPSV1pDfyYsrC_RxNAd-MRIxc2ruJVoL2lVly009gr7cO1BoeyHUdev9ihavMsblWxFOHuVY_cwsg3I3ADtm0uRBKC7AUKMSAUJF0ohXftUCrmdwEpj47sRoTsmpFew1swrv-_bwutYvThUf6XveaNze4Xx1N5baAWU3682M_CYMyOvsAg3VUynKYMiG361un8tUqFUltzB-QkkXu2jWA1MhJNdVkE4wVvnQoi0o"><span class="font-medium">Dr.Route • 24×7 Verified Elder Care &amp; Nursing Admissions</span></div></footer></main>
+<!-- Bottom Navigation Bar (Shared Component Anchor) -->
+<!-- Executing exact BottomNavBar JSON rules & active navigation token -->
+<nav aria-label="Main Navigation" class="fixed bottom-0 left-0 right-0 w-full z-50 flex justify-around items-center px-space-xs py-space-xs max-w-md mx-auto bg-surface-container-lowest dark:bg-primary-container shadow-lg dark:shadow-none">
+<!-- Tab 1: Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-space-sm py-space-xs hover:bg-surface-container dark:hover:bg-primary active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">home</span>
+<span class="font-label-sm text-label-sm mt-0.5">Home</span>
+</a>
+<!-- Tab 2: Self Care (Active state representing healthcare & assisted living hub) -->
+<a aria-current="page" class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-space-sm py-space-xs active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px] fill">ecg_heart</span>
+<span class="font-label-sm text-label-sm font-bold mt-0.5">Self Care</span>
+</a>
+<!-- Tab 3: SOS (Prominent Emergency Pill) -->
+<a class="flex flex-col items-center justify-center px-space-sm py-space-xs hover:bg-surface-container dark:hover:bg-primary active:scale-95 transition-transform duration-150 relative -top-2" href="#">
+<div class="w-12 h-12 rounded-full bg-error text-white flex items-center justify-center shadow-lg shadow-error/40 border-2 border-white">
+<span class="material-symbols-outlined text-[26px]">emergency</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-error mt-0.5">SOS</span>
+</a>
+<!-- Tab 4: Transport -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-space-sm py-space-xs hover:bg-surface-container dark:hover:bg-primary active:scale-95 transition-transform duration-150" href="javascript:void(0)">
+<span class="material-symbols-outlined text-[22px]">folder_shared</span>
+<span class="font-label-sm text-label-sm mt-0.5">Records</span>
+</a>
+<!-- Tab 5: Account -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-space-sm py-space-xs hover:bg-surface-container dark:hover:bg-primary active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">person</span>
+<span class="font-label-sm text-label-sm mt-0.5">Account</span>
+</a>
+</nav>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

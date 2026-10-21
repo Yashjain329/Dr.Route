@@ -1,0 +1,414 @@
+<!DOCTYPE html><html __gcrremoteframetoken="3b0512f99cc4023255993fcdd19bf49d" lang="en" style="width: 390px; height: 2100px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Dr.Route - Instant SOS &amp; Emergency Response</title>
+<!-- Material Symbols Outlined font -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Plus Jakarta Sans & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed-dim": "#4cd7f6",
+            "on-tertiary-fixed-variant": "#004e5c",
+            "inverse-on-surface": "#eaf1ff",
+            "on-secondary-fixed-variant": "#005049",
+            "tertiary-container": "#002931",
+            "on-secondary": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "on-primary-fixed-variant": "#314769",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#0099b3",
+            "surface-dim": "#cbdbf5",
+            "surface-container-high": "#dce9ff",
+            "on-surface": "#0b1c30",
+            "background": "#f8f9ff",
+            "primary": "#001026",
+            "on-background": "#0b1c30",
+            "primary-fixed-dim": "#b1c7f0",
+            "secondary-fixed-dim": "#6bd8cb",
+            "on-secondary-fixed": "#00201d",
+            "on-surface-variant": "#44474e",
+            "tertiary": "#001217",
+            "on-primary-fixed": "#001c3b",
+            "primary-fixed": "#d5e3ff",
+            "inverse-surface": "#213145",
+            "surface-bright": "#f8f9ff",
+            "on-error": "#ffffff",
+            "surface-variant": "#d3e4fe",
+            "on-primary": "#ffffff",
+            "surface-container-highest": "#d3e4fe",
+            "on-tertiary-fixed": "#001f26",
+            "on-primary-container": "#778db2",
+            "tertiary-fixed": "#acedff",
+            "on-tertiary": "#ffffff",
+            "outline": "#74777f",
+            "inverse-primary": "#b1c7f0",
+            "surface": "#f8f9ff",
+            "surface-tint": "#495f82",
+            "secondary": "#006a61",
+            "on-error-container": "#93000a",
+            "primary-container": "#0b2545",
+            "outline-variant": "#c4c6cf",
+            "surface-container": "#e5eeff",
+            "secondary-container": "#86f2e4",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed": "#89f5e7",
+            "on-secondary-container": "#006f66"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "space-sm": "0.5rem",
+            "gutter": "1rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Inter"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "body-lg": ["Inter"],
+            "title-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "metric-display": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "display": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "metric-display": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "display": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    
+    @keyframes radarPulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.65), 0 0 0 0 rgba(220, 38, 38, 0.35);
+      }
+      70% {
+        transform: scale(1.03);
+        box-shadow: 0 0 0 24px rgba(220, 38, 38, 0), 0 0 0 44px rgba(220, 38, 38, 0);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, 0), 0 0 0 0 rgba(220, 38, 38, 0);
+      }
+    }
+
+    .pulse-radar {
+      animation: radarPulse 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+
+    @keyframes liveSignal {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+    .signal-ping {
+      animation: liveSignal 1.5s infinite;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-md min-h-screen pb-28 selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Mobile Screen Container -->
+<div class="max-w-md mx-auto min-h-screen bg-background relative flex flex-col shadow-2xl">
+<!-- 1. HEADER -->
+<header class="bg-surface-container-lowest flex justify-between items-center w-full px-4 py-3 sticky top-0 z-40 shadow-sm border-b border-outline-variant"><div class="flex items-center gap-3"><button aria-label="Go Back" class="w-9 h-9 rounded-full flex items-center justify-center text-primary hover:bg-surface-container active:scale-95 transition-transform duration-150"><span class="material-symbols-outlined text-[22px]" data-icon="arrow_back">arrow_back</span></button><div class="flex flex-col"><div class="flex items-center gap-1.5"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDopY-76UIRyNp3LNTyl-fGwaiFeG7IPSV1pDfyYsrC_RxNAd-MRIxc2ruJVoL2lVly009gr7cO1BoeyHUdev9ihavMsblWxFOHuVY_cwsg3I3ADtm0uRBKC7AUKMSAUJF0ohXftUCrmdwEpj47sRoTsmpFew1swrv-_bwutYvThUf6XveaNze4Xx1N5baAWU3682M_CYMyOvsAg3VUynKYMiG361un8tUqFUltzB-QkkXu2jWA1MhJNdVkE4wVvnQoi0o" alt="Dr.Route Logo" class="w-7 h-7 object-contain flex-shrink-0"><span class="font-headline-md text-[18px] font-bold text-primary tracking-tight leading-none">Dr.Route</span><span class="w-1.5 h-1.5 rounded-full bg-secondary-container ring-2 ring-secondary/40"></span></div><div class="flex items-center gap-1.5 mt-0.5"><span class="w-2 h-2 rounded-full bg-error signal-ping flex-shrink-0"></span><span class="font-label-sm text-[10px] uppercase font-bold text-error tracking-wider leading-none">24×7 Rapid Response</span></div></div></div><div class="flex items-center"><button aria-label="Notifications" class="w-9 h-9 rounded-full flex items-center justify-center text-primary hover:bg-surface-container active:scale-95 transition-transform duration-150 relative"><span class="material-symbols-outlined text-[22px]" data-icon="notifications">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full ring-2 ring-surface-container-lowest"></span></button></div></header>
+<!-- 2. GPS LOCATION BAR -->
+<section class="mx-4 mt-3 rounded-xl border border-secondary/30 bg-surface-container-lowest shadow-sm overflow-hidden flex flex-col"><div class="bg-secondary-fixed/30 px-3 py-1.5 border-b border-secondary/20 flex items-center justify-between"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-secondary" data-icon="self_improvement" style="font-variation-settings: 'FILL' 1;">self_improvement</span><span class="font-title-md text-[12px] text-primary font-bold leading-none">🧘 Don't Panic • You Are Safe</span><span class="font-label-sm text-[10px] text-secondary font-semibold leading-none hidden sm:inline">• मदद पास में है</span></div><span class="font-label-sm text-[9px] bg-secondary text-on-secondary px-2 py-0.5 rounded-full font-bold flex-shrink-0">शांत रहें</span></div><div class="px-3 py-2 flex items-center justify-between gap-2"><div class="flex items-center gap-2 min-w-0"><div class="w-7 h-7 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0"><span class="material-symbols-outlined text-[16px]" data-icon="my_location" style="font-variation-settings: 'FILL' 1;">my_location</span></div><div class="flex flex-col min-w-0 truncate"><div class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary signal-ping"></span><span class="font-label-sm text-[10px] text-on-surface-variant font-bold truncate">GPS LOCKED <span class="text-secondary font-bold">• 3m Accuracy</span></span></div><p class="font-title-md text-[12px] text-on-surface truncate font-semibold">Connaught Place, Block B, New Delhi</p></div></div><button class="text-secondary font-label-md text-label-md flex-shrink-0 active:scale-95 font-bold hover:underline px-1.5 py-0.5">Change</button></div></section>
+<!-- MAIN SCROLLABLE CONTENT -->
+<main class="w-full px-4 pt-3 flex flex-col space-y-4">
+<!-- 3. EMERGENCY PROTOCOL ALERT BANNER -->
+<div class="w-full bg-error-container/80 text-on-error-container rounded-xl px-3.5 py-2 flex items-center justify-center gap-2 border border-error/20">
+<span class="material-symbols-outlined text-[18px] text-error" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-label-md text-label-md font-bold tracking-tight text-center">INSTANT DISPATCH PROTOCOL ARMED - Tap once or hold</span>
+</div>
+<!-- 4. MAIN SOS TRIGGER BUTTON -->
+<div class="w-full flex flex-col items-center justify-center py-2">
+<div class="relative flex items-center justify-center">
+<!-- Radar Wave Rings -->
+<div class="absolute w-52 h-52 rounded-full bg-error/15 pulse-radar pointer-events-none"></div>
+<div class="absolute w-44 h-44 rounded-full bg-error/25 pointer-events-none"></div>
+<!-- Button Core -->
+<button class="relative z-10 w-36 h-36 rounded-full bg-error text-on-error shadow-xl flex flex-col items-center justify-center border-4 border-surface-container-lowest active:scale-95 transition-transform duration-150 cursor-pointer select-none" id="sosMasterBtn"><span class="material-symbols-outlined text-[40px] mb-0.5" data-icon="emergency" style="font-variation-settings: 'FILL' 1;">emergency</span><span class="material-symbols-outlined text-[18px] text-secondary flex-shrink-0" data-icon="health_and_safety" style="font-variation-settings: &quot;FILL&quot; 1;">health_and_safety</span><span class="text-[10px] uppercase tracking-wider text-surface-container-lowest/90 font-bold">FOR SOS</span></button>
+</div>
+<p class="text-[11px] text-on-surface-variant font-medium mt-3 text-center">Hold for 5–10 seconds to send live GPS location, audio recording &amp; initiate instant guardian alert</p>
+</div>
+<!-- 5. FREE EMERGENCY DISPATCH SECTION -->
+<section class="w-full flex flex-col">
+<div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-lg bg-error/15 text-error flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[18px] signal-ping" data-icon="e911_emergency" style="font-variation-settings: 'FILL' 1;">e911_emergency</span></div><h2 class="font-headline-md text-[18px] text-primary font-bold tracking-tight">Ambulance&nbsp; Service 24*7</h2></div></div>
+<a href="#" onclick="console.log('Navigating to Dedicated Ambulance Booking');" aria-label="Book ALS / BLS ICU Ambulance - Tap to customize fleet" class="w-full bg-surface-container-lowest rounded-xl p-4 border border-outline-variant shadow-sm flex flex-col hover:border-secondary/50 hover:bg-surface-container-low/40 transition-all cursor-pointer group active:scale-[0.99]">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm bg-error-container text-on-error-container px-2 py-0.5 rounded font-bold">~6 MINS ARRIVAL</span>
+<span class="text-[11px] text-secondary font-bold flex items-center gap-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Nearest Unit
+            </span>
+</div>
+<div class="flex items-center gap-1 text-secondary font-semibold text-[12px] group-hover:translate-x-0.5 transition-transform">
+<span class="material-symbols-outlined text-secondary text-[22px]" data-icon="e911_emergency">e911_emergency</span>
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<div class="flex items-center gap-3 my-3">
+<img src="https://lh3.googleusercontent.com/aida/AEtjO1VXf1yysa_a0QRX93Z5Z47RUdhUesgIOddHmmnK2SNiYnf7-uvD6uWoGOLsFeRX2fS-KVE3KOR1xVrSM5BAH1mWghnOpvS2PUBcSrFRK0MulzMDk1RG-kbkXq6RXDYgC8hQoIucKdf1Um1-MUaL8QftO8z86cdN8F4ys1kRQqhYNkThaM7TbVIqK_NP3irrAc253Hys3Y6JJwCgEngtYPOt44H7Xc56goPS1AWBfQARLuibNT1cgxZxs0A" alt="Emergency Ambulance" class="w-20 h-20 rounded-2xl object-cover border border-outline-variant shadow-sm flex-shrink-0">
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<h3 class="font-title-md text-title-md text-primary font-bold leading-tight group-hover:text-secondary transition-colors">ALS / BLS ICU Ambulance</h3>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-1 leading-snug">
+              Oxygen support, Automated External Defibrillator &amp; Paramedic crew dispatch
+            </p>
+<p class="text-[11px] text-secondary font-bold mt-1.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="touch_app">touch_app</span> Tap to book &amp; customize fleet
+            </p>
+</div>
+</div>
+<div class="w-full h-11 bg-error text-on-error rounded-xl font-label-md text-label-md font-bold flex items-center justify-center gap-2 active:scale-[0.98] group-hover:bg-error/95 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="local_taxi">local_taxi</span>
+<span class="">Dispatch Ambulance</span>
+<span class="material-symbols-outlined text-[18px] ml-0.5" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</a>
+</section>
+<!-- 6. DR.ROUTE PRIME EMERGENCY PRIVILEGE NETWORK -->
+<section class="w-full flex flex-col"><div class="w-full rounded-2xl p-4 bg-gradient-to-b from-surface-container-lowest via-surface-container-low to-surface-container-high border-2 border-secondary/40 shadow-xl relative overflow-hidden ring-2 ring-secondary/20"><div class="flex items-center justify-between pb-3 border-b border-outline-variant/60"><div class="flex items-center gap-2.5"><div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shadow-md flex-shrink-0"><span class="material-symbols-outlined text-secondary-container text-[22px]" data-icon="workspace_premium" style="font-variation-settings: 'FILL' 1;">workspace_premium</span></div><div><h3 class="font-headline-sm text-[17px] text-primary font-bold leading-tight tracking-tight whitespace-nowrap">Dr.Route Prime</h3><p class="text-[11px] text-on-surface-variant font-medium">Emergency Privilege Network</p></div></div><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-secondary" data-icon="hotel_class" style="font-variation-settings: 'FILL' 1;">hotel_class</span><span class="text-[11px] font-bold text-secondary flex items-center gap-1 bg-secondary-container/50 px-2 py-0.5 rounded-full border border-secondary/25"><span class="w-1.5 h-1.5 rounded-full bg-secondary signal-ping"></span>Active 24×7</span></div></div><button class="w-full h-11 bg-primary text-on-primary rounded-xl font-label-md text-label-md font-bold flex items-center justify-center gap-2 active:scale-[0.98] transition-transform duration-150 shadow-md ring-2 ring-secondary/30 my-3"><span class="material-symbols-outlined text-[18px] text-secondary-container" data-icon="workspace_premium" style="font-variation-settings: &quot;FILL&quot; 1;">workspace_premium</span>Join Dr.Route Prime • ₹XYZ / Monthly</button><div class="flex flex-col space-y-2.5 mb-3"><div class="grid grid-cols-2 gap-2"><div class="bg-surface-container-lowest rounded-xl p-2.5 border border-outline-variant shadow-xs flex items-center gap-2"><img src="https://lh3.googleusercontent.com/aida/AEtjO1WBlu9Sb9UhyJETLFbKubrAM8_x4_cr9CXabe2fWBUHo7I3zZLcuBEwxSNy2ZdeJJ0pI2_vUCOEL1yq-nrsgG5hYQOr-3MLpxUb_kth0GyxB5A4mMZ3yGtOd2qbHznp8nmC7rh-OBOc4H_lKeIDJv8qb83IC4s7dKxN9usj53Ae7gP_6q1EYu_D0FCkNvovbjCC6C2vM6VK6XHU4CFr3rST4Ianrc3-2DMws_dfkYVCf66qwIutVI3s4g3c" alt="Doctor Consultation" class="w-12 h-12 object-contain flex-shrink-0"><div class="min-w-0"><h4 class="font-headline-sm text-[13px] font-bold text-primary leading-tight truncate">Doctor on Call</h4><p class="text-[10px] text-secondary font-semibold">Priority Triage</p></div></div><div class="bg-surface-container-lowest rounded-xl p-2.5 border border-outline-variant shadow-xs flex items-center gap-2"><img src="https://lh3.googleusercontent.com/aida/AEtjO1XNL2U6wZzkgpAAtHNZtzLYCj6m7htMzqUZAwTv-PNX4UbpUfdv3X9ObGnoPDl56hKOvGu5Yl5mNLWYsLN6vlivUOdj9BIZCsQKzr0Pd4omalBu0jmKBOFvJ9kD6hCtQQVLA07i7uOxQlGPLzmVMKeWU0z2VQpJp31CuxGlwBCL7imWFcARGNcJq0F6GVYQqfvS4_yvwgCV8FlmqFs-5Nq-1-8wbBDPpxuJxJ9cSx_kTRqwMNGcwntw8T5w" alt="Trauma Center" class="w-12 h-12 object-contain flex-shrink-0"><div class="min-w-0"><h4 class="font-headline-sm text-[13px] font-bold text-primary leading-tight truncate">Trauma Ward</h4><p class="text-[10px] text-secondary font-semibold">Reserved Bed</p></div></div></div><div class="w-full bg-surface-container-lowest rounded-xl p-3 border border-error/30 shadow-sm flex items-center gap-3 relative"><img src="https://lh3.googleusercontent.com/aida/AEtjO1X2DxiqGJix2ZpzVMwAmpNqUskyKPYkJ7C4y-cYI3HJdjVgBQr-ehkxGV0NQG4eMxazMKCaqJHCEWKHVARXivQnwkwXPvQrjHZ0U3voaVMlywZYzo3JbPFqh2iofYOYmOmKYSPvAdB87yjuP-AvzRjqGWpc7mv5t4Q9ZRzs95ShbYyIp_glvCKml6fDqPw_isqYXAl4T13k6lKtauP-owqkSmbnHjGs2RX5Lb_pyUW7RflOb0hR4VGo7MYR" alt="Blood SOS Network" class="w-16 h-16 rounded-xl object-cover shadow-sm flex-shrink-0"><div class="flex-1 min-w-0"><div class="flex items-center justify-between flex-wrap gap-1"><div class="flex items-center gap-1.5"><h4 class="font-bold text-[13px] text-error uppercase tracking-wide leading-tight">BLOOD SOS NETWORK</h4><span class="w-2 h-2 rounded-full bg-error signal-ping flex-shrink-0"></span></div><span class="text-[9px] text-on-error font-bold bg-error px-2 py-0.5 rounded-full whitespace-nowrap">Urgent B+, O+, All Groups</span></div><p class="text-[10px] text-on-surface-variant font-medium leading-tight mt-1">Nearby Blood Banks &amp; Verified Live Donors</p></div></div></div></div></section>
+<!-- 7. EMERGENCY GUARDIAN & LIVE ALERTS -->
+<section class="w-full flex flex-col">
+
+
+</section>
+<!-- 8. NATIONAL HELPLINES BAR -->
+<section class="w-full flex flex-col">
+<div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[18px]" data-icon="support_agent" style="font-variation-settings: 'FILL' 1;">support_agent</span></div><h4 class="font-headline-md text-[18px] text-primary font-bold tracking-tight">National Helplines</h4></div><span class="text-[11px] text-error font-bold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-error signal-ping"></span> Toll-Free 24×7</span></div>
+<div class="grid grid-cols-2 gap-2">
+<!-- 112 Police -->
+<a class="bg-surface-container-lowest rounded-xl p-2.5 border border-outline-variant shadow-xs flex items-center justify-between hover:bg-surface-container-low active:scale-95 transition-all" href="tel:112">
+<div class="flex items-center gap-2">
+<div class="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 bg-surface-container-low flex items-center justify-center"><img src="https://lh3.googleusercontent.com/aida/AEtjO1XZtdIUhuOBktVQ7f6koo26L5-VhTSuUIxrCyMe7oWOU8IIK7HVvkrB4hHqBxtxPRFbSvdTNRHvZLYSwSYUDEcqQ4_saZpBdWfNYruRLLFbWNw7kNJcuo-pNav8D6n6f2ArbHqdz2DV1FuUikbkKC-vANJfzqeTlvDiJInO1btUx9wgsWgGydnACPZm8sDRFRJ3TkYoEQRHbelxDFXmSPc0V-VKF-XAqJ9a4RqCJCZiwlRTqV3YyyTTDlI" alt="112 Police" class="w-12 h-12 object-contain"></div>
+<div>
+<p class="font-headline-sm text-[15px] font-bold text-primary leading-tight">112</p>
+<p class="text-[10px] text-on-surface-variant font-medium">Police / General</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="call">call</span>
+</a>
+<!-- 108 Medical Ambulance -->
+<a class="bg-surface-container-lowest rounded-xl p-2.5 border border-outline-variant shadow-xs flex items-center justify-between hover:bg-surface-container-low active:scale-95 transition-all" href="tel:108">
+<div class="flex items-center gap-2">
+<div class="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 bg-error-container/30 flex items-center justify-center"><img src="https://lh3.googleusercontent.com/aida/AEtjO1UZ4NP8W9EMQryDBZDWoEMDkhXef2F4YGnMKgcdhC5RYdFfm0DfX5sNohhevSipm7wPnDJ954fu_utOC_nIqCDYi79Lmf1qfjiZ8Tsky-NBO9og5HdJtUN1wadQiHVyWlWa9PwXLPOneIGVK9VxGBZsTP5mdysqfeFaOl-PWzdIqPUPQXZfsLDHlku7spyE1wifAtWM0gW3z-rv1135IKDfwf101oGh1_oAlO3MVZ-qNBXUxFMASi6TL_II" alt="108 Ambulance" class="w-12 h-12 object-contain"></div>
+<div>
+<p class="font-headline-sm text-[15px] font-bold text-error leading-tight">108</p>
+<p class="text-[10px] text-on-surface-variant font-medium">Ambulance</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-error" data-icon="call">call</span>
+</a>
+<!-- 1091 Women Safety -->
+<a class="bg-surface-container-lowest rounded-xl p-2.5 border border-outline-variant shadow-xs flex items-center justify-between hover:bg-surface-container-low active:scale-95 transition-all" href="tel:1091">
+<div class="flex items-center gap-2">
+<div class="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 bg-secondary-container/50 flex items-center justify-center"><img src="https://lh3.googleusercontent.com/aida/AEtjO1UyO9k8t-7H0QqsfHMC38hvAFx9WJJ-NdWq_FDO_Mge4EuEfIDKnVQtNoxgHWgNGPVXcjCAbhRfycjyMIkx052z6ed6JGRMd8-Kq09KXviSISTB43ZmMEHHFRzfGsnBrnhBgi9djSXNaVaNUFBkcdyflbRFedHRh0wbRoeFEdoyFkXeMs9FjVBYoEbtN02P2pDeNN9EMgb9afJdaol0NWftgqmqiGEqTBVR8mJAcAzQAu4auGrf5plAjMro" alt="1091 Women Safety" class="w-12 h-12 object-contain"></div>
+<div>
+<p class="font-headline-sm text-[15px] font-bold text-secondary leading-tight">1091</p>
+<p class="text-[10px] text-on-surface-variant font-medium">Women Safety</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="call">call</span>
+</a>
+<!-- 14567 Senior Citizen -->
+<a class="bg-surface-container-lowest rounded-xl p-2.5 border border-outline-variant shadow-xs flex items-center justify-between hover:bg-surface-container-low active:scale-95 transition-all" href="tel:14567">
+<div class="flex items-center gap-2">
+<div class="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 bg-surface-container-high flex items-center justify-center"><img src="https://lh3.googleusercontent.com/aida/AEtjO1W48RI4Tb0WjXNcF7dsy0S02R_ptOiUQVnT5Vu_Od4S-DqH5B5OOIym9jZjXdIZVAoEP-tH-bybrsdmPwMBQfsINnFKqRjnC_helNC566mPsYhCBlzgLokXIiHw33fv_MlQAuGcG2pQu6WyLSP3XmiQ6K9OtaIAW_opDs186-hYLJiD7ox9T7G_1vvlfQJk7GwANqq_3FVC7cF4W62CvyNrrpivkEcVFHLDNyvstJt5izj1RIlpkuPa2PNT" alt="14567 Senior Citizen" class="w-12 h-12 object-contain"></div>
+<div>
+<p class="font-headline-sm text-[15px] font-bold text-primary leading-tight">14567</p>
+<p class="text-[10px] text-on-surface-variant font-medium">Senior Citizen</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="call">call</span>
+</a>
+</div>
+</section>
+<!-- 9. CALMING REASSURANCE CARD: DON'T PANIC -->
+<!-- 10. ADVICE / SALAH & BRAND FOOTER SECTION -->
+<div class="w-full flex flex-col space-y-4 pt-1 pb-6"><!-- Advice / Advisory Card -->
+  <div class="w-full bg-surface-container-lowest rounded-xl p-3.5 border border-secondary/30 shadow-sm flex flex-col gap-2 relative overflow-hidden">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-[18px] text-secondary flex-shrink-0" data-icon="health_and_safety" style="font-variation-settings: &quot;FILL&quot; 1;">health_and_safety</span>
+        <h4 class="font-title-md text-[13px] text-primary font-bold leading-tight">Critical Advisory • Golden Hour Protocol</h4>
+      </div>
+      <span class="font-label-sm text-[9px] bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-bold uppercase tracking-wider flex items-center gap-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-secondary signal-ping"></span>
+        MANDATORY PROTOCOL
+      </span>
+    </div>
+    <p class="font-body-sm text-[12px] text-on-surface-variant leading-relaxed">
+      Remain at your reported location and keep your primary phone line open. Our emergency response team, dispatch doctor, or paramedic ambulance crew may contact you immediately for triage. Do not move an injured patient without medical guidance.
+    </p>
+    <div class="flex items-center gap-1.5 pt-1 border-t border-outline-variant/40">
+      <span class="material-symbols-outlined text-[18px] text-secondary flex-shrink-0" data-icon="health_and_safety" style="font-variation-settings: &quot;FILL&quot; 1;">health_and_safety</span>
+      <span class="text-[11px] text-secondary font-semibold">Real-Time Rapid Response • Telemetry Link Active</span>
+    </div>
+  </div>
+
+  <!-- Brand Logo & App Identity Footer -->
+  <div class="w-full flex flex-col items-center justify-center text-center pt-2 pb-4 space-y-2.5">
+    <div class="w-14 h-14 rounded-2xl bg-surface-container-lowest p-1 shadow-md border border-outline-variant/60 flex items-center justify-center overflow-hidden"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDopY-76UIRyNp3LNTyl-fGwaiFeG7IPSV1pDfyYsrC_RxNAd-MRIxc2ruJVoL2lVly009gr7cO1BoeyHUdev9ihavMsblWxFOHuVY_cwsg3I3ADtm0uRBKC7AUKMSAUJF0ohXftUCrmdwEpj47sRoTsmpFew1swrv-_bwutYvThUf6XveaNze4Xx1N5baAWU3682M_CYMyOvsAg3VUynKYMiG361un8tUqFUltzB-QkkXu2jWA1MhJNdVkE4wVvnQoi0o" alt="Dr.Route" class="w-12 h-12 object-contain"></div>
+    <div>
+      <h3 class="font-headline-md text-[18px] font-bold text-primary tracking-tight leading-tight">Dr.Route</h3>
+      <p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5 leading-snug font-medium">
+        Your 24×7 Lifeline &amp; Emergency Super-App
+      </p>
+      <p class="text-[10px] text-on-surface-variant/80 mt-1 max-w-xs mx-auto leading-tight">
+        Dedicated to instantaneous triage and life-critical healthcare mobility.
+      </p>
+    </div>
+    <div class="flex items-center justify-center flex-wrap gap-1.5 pt-1">
+      
+      <span class="font-label-sm text-[10px] text-on-surface-variant/80 bg-surface-container px-2 py-0.5 rounded-full font-medium border border-outline-variant/50">
+        NDHM / ABHA Compliant
+      </span>
+      <span class="font-label-sm text-[10px] text-on-surface-variant/80 bg-surface-container px-2 py-0.5 rounded-full font-medium border border-outline-variant/50">
+        256-bit Encrypted
+      </span>
+    </div>
+  </div></div>
+</main>
+<!-- 10. BOTTOM NAVIGATION BAR -->
+<nav class="fixed bottom-0 left-0 right-0 w-full z-50 flex justify-around items-center px-2 py-1.5 max-w-md mx-auto bg-surface-container-lowest border-t border-outline-variant shadow-lg">
+<!-- Tab 1: Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-2 py-1 hover:bg-surface-container active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="home">home</span>
+<span class="font-label-sm text-[10px] mt-0.5">Home</span>
+</a>
+<!-- Tab 2: Self Care -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-2 py-1 hover:bg-surface-container active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="ecg_heart">ecg_heart</span>
+<span class="font-label-sm text-[10px] mt-0.5">Self Care</span>
+</a>
+<!-- Tab 3: SOS (Active floating circular button) -->
+<a class="flex flex-col items-center justify-center bg-error text-on-error rounded-full px-3 py-1 active:scale-95 transition-transform font-bold shadow-lg shadow-error/40 ring-4 ring-error/30 signal-ping -translate-y-1" href="#">
+<span class="material-symbols-outlined text-on-error text-[22px]" data-icon="emergency" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<span class="font-label-sm text-[10px] mt-0.2 text-on-error tracking-wider font-bold">SOS</span>
+</a>
+<!-- Tab 4: Transport -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-2 py-1 hover:bg-surface-container active:scale-95 transition-transform" href="javascript:void(0)">
+<span class="material-symbols-outlined text-[22px]" data-icon="folder_shared">folder_shared</span>
+<span class="font-label-sm text-[10px] mt-0.5">Records</span>
+</a>
+<!-- Tab 5: Account -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-2 py-1 hover:bg-surface-container active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="person">person</span>
+<span class="font-label-sm text-[10px] mt-0.5">Account</span>
+</a>
+</nav>
+</div>
+<!-- Hold Interaction Script -->
+<script>
+  const sosBtn = document.getElementById('sosMasterBtn');
+  let timer = null;
+
+  if (sosBtn) {
+    sosBtn.addEventListener('mousedown', startCountdown);
+    sosBtn.addEventListener('touchstart', startCountdown, {passive: true});
+    sosBtn.addEventListener('mouseup', cancelCountdown);
+    sosBtn.addEventListener('mouseleave', cancelCountdown);
+    sosBtn.addEventListener('touchend', cancelCountdown);
+  }
+
+  function startCountdown() {
+    sosBtn.classList.add('scale-95');
+    timer = setTimeout(() => {
+      alert("EMERGENCY SIGNAL BROADCASTED: Nearest ambulance dispatched & Rajesh Sharma notified via SMS/Live GPS.");
+      sosBtn.classList.remove('scale-95');
+    }, 3000);
+  }
+
+  function cancelCountdown() {
+    sosBtn.classList.remove('scale-95');
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html><html class="light" lang="en" style="width: 390px; height: 2454px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Clinics &amp; Doctors - Dr.Route SuperApp</title>
+<!-- Google Fonts: Inter & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-container": "#002931",
+            "inverse-surface": "#213145",
+            "secondary-fixed": "#89f5e7",
+            "primary-fixed": "#d5e3ff",
+            "on-tertiary-fixed": "#001f26",
+            "surface-dim": "#cbdbf5",
+            "on-primary-fixed-variant": "#314769",
+            "background": "#f8f9ff",
+            "primary": "#001026",
+            "secondary-container": "#86f2e4",
+            "on-secondary": "#ffffff",
+            "surface-bright": "#f8f9ff",
+            "on-secondary-fixed": "#00201d",
+            "surface-container-low": "#eff4ff",
+            "surface-container-highest": "#d3e4fe",
+            "on-surface": "#0b1c30",
+            "surface": "#f8f9ff",
+            "on-tertiary-fixed-variant": "#004e5c",
+            "on-secondary-fixed-variant": "#005049",
+            "on-tertiary-container": "#0099b3",
+            "error": "#ba1a1a",
+            "on-primary-fixed": "#001c3b",
+            "primary-fixed-dim": "#b1c7f0",
+            "error-container": "#ffdad6",
+            "secondary": "#006a61",
+            "surface-container": "#e5eeff",
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#44474e",
+            "primary-container": "#0b2545",
+            "on-primary": "#ffffff",
+            "surface-container-high": "#dce9ff",
+            "on-error": "#ffffff",
+            "tertiary": "#001217",
+            "on-secondary-container": "#006f66",
+            "surface-variant": "#d3e4fe",
+            "outline-variant": "#c4c6cf",
+            "inverse-on-surface": "#eaf1ff",
+            "inverse-primary": "#b1c7f0",
+            "tertiary-fixed": "#acedff",
+            "tertiary-fixed-dim": "#4cd7f6",
+            "surface-tint": "#495f82",
+            "on-tertiary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#74777f",
+            "on-primary-container": "#778db2",
+            "on-background": "#0b1c30",
+            "secondary-fixed-dim": "#6bd8cb"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "margin": "1rem",
+            "space-xl": "2rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "body-md": ["Inter"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "title-md": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "display": ["Plus Jakarta Sans"],
+            "body-lg": ["Inter"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "metric-display": ["Plus Jakarta Sans"],
+            "label-sm": ["Inter"],
+            "body-sm": ["Inter"]
+          },
+          "fontSize": {
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "display": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "metric-display": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Hide horizontal scrollbar for clean chip appearance */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen pb-12 selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Mobile Viewport Container max-w-md -->
+<main class="max-w-md mx-auto bg-surface min-h-screen relative shadow-2xl flex flex-col">
+<!-- 1. Top App Bar (Task Sub-page with Back Navigation) -->
+<header class="sticky top-0 z-30 bg-surface-container-lowest px-margin py-space-sm flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm">
+<button aria-label="Go back" class="w-10 h-10 rounded-full flex items-center justify-center text-primary hover:bg-surface-container active:scale-95 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+</button>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-primary tracking-tight leading-none">Clinics</h1>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-secondary text-sm fill" data-icon="verified" style="font-variation-settings: &quot;FILL&quot; 1;">verified</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">Verified Clinics &amp; Specialist Consultations</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Search" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button aria-label="Bookmarks" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+</header>
+<!-- 2. Quick Search & Location Bar -->
+<section class="pt-space-md px-margin"><div class="flex items-center justify-between mb-3"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-secondary text-xl">category</span><h2 class="font-headline-sm text-headline-sm text-primary tracking-tight font-bold">Select Department</h2></div><button class="text-secondary font-label-md text-label-md font-bold hover:underline flex items-center gap-0.5" type="button"><span class="">View All</span><span class="material-symbols-outlined text-base" data-icon="chevron_right">chevron_right</span></button></div><div class="grid grid-cols-4 gap-2.5 pb-1"><!-- 1. All Departments -->
+<button type="button" class="flex flex-col items-center gap-1.5 group active:scale-95 transition-all text-center">
+  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#d5e3ff] via-surface-container-low to-secondary-fixed/40 p-1 shadow-lg border-2 border-secondary relative overflow-hidden group-hover:scale-105 transition-transform flex items-center justify-center">
+    <img src="https://lh3.googleusercontent.com/aida/AEtjO1U7CCaxIbTEfJXD-IIQmd5PZG5o5UiUwzU6mvFtoEV_IDSBK4J3_r7BgpRHJg9uMsQZsEmIOUNsJVNLq0H5OCdA7Tp3ogGibsNzfczjGz2jAKO0oJzlqXVTbFahn7FMohRYICP-h5N8jzphgEQYZj_Eqa2fvfRMM5OEoZrwpBVqTWAci_KFYRV7XJR4JX6z20PSPLoB14Yu9xT4bOGgDaCSU1nCPxcZYb6FewqpVTuz0aJcb-aR-P2jzDXH" alt="All Clinics 3D Stethoscope Icon" class="w-full h-full object-cover rounded-xl shadow-inner">
+    <span class="absolute top-1 right-1.5 w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+  </div>
+  <span class="font-label-sm text-label-sm font-bold text-primary truncate w-full tracking-tight">All</span>
+</button>
+
+<!-- 2. General Medicine -->
+<button type="button" class="flex flex-col items-center gap-1.5 group active:scale-95 transition-all text-center">
+  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#e0f7f5] via-[#c6f3ed] to-[#99eee1] p-1 shadow-md border border-[#86f2e4] relative overflow-hidden group-hover:scale-105 transition-transform flex items-center justify-center">
+    <img src="https://lh3.googleusercontent.com/aida/AEtjO1X1u-ehzZrYvFmYanVcrGewFxZZRnCyY7jCZZktF_I7_NP3AQqDc8ii6pf7HZNt8pzKLruFqTmnAXiX7i9moEXUEnDTg6g7Zgk4aH4BQBh3cp35BHTeQvytVHk-P_bcwPCTMjiJo0ckOh5WUi-KkfnZ4U3OiihzE7N05tscBkK5aWfqlVab_BOJsdeDp4K_Mx1q-l2XCWLe9_80E_hN3Ld0cPfBvKC8UGSH0iJIEkkdRVAetKXXJFL7vFU" alt="General Medicine 3D Icon" class="w-full h-full object-cover rounded-xl">
+  </div>
+  <span class="font-label-sm text-label-sm font-bold text-on-surface-variant group-hover:text-primary truncate w-full tracking-tight">General</span>
+</button>
+
+<!-- 3. Cardiology -->
+<button type="button" class="flex flex-col items-center gap-1.5 group active:scale-95 transition-all text-center">
+  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#ffe5e5] via-[#ffccd0] to-[#ffa3aa] p-1 shadow-md border border-red-300 relative overflow-hidden group-hover:scale-105 transition-transform flex flex-col items-center justify-center">
+    <div class="w-10 h-10 rounded-xl bg-white/95 text-error flex items-center justify-center shadow-md relative z-10 border border-red-200">
+      <span class="material-symbols-outlined text-2xl fill animate-pulse text-error" style="font-variation-settings: 'FILL' 1;">cardiology</span>
+    </div>
+  </div>
+  <span class="font-label-sm text-label-sm font-bold text-on-surface-variant group-hover:text-primary truncate w-full tracking-tight">Cardiology</span>
+</button>
+
+<!-- 4. Gynecology -->
+<button type="button" class="flex flex-col items-center gap-1.5 group active:scale-95 transition-all text-center">
+  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#fde7f3] via-[#fbcfe8] to-[#f472b6]/30 p-1 shadow-md border border-pink-300 relative overflow-hidden group-hover:scale-105 transition-transform flex flex-col items-center justify-center">
+    <div class="w-10 h-10 rounded-xl bg-white/95 text-[#b71866] flex items-center justify-center shadow-md relative z-10 border border-pink-200">
+      <span class="material-symbols-outlined text-2xl fill text-[#b71866]" style="font-variation-settings: 'FILL' 1;">pregnant_woman</span>
+    </div>
+  </div>
+  <span class="font-label-sm text-label-sm font-bold text-on-surface-variant group-hover:text-primary truncate w-full tracking-tight">Gynecology</span>
+</button>
+
+<!-- 5. Pediatrics -->
+<button type="button" class="flex flex-col items-center gap-1.5 group active:scale-95 transition-all text-center">
+  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#e0f2fe] via-[#bae6fd] to-[#7dd3fc]/40 p-1 shadow-md border border-sky-300 relative overflow-hidden group-hover:scale-105 transition-transform flex flex-col items-center justify-center">
+    <div class="w-10 h-10 rounded-xl bg-white/95 text-[#0284c7] flex items-center justify-center shadow-md relative z-10 border border-sky-200">
+      <span class="material-symbols-outlined text-2xl fill text-[#0284c7]" style="font-variation-settings: 'FILL' 1;">child_care</span>
+    </div>
+  </div>
+  <span class="font-label-sm text-label-sm font-bold text-on-surface-variant group-hover:text-primary truncate w-full tracking-tight">Pediatrics</span>
+</button>
+
+<!-- 6. Orthopedics -->
+<button type="button" class="flex flex-col items-center gap-1.5 group active:scale-95 transition-all text-center">
+  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#fef3c7] via-[#fde68a] to-[#fcd34d]/50 p-1 shadow-md border border-amber-300 relative overflow-hidden group-hover:scale-105 transition-transform flex flex-col items-center justify-center">
+    <div class="w-10 h-10 rounded-xl bg-white/95 text-[#d97706] flex items-center justify-center shadow-md relative z-10 border border-amber-200">
+      <span class="material-symbols-outlined text-2xl fill text-[#d97706]" style="font-variation-settings: 'FILL' 1;">orthopedics</span>
+    </div>
+  </div>
+  <span class="font-label-sm text-label-sm font-bold text-on-surface-variant group-hover:text-primary truncate w-full tracking-tight">Orthopedics</span>
+</button>
+
+<!-- 7. Dermatology -->
+<button type="button" class="flex flex-col items-center gap-1.5 group active:scale-95 transition-all text-center">
+  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#ccfbf1] via-[#99f6e4] to-[#5eead4]/40 p-1 shadow-md border border-teal-300 relative overflow-hidden group-hover:scale-105 transition-transform flex flex-col items-center justify-center">
+    <div class="w-10 h-10 rounded-xl bg-white/95 text-secondary flex items-center justify-center shadow-md relative z-10 border border-teal-200">
+      <span class="material-symbols-outlined text-2xl fill text-secondary" style="font-variation-settings: 'FILL' 1;">healing</span>
+    </div>
+  </div>
+  <span class="font-label-sm text-label-sm font-bold text-on-surface-variant group-hover:text-primary truncate w-full tracking-tight">Dermatology</span>
+</button>
+
+<!-- 8. Dental -->
+<button type="button" class="flex flex-col items-center gap-1.5 group active:scale-95 transition-all text-center">
+  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#ede9fe] via-[#ddd6fe] to-[#c4b5fd]/40 p-1 shadow-md border border-purple-200 relative overflow-hidden group-hover:scale-105 transition-transform flex flex-col items-center justify-center">
+    <div class="w-10 h-10 rounded-xl bg-white/95 text-[#6366f1] flex items-center justify-center shadow-md relative z-10 border border-purple-200">
+      <span class="material-symbols-outlined text-2xl fill text-[#6366f1]" style="font-variation-settings: 'FILL' 1;">dentistry</span>
+    </div>
+  </div>
+  <span class="font-label-sm text-label-sm font-bold text-on-surface-variant group-hover:text-primary truncate w-full tracking-tight">Dental</span>
+</button></div></section><section class="px-margin pt-3"><div class="p-1.5 bg-surface-container-low rounded-2xl border border-outline-variant flex items-center gap-1.5 overflow-x-auto no-scrollbar"><button type="button" class="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md font-bold shadow-sm flex-shrink-0 transition-all"><span class="material-symbols-outlined text-base fill" style="font-variation-settings: &quot;FILL&quot; 1;">domain</span><span class="">All Clinics</span></button><button type="button" class="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-surface-container-lowest text-on-surface-variant hover:text-primary font-label-md text-label-md font-semibold border border-outline-variant/60 flex-shrink-0 transition-all"><span class="material-symbols-outlined text-base text-secondary">person</span><span class="">Single Doctor Clinics</span></button><button type="button" class="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-surface-container-lowest text-on-surface-variant hover:text-primary font-label-md text-label-md font-semibold border border-outline-variant/60 flex-shrink-0 transition-all"><span class="material-symbols-outlined text-base text-secondary">local_hospital</span><span class="">Multi-Doctor Polyclinics</span></button></div><div class="flex items-center justify-between mt-2.5 px-1"><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-secondary"></span><p class="font-label-sm text-label-sm text-on-surface-variant font-medium">Showing <span class="font-bold text-primary">1 Multi-Doctor Polyclinic</span> &amp; <span class="font-bold text-primary">3 Single Doctor Clinics</span> nearby</p></div><span class="font-label-sm text-label-sm text-secondary font-bold">Verified</span></div></section>
+<!-- 3. Consultation Mode Toggle (Segmented Tab Bar) -->
+
+<!-- 4. Speciality / Category Quick Filter Chips (Horizontal Scroll) -->
+
+<!-- 5. Featured / Highly Recommended Multi-Specialty Clinic Card -->
+<section class="px-margin pt-space-lg">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-xl fill" data-icon="stars" style="font-variation-settings: &quot;FILL&quot; 1;">stars</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">Featured Multi-Specialty Hub</h2>
+</div>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm px-2 py-0.5 rounded-full uppercase tracking-wider">Top Rated</span>
+</div>
+<!-- Bento-style Card -->
+<article class="bg-surface-container-lowest rounded-2xl border border-outline-variant p-4 shadow-sm relative overflow-hidden">
+<!-- Header Info -->
+<div class="flex items-start justify-between gap-3">
+<div class="flex-1">
+<div class="flex flex-wrap items-center gap-1.5 mb-1.5"><span class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm px-2 py-0.5 rounded-full font-bold uppercase tracking-wider flex items-center gap-1"><span class="material-symbols-outlined text-xs fill" style="font-variation-settings: &quot;FILL&quot; 1;">corporate_fare</span>Multi-Doctor Polyclinic</span><span class="bg-blue-100 text-blue-900 font-label-sm text-label-sm px-2 py-0.5 rounded-full font-bold">4+ Specialties</span></div><h3 class="font-headline-sm text-headline-sm text-primary leading-snug">Apollo Clinic &amp; Diagnostic Hub</h3>
+<div class="flex flex-wrap items-center gap-y-1 gap-x-2 mt-1.5">
+<span class="inline-flex items-center gap-1 text-on-surface font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-amber-500 text-sm fill" data-icon="star" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+                4.8
+                <span class="text-on-surface-variant font-normal font-body-sm text-body-sm">(1,240+ reviews)</span>
+</span>
+<span class="text-outline-variant">•</span>
+<span class="inline-flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="near_me">near_me</span>
+                1.2 km away • 5 mins
+              </span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 flex-shrink-0"><button aria-label="Save to Wishlist / Account Profile" title="Save to Wishlist / Account Profile" class="w-9 h-9 rounded-xl border border-outline-variant/80 bg-surface-container-low hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-secondary active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-lg" data-icon="bookmark_border">bookmark_border</span></button><div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center border border-outline-variant text-secondary"><span class="material-symbols-outlined text-xl" data-icon="local_hospital">local_hospital</span></div></div>
+</div>
+<!-- OPD Badge & Doctor Count -->
+<div class="grid grid-cols-2 gap-2 mt-3.5 pt-3 border-t border-outline-variant">
+<div class="bg-surface-container-low p-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-lg" data-icon="groups">groups</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Available Today</p>
+<p class="font-label-md text-label-md text-primary font-bold">8 Doctors on duty</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-lg" data-icon="schedule">schedule</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">OPD Timings</p>
+<p class="font-label-md text-label-md text-primary font-bold">8:00 AM – 9:00 PM</p>
+</div>
+</div>
+</div>
+<!-- Available Facilities Tag Cloud -->
+<div class="mt-3">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1.5 uppercase tracking-wide">Key Services &amp; Diagnostic Labs</p>
+<div class="flex flex-wrap gap-1.5"><span class="bg-surface-container px-2.5 py-1 rounded-md text-on-surface font-body-sm text-body-sm flex items-center gap-1"><span class="material-symbols-outlined text-xs text-secondary">stethoscope</span>8 OPD Doctors on Duty</span><span class="bg-surface-container px-2.5 py-1 rounded-md text-on-surface font-body-sm text-body-sm flex items-center gap-1"><span class="material-symbols-outlined text-xs text-secondary">biotech</span>In-house Labs &amp; X-Ray</span><span class="bg-surface-container px-2.5 py-1 rounded-md text-on-surface font-body-sm text-body-sm flex items-center gap-1"><span class="material-symbols-outlined text-xs text-secondary">medication</span>24x7 Pharmacy</span><span class="bg-surface-container px-2.5 py-1 rounded-md text-on-surface font-body-sm text-body-sm flex items-center gap-1"><span class="material-symbols-outlined text-xs text-secondary">emergency</span>Minor OT</span></div>
+</div>
+<!-- Pricing & Zero Queue Promise -->
+<div class="mt-3.5 p-2.5 rounded-xl bg-secondary-fixed/20 border border-secondary/30 flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-secondary-fixed-variant">Consultation</p>
+<p class="font-title-md text-title-md font-bold text-primary">₹XYZ <span class="font-normal font-body-sm text-body-sm text-on-surface-variant">onwards</span></p>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 bg-surface-container-lowest text-secondary font-label-sm text-label-sm font-bold px-2 py-0.5 rounded-full border border-secondary/40">
+<span class="material-symbols-outlined text-xs fill" data-icon="bolt" style="font-variation-settings: &quot;FILL&quot; 1;">bolt</span>
+              Dr.Route Priority Token
+            </span>
+<p class="font-label-sm text-label-sm text-secondary font-semibold mt-0.5">FREE (Zero Queue Wait)</p>
+</div>
+</div>
+<!-- Card Action Footer -->
+<div class="mt-3.5 flex items-center gap-2">
+<a aria-label="Direct Clinic Helpline" class="w-12 h-12 rounded-xl border border-outline-variant flex items-center justify-center text-primary-container hover:bg-surface-container active:scale-95 transition-transform flex-shrink-0" href="tel:1800102030">
+<span class="material-symbols-outlined text-xl" data-icon="call">call</span>
+</a>
+<button class="flex-1 h-12 bg-primary-container text-on-primary rounded-xl font-title-md text-title-md font-semibold flex items-center justify-center gap-2 hover:bg-primary active:scale-[0.98] transition-all shadow-sm" type="button">
+<span class="">Book Appointment</span>
+<span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</article>
+</section>
+<!-- 6. List of Specialist Doctors with Associated Clinics -->
+<section class="px-margin pt-space-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary"><span class="flex items-center gap-2"><span class="bg-secondary-fixed/40 text-on-secondary-fixed font-label-sm text-label-sm px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Single Doctor Clinics</span><span class="">Solo Specialist Practices</span></span></h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Solo specialist consulting clinics • Instant token &amp; zero queue reception check-in • <span class="text-secondary font-semibold inline-flex items-center gap-0.5"><span class="material-symbols-outlined text-xs">bookmark</span>Saved clinics sync to Account Wishlist</span></p>
+</div>
+<button class="text-secondary font-label-md text-label-md font-bold hover:underline flex items-center gap-0.5" type="button">
+<span class="">Sort by</span>
+<span class="material-symbols-outlined text-sm" data-icon="tune">tune</span>
+</button>
+</div>
+<!-- Doctor 1: Dr. Arvind Swaminathan -->
+<article class="bg-surface-container-lowest rounded-2xl border border-outline-variant p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-start gap-3">
+<div class="w-16 h-16 rounded-xl bg-surface-container overflow-hidden flex-shrink-0 border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A distinguished South Asian male doctor in his 40s wearing a clean white physician coat and a navy stethoscope over a crisp sky blue shirt. Soft clinical lighting illuminates his reassuring and welcoming expression against a subtle modern hospital background in muted teal and navy." src="https://lh3.googleusercontent.com/aida/AEtjO1VZaD6qpm1bwgnmQnO8tJf2aT3r8I3_x0xJCdExEkdtNuJ5HVzl5LTtfniJyaFQZiQVAhP-QoB3v-XVkYUE9jT3p36O0xff8Vqg-rVeQbdAy-5WoLND6fOjPpmrNGJb_0hdlJpUHUKcNAh7pUJ2fS9TeZJL3g1TGmZaQ3Ml8jfOZc7TY83JOlQa2qHR0YzB7kOsmzS6AMeRmtIGMXTMWLgrNo8euf-B2FqQ5X76Bwn8j7_2_qAqky66Omlb">
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between"><span class="bg-secondary-fixed/40 text-on-secondary-fixed font-label-sm text-label-sm px-2 py-0.5 rounded-md font-semibold">Internal Medicine</span><div class="flex items-center gap-1.5"><div class="flex items-center text-amber-600 font-label-sm text-label-sm font-bold"><span class="material-symbols-outlined text-xs fill mr-0.5" data-icon="star" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>4.9 (420)</div><button aria-label="Save to Wishlist / Account Profile" title="Save to Wishlist / Account Profile" class="w-7 h-7 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-secondary active:scale-95 transition-all ml-0.5" type="button"><span class="material-symbols-outlined text-base" data-icon="bookmark_border">bookmark_border</span></button></div></div>
+<h3 class="font-title-md text-title-md font-bold text-primary mt-1 truncate">Dr. Arvind Swaminathan</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">MBBS, MD - Internal Medicine • 16 yrs exp</p>
+</div>
+</div>
+<!-- Associated Clinic & Distance -->
+<div class="bg-surface-container-low px-3 py-2 rounded-lg flex items-center justify-between"><div class="flex items-center gap-2 min-w-0"><span class="material-symbols-outlined text-secondary text-base flex-shrink-0" data-icon="domain">domain</span><div class="min-w-0"><div class="flex items-center gap-1.5"><p class="font-body-sm text-body-sm text-on-surface font-semibold truncate">Arogya Family Health &amp; Diabetes Clinic</p><span class="bg-surface-container-highest text-primary font-label-sm text-label-sm px-1.5 py-0.2 rounded font-bold whitespace-nowrap">Single Doctor Clinic</span></div><p class="font-label-sm text-label-sm text-on-surface-variant truncate">Indiranagar • Solo Consulting Room (Dr. Arvind)</p></div></div><span class="font-label-sm text-label-sm text-on-surface-variant flex-shrink-0 ml-1 font-bold">0.8 km</span></div>
+<!-- Timing, Fee & Insurance Highlights -->
+<div class="grid grid-cols-2 gap-2 text-left">
+<div class="border border-outline-variant rounded-lg p-2 bg-surface-bright">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Next Available Slot</p>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<p class="font-label-md text-label-md text-primary font-bold">Today, 04:30 PM</p>
+</div>
+<span class="font-label-sm text-label-sm text-error font-medium">3 slots left</span>
+</div>
+<div class="border border-outline-variant rounded-lg p-2 bg-surface-bright">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Consultation Fee</p>
+<p class="font-label-md text-label-md text-primary font-bold mt-0.5">₹XYZ <span class="font-normal font-body-sm text-body-sm text-on-surface-variant">(OPD Fee)</span></p>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Priority Token Included</span>
+</div>
+</div>
+<!-- Insurance Tag -->
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm bg-surface-container/60 px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="verified_user">verified_user</span>
+<span class="">CGHS &amp; Private Insurance Accepted</span>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-2 pt-1 border-t border-outline-variant">
+<a aria-label="Call Arogya Family Clinic" class="h-11 px-3 rounded-xl border border-outline-variant flex items-center justify-center gap-1.5 text-on-surface hover:bg-surface-container active:scale-95 transition-transform flex-shrink-0 font-label-md text-label-md font-semibold" href="tel:918012345678">
+<span class="material-symbols-outlined text-lg text-primary" data-icon="call">call</span>
+<span class="">Call Clinic</span>
+</a>
+<button class="flex-1 h-11 bg-primary-container text-on-primary rounded-xl font-title-md text-title-md font-semibold flex items-center justify-center hover:bg-primary active:scale-[0.98] transition-all shadow-sm" type="button">
+            Book Appointment
+          </button>
+</div>
+</article>
+<!-- Doctor 2: Dr. Priyamvada Rao -->
+<article class="bg-surface-container-lowest rounded-2xl border border-outline-variant p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-start gap-3">
+<div class="w-16 h-16 rounded-xl bg-surface-container overflow-hidden flex-shrink-0 border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A compassionate South Asian female doctor in her late 30s with hair neatly pinned, smiling warmly at the camera in a modern maternity clinic. She wears a clinical apron over formal attire, illuminated by high-key, clean medical studio lighting with soft teal and natural tones." src="https://lh3.googleusercontent.com/aida/AEtjO1XrSuCMoGB1GTRvjDTAJpG24sDRj3MkzJoAHeA8f8ZMF8x6WghCpArOrQWEaNeCWMWu89NgTVCETUCyWancYk1vLe4c0zto572FqnWbOsV4OWOfBX65G4GKhF7jaAZM8q3VKG2hVX8Qv9_TlnQ2cCKy9hA48m7EYScdQoNtIbm1c4pGOG-2HscohbVuKdr8QUaqNDanPfzRU3fAz-n8FnU0E9c_NZYb4lp6VQxj0zLUVXyDRMrNKHsDwWq1">
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between"><span class="bg-pink-100 text-pink-900 font-label-sm text-label-sm px-2 py-0.5 rounded-md font-semibold">Gynecology &amp; OBS</span><div class="flex items-center gap-1.5"><div class="flex items-center text-amber-600 font-label-sm text-label-sm font-bold"><span class="material-symbols-outlined text-xs fill mr-0.5" data-icon="star" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>4.95 (680)</div><button aria-label="Save to Wishlist / Account Profile" title="Save to Wishlist / Account Profile" class="w-7 h-7 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-secondary active:scale-95 transition-all ml-0.5" type="button"><span class="material-symbols-outlined text-base" data-icon="bookmark_border">bookmark_border</span></button></div></div>
+<h3 class="font-title-md text-title-md font-bold text-primary mt-1 truncate">Dr. Priyamvada Rao</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">MBBS, MS - Obstetrics &amp; Gynecology • 14 yrs exp</p>
+</div>
+</div>
+<!-- Associated Clinic & Distance -->
+<div class="bg-surface-container-low px-3 py-2 rounded-lg flex items-center justify-between"><div class="flex items-center gap-2 min-w-0"><span class="material-symbols-outlined text-secondary text-base flex-shrink-0" data-icon="domain">domain</span><div class="min-w-0"><div class="flex items-center gap-1.5"><p class="font-body-sm text-body-sm text-on-surface font-semibold truncate">Mother &amp; Child Well-Care Clinic</p><span class="bg-surface-container-highest text-primary font-label-sm text-label-sm px-1.5 py-0.2 rounded font-bold whitespace-nowrap">Single Doctor Clinic</span></div><p class="font-label-sm text-label-sm text-on-surface-variant truncate">Koramangala • Solo Private Chamber (Dr. Priyamvada)</p></div></div><span class="font-label-sm text-label-sm text-on-surface-variant flex-shrink-0 ml-1 font-bold">2.4 km</span></div>
+<!-- Timing, Fee & Highlights -->
+<div class="grid grid-cols-2 gap-2 text-left">
+<div class="border border-outline-variant rounded-lg p-2 bg-surface-bright">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Next Available Slot</p>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<p class="font-label-md text-label-md text-primary font-bold">Today, 05:45 PM</p>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Evening OPD</span>
+</div>
+<div class="border border-outline-variant rounded-lg p-2 bg-surface-bright">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Consultation Fee</p>
+<p class="font-label-md text-label-md text-primary font-bold mt-0.5">₹XYZ <span class="font-normal font-body-sm text-body-sm text-on-surface-variant">(OPD Fee)</span></p>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Priority Token Included</span>
+</div>
+</div>
+<!-- Key Highlights -->
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm bg-surface-container/60 px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="thumb_up">thumb_up</span>
+<span class="truncate">High patient recommendation (98%) • Lady Specialist</span>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-2 pt-1 border-t border-outline-variant">
+<a aria-label="Call Mother &amp; Child Well-Care Clinic" class="h-11 px-3 rounded-xl border border-outline-variant flex items-center justify-center gap-1.5 text-on-surface hover:bg-surface-container active:scale-95 transition-transform flex-shrink-0 font-label-md text-label-md font-semibold" href="tel:918023456789">
+<span class="material-symbols-outlined text-lg text-primary" data-icon="call">call</span>
+<span class="">Call Clinic</span>
+</a>
+<button class="flex-1 h-11 bg-primary-container text-on-primary rounded-xl font-title-md text-title-md font-semibold flex items-center justify-center hover:bg-primary active:scale-[0.98] transition-all shadow-sm" type="button">
+            Book Appointment
+          </button>
+</div>
+</article>
+<!-- Doctor 3: Dr. Rajesh K. Mehta -->
+<article class="bg-surface-container-lowest rounded-2xl border border-outline-variant p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-start gap-3">
+<div class="w-16 h-16 rounded-xl bg-surface-container overflow-hidden flex-shrink-0 border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A senior Indian cardiologist in his early 50s with dignified greying hair, glasses, and a professional dark navy blazer over a medical tie. Crisp white clinical lighting highlights his friendly, authoritative presence in a modern cardiac diagnostics center." src="https://lh3.googleusercontent.com/aida/AEtjO1Xoeo3XIehgZhctLPlOCM13TLw066-QdQ2N5N4lPjvmQK4M21M5qboNzPmbnrOU1-IKQfia8UXCvRKnxez64RPFqHJ_HySKDZHYyu_MDywuI2QTjvOKGfLTQD3k7-Ip0sr7ZzFoRzh1Ngzb0tAWXq9f-N7AlZA8MNphOr8AZdchP4s_8WBKmOlbrsuRmPFo6Mg3ANYCdCg3ct06LlGv9BvSGuN92XIsh69Sli9a9QrlZ62qLdNGcViI9HA">
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between"><span class="bg-blue-100 text-blue-900 font-label-sm text-label-sm px-2 py-0.5 rounded-md font-semibold">Cardiology Specialist</span><div class="flex items-center gap-1.5"><div class="flex items-center text-amber-600 font-label-sm text-label-sm font-bold"><span class="material-symbols-outlined text-xs fill mr-0.5" data-icon="star" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>4.9 (890)</div><button aria-label="Save to Wishlist / Account Profile" title="Save to Wishlist / Account Profile" class="w-7 h-7 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-secondary active:scale-95 transition-all ml-0.5" type="button"><span class="material-symbols-outlined text-base" data-icon="bookmark_border">bookmark_border</span></button></div></div>
+<h3 class="font-title-md text-title-md font-bold text-primary mt-1 truncate">Dr. Rajesh K. Mehta</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">MBBS, DNB - Cardiology • 20 yrs exp, Ex-AIIMS</p>
+</div>
+</div>
+<!-- Associated Clinic & Distance -->
+<div class="bg-surface-container-low px-3 py-2 rounded-lg flex items-center justify-between"><div class="flex items-center gap-2 min-w-0"><span class="material-symbols-outlined text-secondary text-base flex-shrink-0" data-icon="domain">domain</span><div class="min-w-0"><div class="flex items-center gap-1.5"><p class="font-body-sm text-body-sm text-on-surface font-semibold truncate">HeartPulse Super-Specialty Clinic</p><span class="bg-surface-container-highest text-primary font-label-sm text-label-sm px-1.5 py-0.2 rounded font-bold whitespace-nowrap">Single Doctor Clinic</span></div><p class="font-label-sm text-label-sm text-on-surface-variant truncate">HSR Layout • Solo Cardiology OPD (Dr. Rajesh)</p></div></div><span class="font-label-sm text-label-sm text-on-surface-variant flex-shrink-0 ml-1 font-bold">3.1 km</span></div>
+<!-- Timing, Fee & Highlights -->
+<div class="grid grid-cols-2 gap-2 text-left">
+<div class="border border-outline-variant rounded-lg p-2 bg-surface-bright">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Next Available Slot</p>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<p class="font-label-md text-label-md text-primary font-bold">Tomorrow, 10:00 AM</p>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Morning OPD</span>
+</div>
+<div class="border border-outline-variant rounded-lg p-2 bg-surface-bright">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Consultation Fee</p>
+<p class="font-label-md text-label-md text-primary font-bold mt-0.5">₹XYZ</p>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Priority Token Included</span>
+</div>
+</div>
+<!-- Highlights & ABHA Empanelled -->
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm bg-surface-container/60 px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="ecg_heart">ecg_heart</span>
+<span class="truncate">Echocardiography &amp; TMT on-site • Govt Ayushman OPD empanelled</span>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-2 pt-1 border-t border-outline-variant">
+<a aria-label="Call HeartPulse Clinic" class="h-11 px-3 rounded-xl border border-outline-variant flex items-center justify-center gap-1.5 text-on-surface hover:bg-surface-container active:scale-95 transition-transform flex-shrink-0 font-label-md text-label-md font-semibold" href="tel:918034567890">
+<span class="material-symbols-outlined text-lg text-primary" data-icon="call">call</span>
+<span class="">Call Clinic</span>
+</a>
+<button class="flex-1 h-11 bg-primary-container text-on-primary rounded-xl font-title-md text-title-md font-semibold flex items-center justify-center hover:bg-primary active:scale-[0.98] transition-all shadow-sm" type="button">
+            Book Appointment
+          </button>
+</div>
+</article>
+</section>
+<!-- 7. Dr.Route Guarantee & Zero Queue Card -->
+<section class="px-margin pt-space-lg">
+<div class="bg-gradient-to-br from-primary-container to-primary p-4 rounded-2xl text-on-primary shadow-md relative overflow-hidden">
+<!-- Ambient decorative circle -->
+<div class="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-secondary/15 pointer-events-none"></div>
+<div class="flex items-start gap-3 relative z-10">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center flex-shrink-0 shadow">
+<span class="material-symbols-outlined text-2xl fill" data-icon="verified" style="font-variation-settings: &quot;FILL&quot; 1;">verified</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed font-bold"><br></span>
+</div>
+<h3 class="font-title-md text-title-md font-bold text-on-primary mt-0.5">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Dr.Route&nbsp;&nbsp;</h3>
+<p class="font-body-sm text-body-sm text-primary-fixed mt-1.5 leading-relaxed">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 100% verified doctors.&nbsp;</p>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-white/10 flex items-center justify-between text-on-primary-container font-label-sm text-label-sm relative z-10">
+<span class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-secondary-fixed text-sm" data-icon="check_circle">check_circle</span>
+            Digital Reception&nbsp;</span>
+
+</div>
+</div>
+</section>
+<!-- 8. Consistent Brand Footer -->
+<footer class="mt-space-xl pt-space-lg pb-space-lg px-margin border-t border-outline-variant bg-surface-container-lowest text-center flex flex-col items-center">
+<!-- 3D Brand Logo Asset -->
+<div class="w-16 h-16 rounded-2xl p-1 bg-surface-container-low shadow-sm border border-outline-variant flex items-center justify-center mb-2">
+<img alt="Dr.Route SuperApp Official Emblem" class="w-full h-full object-contain rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDopY-76UIRyNp3LNTyl-fGwaiFeG7IPSV1pDfyYsrC_RxNAd-MRIxc2ruJVoL2lVly009gr7cO1BoeyHUdev9ihavMsblWxFOHuVY_cwsg3I3ADtm0uRBKC7AUKMSAUJF0ohXftUCrmdwEpj47sRoTsmpFew1swrv-_bwutYvThUf6XveaNze4Xx1N5baAWU3682M_CYMyOvsAg3VUynKYMiG361un8tUqFUltzB-QkkXu2jWA1MhJNdVkE4wVvnQoi0o">
+</div>
+<h4 class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">Dr.Route</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-0.5 max-w-xs">
+        Your 24x7 Healthcare &amp; Emergency Companion
+      </p>
+<div class="flex items-center justify-center gap-2 mt-3 text-on-surface-variant font-label-sm text-label-sm">
+
+<span class="text-outline-variant">•</span>
+
+</div>
+
+</footer>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

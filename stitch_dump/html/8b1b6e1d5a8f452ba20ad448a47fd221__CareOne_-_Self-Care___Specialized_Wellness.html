@@ -1,0 +1,524 @@
+<!DOCTYPE html><html lang="en" style="" __gcrremoteframetoken="1e93ed75f0a1655a7e7d03352a26df32"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Dr.Route SuperApp - Self Care &amp; Vitals</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed": "#d5e3ff",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-container": "#0099b3",
+            "on-surface": "#0b1c30",
+            "error": "#ba1a1a",
+            "surface-container-high": "#dce9ff",
+            "on-primary-fixed-variant": "#314769",
+            "on-error-container": "#93000a",
+            "surface-tint": "#495f82",
+            "secondary-fixed": "#89f5e7",
+            "surface-container": "#e5eeff",
+            "on-secondary-fixed-variant": "#005049",
+            "inverse-on-surface": "#eaf1ff",
+            "secondary-fixed-dim": "#6bd8cb",
+            "surface": "#f8f9ff",
+            "outline-variant": "#c4c6cf",
+            "surface-container-low": "#eff4ff",
+            "on-error": "#ffffff",
+            "secondary-container": "#86f2e4",
+            "on-tertiary": "#ffffff",
+            "primary": "#001026",
+            "tertiary": "#001217",
+            "surface-bright": "#f8f9ff",
+            "inverse-primary": "#b1c7f0",
+            "outline": "#74777f",
+            "on-background": "#0b1c30",
+            "surface-dim": "#cbdbf5",
+            "primary-container": "#0b2545",
+            "background": "#f8f9ff",
+            "inverse-surface": "#213145",
+            "tertiary-container": "#002931",
+            "error-container": "#ffdad6",
+            "surface-container-highest": "#d3e4fe",
+            "on-primary-fixed": "#001c3b",
+            "on-secondary-container": "#006f66",
+            "on-secondary-fixed": "#00201d",
+            "on-tertiary-fixed": "#001f26",
+            "tertiary-fixed-dim": "#4cd7f6",
+            "tertiary-fixed": "#acedff",
+            "surface-variant": "#d3e4fe",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#778db2",
+            "on-tertiary-fixed-variant": "#004e5c",
+            "on-secondary": "#ffffff",
+            "primary-fixed-dim": "#b1c7f0",
+            "secondary": "#006a61",
+            "on-surface-variant": "#44474e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "3xl": "1.5rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter": "1rem",
+            "space-xl": "2rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Plus Jakarta Sans"],
+            "metric-display": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "title-md": ["Inter"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "display": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex justify-center selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Mobile Canvas Frame (~390px centered standard) -->
+<main class="w-full max-w-md bg-surface min-h-screen relative pb-28 flex flex-col shadow-xl">
+<!-- 1. Header (User profile, App title, ABHA badge, notifications) -->
+<header class="bg-surface-container-lowest text-primary flex justify-between items-center w-full px-margin py-3 max-w-md mx-auto sticky top-0 z-40 shadow-xs border-b border-outline-variant/30"><div class="flex items-center gap-space-sm"><div class="flex items-center gap-2"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDopY-76UIRyNp3LNTyl-fGwaiFeG7IPSV1pDfyYsrC_RxNAd-MRIxc2ruJVoL2lVly009gr7cO1BoeyHUdev9ihavMsblWxFOHuVY_cwsg3I3ADtm0uRBKC7AUKMSAUJF0ohXftUCrmdwEpj47sRoTsmpFew1swrv-_bwutYvThUf6XveaNze4Xx1N5baAWU3682M_CYMyOvsAg3VUynKYMiG361un8tUqFUltzB-QkkXu2jWA1MhJNdVkE4wVvnQoi0o" alt="Dr.Route Logo" class="w-9 h-9 object-contain rounded-full shadow-xs flex-shrink-0"><div class="flex flex-col"><div class="flex items-center gap-1.5"><span class="font-headline-sm text-[16px] font-extrabold text-primary tracking-tight leading-none">Dr.Route</span><span class="bg-gradient-to-r from-[#FEF3C7] to-[#FDE68A] text-[#92400E] border border-[#F59E0B]/40 font-label-sm text-[9px] font-extrabold px-1.5 py-0.5 rounded tracking-wider uppercase flex items-center gap-0.5"><span class="material-symbols-outlined text-[11px] text-[#D97706]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span> PRIME</span></div><span class="font-label-sm text-[11px] text-on-surface-variant flex items-center gap-1 mt-0.5"><span class="material-symbols-outlined text-[12px] text-secondary" style="font-variation-settings: 'FILL' 1;">verified_user</span> Ananya • ABHA Linked</span></div></div></div><div class="flex items-center gap-1.5"><button aria-label="Prime Benefits" class="w-9 h-9 rounded-full bg-[#FEF3C7]/70 border border-[#F59E0B]/30 flex items-center justify-center hover:bg-[#FEF3C7] active:scale-95 transition-all text-[#B45309]"><span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 1;">stars</span></button><button aria-label="Notifications" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center hover:bg-surface-container-high active:scale-95 transition-transform text-on-surface"><span class="material-symbols-outlined text-[19px]">notifications</span></button><div class="relative w-9 h-9 rounded-full overflow-hidden ring-2 ring-[#F59E0B]/60 p-0.5 bg-gradient-to-tr from-[#F59E0B] via-[#006a61] to-[#0b2545] shadow-xs flex-shrink-0 ml-1"><img src="https://lh3.googleusercontent.com/aida/AEtjO1Vu5NtKECSmxLOf0Mc1rSLbm2Lpux3iHHVCoZoY0VR8A1Fr8mWOKNBcXopbP36-ZYkMvcPwv2QYe94nIPSGoHmnsywHq0lt69WWBcoSrM_AIjRxRaUstP0tVzdb6Le-OUFoINFoLz6fTJzQQ4PdoNy5ganOJAKX6Q1ATYvmA_dUzOsSl8vQgHov_HE16_XRruKJYD81b0WX_cB0bBqmEvPczpeMlV_NxFTDeZTLgPwpWjinBpjDuJV73b5h" alt="Ananya" class="w-9 h-9 rounded-full object-cover border border-outline-variant"><div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-secondary rounded-full ring-2 ring-surface-container-lowest"></div></div></div></header>
+<!-- Live Wearable Sync Banner -->
+
+<div class="px-margin pt-3.5 space-y-5">
+<!-- ========================================================================= -->
+<!-- 1. TOP COMMON HEALTH & ACTIVITY TRACKER (Clean, Simple, Uncluttered)       -->
+<!-- ========================================================================= -->
+<section class="space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<h2 class="font-headline-sm text-[16px] font-bold text-primary">Daily Activity &amp; Vitals</h2>
+<span class="text-[10px] font-bold uppercase tracking-wider text-secondary bg-secondary-container/40 px-2 py-0.5 rounded-full">All Metrics</span>
+</div>
+<span class="text-xs text-on-surface-variant font-medium">Mon, 24 Oct</span>
+</div>
+<!-- Prominent Steps & Daily Burn Card -->
+<div class="bg-gradient-to-br from-[#0b2545] via-[#091f3a] to-[#001026] text-white rounded-2xl p-4 shadow-md border border-white/10 relative overflow-hidden">
+<!-- Glow ambient accent -->
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-secondary/20 rounded-full blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex items-center justify-between">
+<div class="space-y-1">
+<div class="flex items-center gap-1 text-secondary-fixed text-xs font-semibold">
+<span class="material-symbols-outlined text-[16px]">directions_walk</span>
+<span class="">Daily Step Goal</span>
+</div>
+<div class="flex items-baseline gap-1.5">
+<span class="font-metric-display text-[26px] font-bold text-white tracking-tight">8,450</span>
+<span class="text-surface-container-high/70 text-xs font-medium">/ 10,000 steps</span>
+</div>
+<p class="text-[11px] text-surface-container-high/80">1,550 steps left to reach 100% daily target</p>
+</div>
+<!-- Mini Goal Ring Progress -->
+<div class="relative w-16 h-16 flex-shrink-0 flex items-center justify-center">
+<svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+<path class="text-white/15 stroke-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3.5"></path>
+<path class="text-secondary-fixed stroke-current drop-shadow-[0_0_6px_rgba(107,216,203,0.5)]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="84, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<div class="absolute flex flex-col items-center justify-center">
+<span class="font-headline-sm text-[13px] font-bold text-white leading-none">85%</span>
+</div>
+</div>
+</div>
+<!-- Quick Metrics Strip: Distance & Burn -->
+<div class="grid grid-cols-2 gap-2 mt-3.5 pt-3 border-t border-white/10 relative z-10">
+<div class="flex items-center gap-2 bg-white/5 rounded-xl px-3 py-2 border border-white/5">
+<div class="w-7 h-7 rounded-lg bg-secondary/30 text-secondary-fixed flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">route</span>
+</div>
+<div>
+<span class="text-[10px] text-surface-container-high/70 uppercase tracking-wide block">Distance</span>
+<span class="text-[14px] font-bold text-white">5.8 km</span>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-white/5 rounded-xl px-3 py-2 border border-white/5">
+<div class="w-7 h-7 rounded-lg bg-[#F59E0B]/30 text-[#FDE68A] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">local_fire_department</span>
+</div>
+<div>
+<span class="text-[10px] text-surface-container-high/70 uppercase tracking-wide block">Calories Burned</span>
+<span class="text-[14px] font-bold text-white">485 kcal</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 3 Quick Common Health Cards: Hydration, Sleep & Vitals -->
+<div class="grid grid-cols-3 gap-2">
+<!-- Water Intake -->
+<div class="bg-surface-container-lowest p-2.5 rounded-2xl border border-outline-variant/40 shadow-xs flex flex-col justify-between"><div class="">
+<div class="flex items-center justify-between">
+<img src="https://lh3.googleusercontent.com/aida/AEtjO1UrBi2_ppxoiAoZiOsy7Jsk9Jg1jrsjnfBCl7cSD4ye5EuJNLUdhTVKcYCpM9ZuluhWhgNn1OIiVkjcwFrA4viHJY1EjzXGLPr_98v85gRBeiDloZb1yFZvV5BA9lhreMzYcvCpJakqKP3bLVldnpqdpQSennEm8DU9vvLQCl8brbIl2KUwCQJ-Ffc81YUhHy7qwkJsHBZ3NsCWMEmoVF1Kl8E0FG-oT57Ek3iPWdbZ98uGbkxiX1l8jGz3" alt="Water Hydration" class="w-10 h-10 object-contain">
+<button class="text-[10px] font-bold text-secondary bg-secondary-container/40 hover:bg-secondary-container px-1.5 py-0.5 rounded-md active:scale-95 transition-transform flex items-center">
+              +250ml
+            </button>
+</div>
+<span class="font-headline-sm text-[15px] font-bold text-primary block mt-1.5">2.4L</span>
+<span class="text-[10px] text-on-surface-variant font-medium">/ 3.0L goal</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1 mt-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 80%;"></div>
+</div></div>
+<!-- Sleep Recovery -->
+<div class="bg-surface-container-lowest p-2.5 rounded-2xl border border-outline-variant/40 shadow-xs flex flex-col justify-between"><div class="">
+<div class="flex items-center justify-between">
+<img src="https://lh3.googleusercontent.com/aida/AEtjO1WMD8Vgpr3JDiMzrqFg1QZPpqRwIqkaHtx612Cu5ouLAwbvMfZ9uzL5uw-Yh0hg2XjqiXlcES8JsyiJdUR4zfRY2WkvxVTRwOJsjFwFaRJ8CsVCx6rk37PRoQTBzGllWowzpTre8NDO3Larv5yv8mc0tvEZJSAVuYS7tmNdh02FalIHv4Ahx19ELPXm9fkuLybrqv0dsqkk3b7yXiyXawrjNbbyuuOOlxEs7LdevR6iWic_7ADnTGZDjX54" alt="Restful Sleep" class="w-10 h-10 object-contain">
+<span class="text-[9px] font-bold text-secondary bg-secondary-container/30 px-1 py-0.5 rounded">Optimal</span>
+</div>
+<span class="font-headline-sm text-[15px] font-bold text-primary block mt-1.5">7h 40m</span>
+<span class="text-[10px] text-on-surface-variant font-medium">Restful sleep</span>
+</div>
+<div class="flex items-center gap-1 text-[10px] text-secondary font-medium mt-1">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">bedtime</span>
+<span class="">Deep 2h 15m</span>
+</div></div>
+<!-- Vital Signs (Heart Rate & BP) -->
+<div class="bg-surface-container-lowest p-2.5 rounded-2xl border border-outline-variant/40 shadow-xs flex flex-col justify-between"><div class="">
+<div class="flex items-center justify-between">
+<img src="https://lh3.googleusercontent.com/aida/AEtjO1V-6ph6V-gM3CMT4f6QOnJf9ONds1NlmGFuvrjw2r7UG-i98_BPvLMySbA3DZhTlluslCS8i_Jqy61BDbqYOjoNuiGW1X0HBwudKtAU0V4BslkJYVd1L0bmLP5QJpPqyL41aCNqG6SK2GSiEO-jdcyPonrkPZze1iAz4f3nUQK9yPd-XBprKS59a6sbdKu5kAF8R-83UdhL0nw2_Jsd5x1oj0yBFwcmGx5Q9OwVa-6GGz61zLMXzP2Jpbw" alt="Heart Rate" class="w-10 h-10 object-contain">
+<span class="text-[9px] font-bold text-[#006a61] bg-secondary-container/30 px-1 py-0.5 rounded">Fit Zone</span>
+</div>
+<div class="mt-1.5">
+<div class="flex items-baseline gap-0.5">
+<span class="font-headline-sm text-[15px] font-bold text-primary">68</span>
+<span class="text-[10px] text-on-surface-variant font-medium">bpm</span>
+</div>
+<span class="text-[10px] font-semibold text-primary block">BP 118/76</span>
+</div>
+</div>
+<span class="text-[9px] text-secondary font-medium mt-1 block">Steady &amp; Normal</span></div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 2. GENDER-SPECIFIC CARE SECTION (Men & Women 2 Prominent Visual Boxes)     -->
+<!-- ========================================================================= -->
+<section class="space-y-3 pt-1"><div class="flex items-center justify-between"><div class=""><h2 class="font-headline-sm text-[17px] font-bold text-primary">Daily Health &amp; Fitness</h2>
+<p class="font-label-sm text-[11px] text-on-surface-variant">Simple daily care for men &amp; women</p></div>
+<span class="text-[11px] font-semibold text-secondary flex items-center gap-0.5 bg-secondary-container/30 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">tune</span> Personalized
+</span></div>
+
+<!-- 1. MEN'S FITNESS & MEDICAL WELLNESS PORTAL (FIRST) -->
+<div class="flex items-center justify-between pt-1">
+  <div class="flex items-center gap-1.5">
+    <span class="material-symbols-outlined text-[16px] text-secondary">male</span>
+    <h3 class="font-headline-sm text-[14px] font-bold text-primary">Men's Health &amp; Fitness</h3>
+  </div>
+  <span class="text-[10px] text-secondary font-semibold bg-secondary/15 px-2 py-0.5 rounded-full">Active Protocol</span>
+</div><article class="bg-surface-container-lowest rounded-2xl border border-secondary/40 shadow-sm overflow-hidden flex flex-col transition-all hover:shadow-md">
+<div class="relative w-full h-32 overflow-hidden">
+<img src="https://lh3.googleusercontent.com/aida/AEtjO1WjV5X7hHSISEl-hxmE085cdLB1QBTCNlVOcWHjQ09CozIxEsmwyla13Vm6eKOCy5av2Ecx5eylhPEAVzqg-ZviLgwKIy-yG5y9aMNu4X7iZK1S7Ac1LofBg5WYxI5K7-y5ew8MMFuciJoJU52wjWsA3h0cyPbj847ZuZpJ6O1ccWrRoaWNXB5sPrqKdjdSnOvtIZUBrEZqtdKbSAJf3yUAPRkki-v4SZHCNfmAo-IOpcch_VSsIxQBIRI" alt="Men's Health &amp; Fitness" class="w-full h-44 object-cover rounded-2xl">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"></div>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5 bg-[#effaf8]/95 backdrop-blur-md px-2 py-0.5 rounded-full border border-secondary/40 shadow-xs">
+<span class="material-symbols-outlined text-[14px] text-secondary">male</span>
+<span class="text-[10px] font-bold text-on-secondary-container uppercase tracking-wider">Men's Health</span>
+</div>
+<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-primary/80 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-full border border-white/10">
+<span class="material-symbols-outlined text-[12px] text-secondary-fixed">verified</span> Clinical Portal
+</div>
+<div class="absolute bottom-2 left-3 right-3 flex items-end justify-between text-white">
+<div>
+<h3 class="font-headline-sm text-[15px] font-bold leading-tight">Men's Health &amp; Stamina</h3>
+<p class="text-[11px] text-white/90 line-clamp-1">Cardiac endurance, functional strength &amp; posture</p>
+</div>
+</div>
+</div>
+<div class="p-3 space-y-2.5 bg-gradient-to-b from-secondary-container/10 to-surface-container-lowest">
+<div class="flex items-center justify-between gap-1 overflow-hidden">
+<button class="flex-1 flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg bg-secondary/15 border border-secondary/40 text-primary active:scale-95 transition-all text-center">
+<span class="material-symbols-outlined text-[15px] text-secondary" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+<span class="text-[10px] font-bold leading-tight">Workouts</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg bg-surface-container-low border border-outline-variant/30 text-on-surface hover:bg-surface-container active:scale-95 transition-all text-center">
+<span class="material-symbols-outlined text-[15px] text-secondary">restaurant</span>
+<span class="text-[10px] font-medium leading-tight">Diet</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg bg-surface-container-low border border-outline-variant/30 text-on-surface hover:bg-surface-container active:scale-95 transition-all text-center">
+<span class="material-symbols-outlined text-[15px] text-secondary">healing</span>
+<span class="text-[10px] font-medium leading-tight">Physio</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg bg-surface-container-low border border-outline-variant/30 text-on-surface hover:bg-surface-container active:scale-95 transition-all text-center">
+<span class="material-symbols-outlined text-[15px] text-secondary">analytics</span>
+<span class="text-[10px] font-medium leading-tight">Analysis</span>
+</button>
+</div>
+<div class="space-y-1.5">
+<div class="bg-surface-container-low/90 rounded-xl px-2.5 py-1.5 border border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">self_improvement</span>
+<div>
+<div class="flex items-center gap-1">
+<h4 class="text-[11px] font-bold text-primary">Beginner</h4>
+<span class="text-[10px] text-on-surface-variant">• 15m Mobility Reset</span>
+</div>
+</div>
+</div>
+<button class="px-2 py-0.5 rounded-md bg-surface-container-lowest text-secondary border border-secondary/40 text-[10px] font-bold hover:bg-secondary hover:text-white transition-colors active:scale-95">
+Start
+</button>
+</div>
+
+</div>
+<div class="pt-1"><button class="w-full relative overflow-hidden group bg-gradient-to-r from-[#006a61] via-[#0b2545] to-[#001026] text-white p-2.5 rounded-xl border border-secondary/40 shadow-md hover:shadow-lg active:scale-[0.98] transition-all flex items-center justify-between cursor-pointer"><div class="flex items-center gap-2.5 relative z-10 text-left"><div class="w-8 h-8 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center flex-shrink-0 shadow-xs"><span class="material-symbols-outlined text-[18px] text-[#006a61]" style="font-variation-settings: 'FILL' 1;">bolt</span></div><div><div class="flex items-center gap-1.5"><span class="font-headline-sm text-[12px] font-bold tracking-tight text-white">⚡ Open Advance Men's Portal</span><span class="bg-secondary/30 text-secondary-fixed border border-secondary/40 text-[9px] font-extrabold px-1.5 py-0.2 rounded uppercase tracking-wider">VIP</span></div><p class="text-[10px] text-surface-container-high/90">Exclusive Stamina, Hormonal &amp; Care Protocols</p></div></div><div class="relative z-10 flex items-center gap-1 bg-secondary hover:bg-secondary/90 text-white font-bold text-[10px] px-2.5 py-1.5 rounded-lg shadow-sm flex-shrink-0 group-hover:scale-105 transition-transform"><span class="">Enter</span><span class="material-symbols-outlined text-[13px]">arrow_forward</span></div></button></div><div class="pt-1.5 border-t border-secondary/15 space-y-1"><div class="flex items-center justify-between"><span class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider flex items-center gap-1"><span class="material-symbols-outlined text-[11px] text-secondary">hub</span> Advance Portal Includes</span><span class="text-[9px] font-semibold text-secondary bg-secondary-container/30 px-1.5 py-0.2 rounded-full">Specialized Care</span></div><div class="flex flex-wrap gap-1"><span class="inline-flex items-center gap-1 bg-[#FEF3C7] text-[#92400E] border border-[#F59E0B]/40 text-[10px] font-bold px-2 py-0.5 rounded-full shadow-xs"><span class="material-symbols-outlined text-[11px] text-[#D97706]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span> Sexual Health</span><span class="inline-flex items-center gap-1 bg-secondary-container/30 text-on-secondary-container border border-secondary/30 text-[10px] font-medium px-2 py-0.5 rounded-full"><span class="material-symbols-outlined text-[11px] text-secondary">vital_signs</span> Hormonal Health</span><span class="inline-flex items-center gap-1 bg-surface-container-low border border-outline-variant/30 text-primary text-[10px] font-medium px-2 py-0.5 rounded-full"><span class="material-symbols-outlined text-[11px] text-secondary">spa</span> Hair Care &amp; Regrowth</span><span class="inline-flex items-center gap-1 bg-surface-container-low border border-outline-variant/30 text-primary text-[10px] font-medium px-2 py-0.5 rounded-full"><span class="material-symbols-outlined text-[11px] text-secondary">face</span> Beard &amp; Grooming</span><span class="inline-flex items-center gap-1 bg-surface-container-low border border-outline-variant/30 text-primary text-[10px] font-medium px-2 py-0.5 rounded-full"><span class="material-symbols-outlined text-[11px] text-secondary">fitness_center</span> Advance Workout</span><span class="inline-flex items-center gap-1 bg-surface-container-low border border-outline-variant/30 text-primary text-[10px] font-medium px-2 py-0.5 rounded-full"><span class="material-symbols-outlined text-[11px] text-secondary">restaurant</span> Specialty Diet Chart</span><span class="inline-flex items-center gap-1 bg-secondary/15 text-secondary border border-secondary/30 text-[10px] font-semibold px-2 py-0.5 rounded-full"><span class="material-symbols-outlined text-[11px] text-secondary">lightbulb</span> Advance Tips </span><span class="inline-flex items-center gap-1 bg-surface-container-low border border-outline-variant/30 text-primary text-[10px] font-medium px-2 py-0.5 rounded-full"><span class="material-symbols-outlined text-[11px] text-secondary">clean_hands</span> Skin Care</span><span class="inline-flex items-center gap-1 bg-surface-container-low border border-outline-variant/30 text-primary text-[10px] font-medium px-2 py-0.5 rounded-full"><span class="material-symbols-outlined text-[11px] text-secondary">sanitizer</span> Personal Hygiene</span></div></div>
+</div>
+</article>
+
+<!-- 2. WOMEN'S WELLNESS & PERIOD TRACKER (SECOND) -->
+<div class="flex items-center justify-between pt-2.5">
+  <div class="flex items-center gap-1.5">
+    <span class="material-symbols-outlined text-[16px] text-[#E11D48]">female</span>
+    <h3 class="font-headline-sm text-[14px] font-bold text-primary">Women's Health &amp; Wellness</h3>
+  </div>
+  <span class="text-[10px] text-[#E11D48] font-semibold bg-[#FFF1F2] border border-[#FECDD3] px-2 py-0.5 rounded-full">Phase Synced</span>
+</div><article class="bg-surface-container-lowest rounded-2xl border border-[#FDA4AF]/50 shadow-sm overflow-hidden flex flex-col transition-all hover:shadow-md" id="womens-health-card" style="overflow: visible; height: auto; min-height: fit-content; display: flex; flex-direction: column;">
+<div class="relative w-full h-32 overflow-hidden">
+<img src="https://lh3.googleusercontent.com/aida/AEtjO1Xvgr8UrL_6fBPCxZPfqMHl9-ycz0XVvu75rIJwLVT_xiMUOG9WCFWKBzyzEeVoJp_5VqgcB6AcOmsC_O5PXTZvTIhdutGI7bP6MMYHiycWrZklJLPDuz6vKtOnICaVWQm0N1N-pGqYvziGM-uA8zMrKGo11dQZmM6ysrO0al_HxEEZjyP4E2niBSgpPFFjXTlfwS7P0YoWaHsb5cgZwZyggmpk6QBTLRuL08D2HkUqH9b4IVwpqRnxDF66" alt="Women's Health &amp; Wellness" class="w-full h-44 object-cover rounded-2xl">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"></div>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5 bg-[#FFF1F2]/95 backdrop-blur-md px-2 py-0.5 rounded-full border border-[#FDA4AF] shadow-xs">
+<span class="material-symbols-outlined text-[14px] text-[#E11D48]">female</span>
+<span class="text-[10px] font-bold text-[#9F1239] uppercase tracking-wider">Women's Health</span>
+</div>
+<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-[#E11D48]/85 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-full border border-white/10">
+<span class="material-symbols-outlined text-[12px] text-white">calendar_today</span> Cycle &amp; Hormones
+</div>
+<div class="absolute bottom-2 left-3 right-3 flex items-end justify-between text-white">
+<div>
+<h3 class="font-headline-sm text-[15px] font-bold leading-tight">Women's Health &amp; Wellness</h3>
+<p class="text-[11px] text-white/90 line-clamp-1">Cycle tracking, fertility insights &amp; gentle yoga</p>
+</div>
+</div>
+</div>
+<div class="p-3 space-y-2.5 bg-gradient-to-b from-[#FFF5F7]/50 to-surface-container-lowest"><!-- 4 Quick Action Pills -->
+<div class="flex items-center justify-between gap-1 overflow-hidden">
+  <button class="flex-1 flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg bg-[#FFF1F2] border border-[#FDA4AF] text-[#9F1239] active:scale-95 transition-all text-center">
+    <span class="material-symbols-outlined text-[15px] text-[#E11D48]" style="font-variation-settings: 'FILL' 1;">self_improvement</span>
+    <span class="text-[10px] font-bold leading-tight">Yoga</span>
+  </button>
+  <button class="flex-1 flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg bg-surface-container-low border border-outline-variant/30 text-on-surface hover:bg-surface-container active:scale-95 transition-all text-center">
+    <span class="material-symbols-outlined text-[15px] text-[#E11D48]">restaurant</span>
+    <span class="text-[10px] font-medium leading-tight">Diet</span>
+  </button>
+  <button class="flex-1 flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg bg-surface-container-low border border-outline-variant/30 text-on-surface hover:bg-surface-container active:scale-95 transition-all text-center">
+    <span class="material-symbols-outlined text-[15px] text-[#E11D48]">healing</span>
+    <span class="text-[10px] font-medium leading-tight">Physio</span>
+  </button>
+  <button class="flex-1 flex items-center justify-center gap-1 py-1 px-1.5 rounded-lg bg-surface-container-low border border-outline-variant/30 text-on-surface hover:bg-surface-container active:scale-95 transition-all text-center">
+    <span class="material-symbols-outlined text-[15px] text-[#E11D48]">calendar_month</span>
+    <span class="text-[10px] font-medium leading-tight">Cycle</span>
+  </button>
+</div>
+
+<!-- Beginner Routine Row -->
+<div class="space-y-1.5">
+  <div class="bg-surface-container-low/90 rounded-xl px-2.5 py-1.5 border border-outline-variant/30 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-[16px] text-[#E11D48]">self_improvement</span>
+      <div>
+        <div class="flex items-center gap-1">
+          <h4 class="text-[11px] font-bold text-primary">Beginner</h4>
+          <span class="text-[10px] text-on-surface-variant">• 15m Pelvic &amp; Spine Flow</span>
+        </div>
+      </div>
+    </div>
+    <button class="px-2 py-0.5 rounded-md bg-surface-container-lowest text-[#BE123C] border border-[#FDA4AF] text-[10px] font-bold hover:bg-[#E11D48] hover:text-white transition-colors active:scale-95">
+      Start
+    </button>
+  </div>
+</div>
+
+<!-- Cycle & Hormone Status Bar -->
+<div class="flex items-center justify-between bg-[#FFF1F2] border border-[#FECDD3] rounded-xl px-2.5 py-1.5">
+  <div class="flex items-center gap-1.5">
+    <span class="material-symbols-outlined text-[16px] text-[#E11D48]" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+    <span class="text-[12px] font-bold text-primary">Cycle Day 14</span>
+    <span class="w-1.5 h-1.5 rounded-full bg-[#E11D48]"></span>
+    <span class="text-[10px] font-bold text-[#BE123C] bg-white px-1.5 py-0.2 rounded border border-[#FECDD3]">Ovulation Phase</span>
+  </div>
+  <span class="text-[10px] text-[#9F1239] font-medium">High Energy</span>
+</div>
+
+<!-- Open Advance Portal Button -->
+<div class="pt-1"><button class="w-full relative overflow-hidden group bg-gradient-to-r from-[#BE123C] via-[#9F1239] to-[#001026] text-white p-2.5 rounded-xl border border-[#FDA4AF]/50 shadow-md hover:shadow-lg active:scale-[0.98] transition-all flex items-center justify-between cursor-pointer"><div class="flex items-center gap-2.5 relative z-10 text-left"><div class="w-8 h-8 rounded-lg bg-[#FFF1F2] text-[#E11D48] flex items-center justify-center flex-shrink-0 shadow-xs"><span class="material-symbols-outlined text-[18px] text-[#E11D48]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span></div><div><div class="flex items-center gap-1.5"><span class="font-headline-sm text-[12px] font-bold tracking-tight text-white">✨ Open Advance Women's Portal</span><span class="bg-[#FFF1F2]/20 text-[#FECDD3] border border-[#FDA4AF]/40 text-[9px] font-extrabold px-1.5 py-0.2 rounded uppercase tracking-wider">VIP</span></div><p class="text-[10px] text-white/90">Hormonal Balance, PCOS &amp; Care Protocols</p></div></div><div class="relative z-10 flex items-center gap-1 bg-[#E11D48] hover:bg-[#BE123C] text-white font-bold text-[10px] px-2.5 py-1.5 rounded-lg shadow-sm flex-shrink-0 group-hover:scale-105 transition-transform"><span class="">Enter</span><span class="material-symbols-outlined text-[13px]">arrow_forward</span></div></button></div>
+
+<!-- Advance Portal Includes Specialized Tags -->
+<div class="pt-1.5 border-t border-[#FDA4AF]/40 space-y-1">
+  <div class="flex items-center justify-between">
+    <span class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider flex items-center gap-1">
+      <span class="material-symbols-outlined text-[11px] text-[#E11D48]">hub</span> Advance Portal Includes
+    </span>
+    <span class="text-[9px] font-semibold text-[#BE123C] bg-[#FFF1F2] border border-[#FECDD3] px-1.5 py-0.2 rounded-full">Specialized Care</span>
+  </div>
+  <div class="flex flex-wrap gap-1">
+    <span class="inline-flex items-center gap-1 bg-[#FEF3C7] text-[#92400E] border border-[#F59E0B]/40 text-[10px] font-bold px-2 py-0.5 rounded-full shadow-xs">
+      <span class="material-symbols-outlined text-[11px] text-[#D97706]" style="font-variation-settings: 'FILL' 1;">favorite</span> Sexual &amp; Reproductive Health
+    </span>
+    <span class="inline-flex items-center gap-1 bg-[#FFF1F2] text-[#9F1239] border border-[#FDA4AF] text-[10px] font-medium px-2 py-0.5 rounded-full">
+      <span class="material-symbols-outlined text-[11px] text-[#E11D48]">pregnant_woman</span> Pregnancy Care
+    </span>
+    <span class="inline-flex items-center gap-1 bg-surface-container-low border border-outline-variant/30 text-primary text-[10px] font-medium px-2 py-0.5 rounded-full">
+      <span class="material-symbols-outlined text-[11px] text-[#E11D48]">vital_signs</span> PCOS Care
+    </span>
+    <span class="inline-flex items-center gap-1 bg-surface-container-low border border-outline-variant/30 text-primary text-[10px] font-medium px-2 py-0.5 rounded-full">
+      <span class="material-symbols-outlined text-[11px] text-[#E11D48]">health_and_safety</span> Breast Health
+    </span>
+    <span class="inline-flex items-center gap-1 bg-surface-container-low border border-outline-variant/30 text-primary text-[10px] font-medium px-2 py-0.5 rounded-full">
+      <span class="material-symbols-outlined text-[11px] text-[#E11D48]">restaurant</span> Advance Nutrition
+    </span>
+    <span class="inline-flex items-center gap-1 bg-[#FFF1F2] text-[#BE123C] border border-[#FDA4AF] text-[10px] font-semibold px-2 py-0.5 rounded-full">
+      <span class="material-symbols-outlined text-[11px] text-[#E11D48]">spa</span> Menopause Care
+    </span>
+  <span class="inline-flex items-center gap-1 bg-[#FFF1F2] text-[#9F1239] border border-[#FDA4AF] text-[10px] font-medium px-2 py-0.5 rounded-full"><span class="material-symbols-outlined text-[11px] text-[#E11D48]">auto_awesome</span> Skin &amp; Glow Care</span><span class="inline-flex items-center gap-1 bg-surface-container-low border border-outline-variant/30 text-primary text-[10px] font-medium px-2 py-0.5 rounded-full"><span class="material-symbols-outlined text-[11px] text-[#E11D48]">spa</span> Hair Care &amp; Scalp</span><span class="inline-flex items-center gap-1 bg-[#FFF1F2] text-[#9F1239] border border-[#FDA4AF] text-[10px] font-medium px-2 py-0.5 rounded-full"><span class="material-symbols-outlined text-[11px] text-[#E11D48]">sanitizer</span> Intimate &amp; Personal Hygiene</span></div>
+</div></div>
+</article></section><section class="space-y-3 pt-2"><div class="flex items-center justify-between"><div class=""><div class="flex items-center gap-1.5"><h2 class="font-headline-sm text-[16px] font-bold text-primary">Daily Wellness &amp; Holistic Health</h2></div><p class="font-label-sm text-[11px] text-on-surface-variant">Mind, habits, preventive scores &amp; education</p></div><span class="text-xs text-secondary font-semibold flex items-center gap-0.5 cursor-pointer hover:underline">View All<span class="material-symbols-outlined text-[14px]">chevron_right</span></span></div><div class="grid grid-cols-2 gap-2.5"><div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-xs hover:shadow-md transition-all p-3 flex flex-col justify-between active:scale-[0.98] cursor-pointer group"><div class="space-y-2"><div class="relative w-full h-24 rounded-xl overflow-hidden bg-surface-container"><img src="https://lh3.googleusercontent.com/aida/AEtjO1Ux-i4CBrj9Bpxmazbt70EmmEIkHEqrU4Sp6GzwL_xoIaXf5R0MrHa7Vuv0yL5ZVghk1DlTjywzjD8Yo56zyi8QdlNhvlQ7KYLOmTY_L4JsXLmYbtfRPph2XqiYd9OzH9FRfo-f2e97e6y5C3AHTMJqfeZ0fcIKx3xxkk_U51kp4EaE_j6S-ZpUXgE-A6_CbA8KKRT5Pi-7Thy4b7IE6Yd57RkQ8Q_GNrg5yMFoDiwLM3OPZSXxhJHzKjIK" alt="Mental Wellness" class="w-full h-24 object-contain rounded-xl"><div class="absolute top-1.5 right-1.5 bg-surface-container-lowest/90 backdrop-blur-md px-1.5 py-0.5 rounded-full text-[9px] font-bold text-secondary flex items-center gap-0.5 border border-outline-variant/20 shadow-xs"><span class="material-symbols-outlined text-[11px] text-secondary" style="font-variation-settings: 'FILL' 1;">spa</span> Calm</div></div><div><h3 class="font-headline-sm text-[13px] font-bold text-primary group-hover:text-secondary transition-colors">Mental Wellness</h3><p class="text-[10px] text-on-surface-variant line-clamp-1">Stress, Mood &amp; Relaxation</p></div></div><div class="mt-2 pt-2 border-t border-outline-variant/20 flex flex-wrap items-center justify-between gap-1"><div class="flex items-center gap-1"><span class="text-[9px] font-semibold text-secondary bg-secondary-container/30 px-1.5 py-0.5 rounded">Mood Log</span><span class="text-[9px] font-medium text-on-surface-variant bg-surface-container-low px-1.5 py-0.5 rounded">Guided Calm</span></div><span class="material-symbols-outlined text-[14px] text-secondary">arrow_forward</span></div></div><div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-xs hover:shadow-md transition-all p-3 flex flex-col justify-between active:scale-[0.98] cursor-pointer group"><div class="space-y-2"><div class="relative w-full h-24 rounded-xl overflow-hidden bg-surface-container"><img src="https://lh3.googleusercontent.com/aida/AEtjO1VVJSPMPRI8M2AbooqLy8a_e9soKGqhVYPumj5KU3MdEq2ifEIDCjl1ccRLMOelMKZ-Iw5JJy_0Si58vLXcj6nbC8WWAitLOUIEMdHDuyb8BWp6LYt-3kucve02PbJc6HOXu23EJcsOureMZC7Zt4UrEVc1s7hcFQ4elihFfyNVRt49DKTUxFCVAXBSHNfxs5a0xjOib32AJ05O6UGwHjPEd_m2DFW9n4WZY4F6THHFPtE0LMsGNQ0DZb3_" alt="BMI &amp; Weight" class="w-full h-24 object-contain rounded-xl"><div class="absolute top-1.5 right-1.5 bg-surface-container-lowest/90 backdrop-blur-md px-1.5 py-0.5 rounded-full text-[9px] font-bold text-secondary flex items-center gap-0.5 border border-outline-variant/20 shadow-xs"><span class="material-symbols-outlined text-[11px] text-secondary" style="font-variation-settings: 'FILL' 1;">scale</span> Smart Scale</div></div><div><h3 class="font-headline-sm text-[13px] font-bold text-primary group-hover:text-secondary transition-colors">BMI &amp; Weight</h3><p class="text-[10px] text-on-surface-variant line-clamp-1">Smart Scale &amp; Weight Goals</p></div></div><div class="mt-2 pt-2 border-t border-outline-variant/20 flex items-center justify-between"><span class="text-[10px] font-bold text-primary bg-surface-container-low px-1.5 py-0.5 rounded border border-outline-variant/20">BMI 22.4 · Normal</span><span class="material-symbols-outlined text-[14px] text-secondary">arrow_forward</span></div></div><div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-xs hover:shadow-md transition-all p-3 flex flex-col justify-between active:scale-[0.98] cursor-pointer group"><div class="space-y-2"><div class="relative w-full h-24 rounded-xl overflow-hidden bg-surface-container"><img src="https://lh3.googleusercontent.com/aida/AEtjO1XpfJ8hvGXy1C634cJu7I6uglum6H6aDUdNk6weIMnwbbHMsDsPTLxUXEjnUUKf6igpIpq7Sz1eMcYAcuLTxwAJwD9AeSjQeTeQjKu1WfziV3QmA47iH7XSJOsedhiNEYpxZeZ3Ly1IdDTyd2pH64wqc2cvfl2AOdohwrOJYZUqFnnn5EjhxsR5CEPbPGUwyMT0ZSmeOz0LJjdenC4D70NfkzPiexM3N2ryfT4kepiDJoLjD5-n-PHSC2hS" alt="Health Score" class="w-full h-24 object-contain rounded-xl"><div class="absolute top-1.5 right-1.5 bg-[#effaf8] backdrop-blur-md px-1.5 py-0.5 rounded-full text-[9px] font-extrabold text-[#006a61] flex items-center gap-0.5 border border-secondary/30 shadow-xs"><span class="material-symbols-outlined text-[11px] text-secondary" style="font-variation-settings: 'FILL' 1;">verified</span> Top 5%</div></div><div><h3 class="font-headline-sm text-[13px] font-bold text-primary group-hover:text-secondary transition-colors">Health Score</h3><p class="text-[10px] text-on-surface-variant line-clamp-1">Holistic Vitals &amp; Biomarkers</p></div></div><div class="mt-2 pt-2 border-t border-outline-variant/20 flex items-center justify-between"><span class="text-[10px] font-bold text-secondary bg-secondary-container/40 px-1.5 py-0.5 rounded">88/100 · Optimal</span><span class="material-symbols-outlined text-[14px] text-secondary">arrow_forward</span></div></div><div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-xs hover:shadow-md transition-all p-3 flex flex-col justify-between active:scale-[0.98] cursor-pointer group"><div class="space-y-2"><div class="relative w-full h-24 rounded-xl overflow-hidden bg-surface-container"><img src="https://lh3.googleusercontent.com/aida/AEtjO1VhRmAjNRmCfNZhf98TCqRE7HFfkB099-7nO9xNAwrWpYtwtkHSGSKaNncuFMhQ1fxaPgNLEenYCCt5_z-OxatZ8_vOnliRcSDZJa2T831dBT-b8aIXmRq60SgQDIRVTR1obFvpQOWRO17Ayn04Dwf76rU4lJHrXF0USQOZmGRrBynPtDfQXrkC7yeTufugq00eOV16Bi1WOAegaWfpZof6WLk1lHwnhAmGC49HFVw9XRxCM3PPJ05GWeFR" alt="Habit Tracker" class="w-full h-24 object-contain rounded-xl"><div class="absolute top-1.5 right-1.5 bg-[#FEF3C7] backdrop-blur-md px-1.5 py-0.5 rounded-full text-[9px] font-bold text-[#92400E] flex items-center gap-0.5 border border-[#F59E0B]/30 shadow-xs"><span class="material-symbols-outlined text-[11px] text-[#D97706]" style="font-variation-settings: 'FILL' 1;">bolt</span> Active</div></div><div><h3 class="font-headline-sm text-[13px] font-bold text-primary group-hover:text-secondary transition-colors">Habit Tracker</h3><p class="text-[10px] text-on-surface-variant line-clamp-1">Smoking, Alcohol &amp; Routine</p></div></div><div class="mt-2 pt-2 border-t border-outline-variant/20 flex flex-wrap items-center justify-between gap-1"><div class="flex items-center gap-1"><span class="text-[9px] font-bold text-[#006a61] bg-secondary-container/30 px-1.5 py-0.5 rounded">Clean · 14d</span><span class="text-[9px] font-medium text-on-surface-variant bg-surface-container-low px-1.5 py-0.5 rounded">Water Goal</span></div><span class="material-symbols-outlined text-[14px] text-secondary">arrow_forward</span></div></div><div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-xs hover:shadow-md transition-all p-3 flex flex-col justify-between active:scale-[0.98] cursor-pointer group"><div class="space-y-2"><div class="relative w-full h-24 rounded-xl overflow-hidden bg-surface-container"><img src="https://lh3.googleusercontent.com/aida/AEtjO1X_zeTBScm3DQKO8VUGDVdU1Iol9rynY6jTBE2jfsOJBb9OFUhmcIyBJh4_sZYyw0TPsz7ZYybngfGF2LY5iwUSkqIlOpEtizdOw8fwIcZFglGqA4iIQ5ab_33xoZQzn90-6QgllcCmsp60lF1t0zJ58ELejhoBlC0Na9ZCbXk5Jdl1b3a8f1t2HfubBi-aeVvC4dxqGBfsC8KoHg4C9RxPI94NgywAyTXhW5_f5DoYep9C13h8r0BdM-dj" alt="Self Health Check" class="w-full h-24 object-cover rounded-xl"><div class="absolute top-1.5 right-1.5 bg-surface-container-lowest/90 backdrop-blur-md px-1.5 py-0.5 rounded-full text-[9px] font-bold text-secondary flex items-center gap-0.5 border border-outline-variant/20 shadow-xs"><span class="material-symbols-outlined text-[11px] text-secondary" style="font-variation-settings: 'FILL' 1;">stethoscope</span> AI Triage</div></div><div><h3 class="font-headline-sm text-[13px] font-bold text-primary group-hover:text-secondary transition-colors">Self Health Check</h3><p class="text-[10px] text-on-surface-variant line-clamp-1">Symptom &amp; Vitals Assessment</p></div></div><div class="mt-2 pt-2 border-t border-outline-variant/20 flex items-center justify-between"><span class="text-[9px] font-bold text-primary bg-surface-container-low border border-outline-variant/30 px-1.5 py-0.5 rounded">Quick 2-min triage</span><span class="material-symbols-outlined text-[14px] text-secondary">arrow_forward</span></div></div><div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-xs hover:shadow-md transition-all p-3 flex flex-col justify-between active:scale-[0.98] cursor-pointer group"><div class="space-y-2"><div class="relative w-full h-24 rounded-xl overflow-hidden bg-surface-container"><img src="https://lh3.googleusercontent.com/aida/AEtjO1UB1IB_EK4U2k7PY7BbKDRwvHNX8m9hV1Zv6ARsb4BSi8ttxxcfemK6wtjXYsrGT-bRqfsgSjtviOAXI8oG5M9O2D_Nwec3QLu8QqzelWsURvbAwCJtRG1EKhqaMeal_letirCaQmnF7SuNnAs2yaT3cjG0JrxkThZPzjc0KY7_bKW6KAaNhks-VNgIMIB6xwpQOadilq_RqB0ofvDpYeQUSh1-SYPWcKQrGVnfAwmjJnY_dzQSmSjb2to" alt="Health Education" class="w-full h-24 object-cover rounded-xl"><div class="absolute top-1.5 right-1.5 bg-[#FEF3C7]/90 backdrop-blur-md px-1.5 py-0.5 rounded-full text-[9px] font-bold text-[#92400E] border border-[#F59E0B]/30 shadow-xs">Dr.Route Edu</div></div><div><h3 class="font-headline-sm text-[13px] font-bold text-primary group-hover:text-secondary transition-colors">Health Education</h3><p class="text-[10px] text-on-surface-variant line-clamp-1">Expert Guides, Nutrition &amp; Longevity</p></div></div><div class="mt-2 pt-2 border-t border-outline-variant/20 flex items-center justify-between"><span class="text-[9px] font-bold text-[#B45309] bg-[#FEF3C7] border border-[#F59E0B]/30 px-1.5 py-0.5 rounded">Daily 3-min read</span><span class="material-symbols-outlined text-[14px] text-secondary">arrow_forward</span></div></div></div></section>
+<!-- ========================================================================= -->
+<!-- 3. DR.ROUTE PRIME PASS & LIFESTYLE HABITS (Clean, Compact)               -->
+<!-- ========================================================================= -->
+<section class="space-y-2.5">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-[15px] font-bold text-primary">Dr.Route Prime &amp; Habits</h3>
+<span class="text-xs text-secondary font-semibold">2 of 3 Done</span>
+</div>
+<!-- Prime Wellness Concierge Mini Card -->
+<div class="rounded-2xl p-3.5 bg-gradient-to-r from-[#001026] to-[#0b2545] text-white border border-[#F59E0B]/30 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl overflow-hidden border border-[#F59E0B]/40 shadow-xs flex-shrink-0 relative"><img src="https://lh3.googleusercontent.com/aida/AEtjO1VZaD6qpm1bwgnmQnO8tJf2aT3r8I3_x0xJCdExEkdtNuJ5HVzl5LTtfniJyaFQZiQVAhP-QoB3v-XVkYUE9jT3p36O0xff8Vqg-rVeQbdAy-5WoLND6fOjPpmrNGJb_0hdlJpUHUKcNAh7pUJ2fS9TeZJL3g1TGmZaQ3Ml8jfOZc7TY83JOlQa2qHR0YzB7kOsmzS6AMeRmtIGMXTMWLgrNo8euf-B2FqQ5X76Bwn8j7_2_qAqky66Omlb" alt="AI Longevity Doctor" class="w-12 h-12 rounded-xl object-cover border border-outline-variant"></div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-[13px] font-bold text-white">AI Longevity Doctor 24/7</span>
+<span class="bg-[#F59E0B]/20 text-[#FDE68A] border border-[#F59E0B]/40 text-[9px] font-extrabold px-1.5 py-0.2 rounded uppercase">PRIME VIP</span>
+</div>
+<p class="text-[11px] text-surface-container-high/80">Biometric review &amp; dietary answers anytime</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+</div>
+<!-- Micro-Habits Compact List -->
+<div class="space-y-1.5">
+<!-- Sunlight & Posture -->
+<div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-[#FEF3C7] text-[#B45309] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">wb_sunny</span>
+</div>
+<div>
+<h4 class="text-[13px] font-bold text-primary">Morning Sunlight &amp; Posture</h4>
+<p class="text-[10px] text-on-surface-variant">10m circadian reset • Completed 8:15 AM</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</div>
+<!-- Evening Breathwork -->
+<div class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-primary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">air</span>
+</div>
+<div>
+<h4 class="text-[13px] font-bold text-primary">4-7-8 Breathwork &amp; Mind Calm</h4>
+<p class="text-[10px] text-on-surface-variant">5m before sleep tonight</p>
+</div>
+</div>
+<button class="bg-secondary text-surface-container-lowest px-2.5 py-1 rounded-full text-[11px] font-semibold hover:bg-secondary/90 active:scale-95 transition-transform">
+          Start
+        </button>
+</div>
+</div>
+</section>
+<footer class="pt-4 pb-2 border-t border-outline-variant/30 flex flex-col items-center text-center space-y-2.5"><div class="flex items-center justify-center gap-2"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDopY-76UIRyNp3LNTyl-fGwaiFeG7IPSV1pDfyYsrC_RxNAd-MRIxc2ruJVoL2lVly009gr7cO1BoeyHUdev9ihavMsblWxFOHuVY_cwsg3I3ADtm0uRBKC7AUKMSAUJF0ohXftUCrmdwEpj47sRoTsmpFew1swrv-_bwutYvThUf6XveaNze4Xx1N5baAWU3682M_CYMyOvsAg3VUynKYMiG361un8tUqFUltzB-QkkXu2jWA1MhJNdVkE4wVvnQoi0o" alt="Dr.Route Logo" class="w-10 h-10 object-contain"><span class="font-headline-sm text-[19px] font-extrabold text-primary tracking-tight">Dr.Route</span></div><p class="font-medium text-[11px] text-on-surface-variant max-w-xs leading-snug">Your 24×7 Lifeline &amp; Wellness Super-App</p><div class="flex flex-wrap items-center justify-center gap-2 pt-0.5"></div></footer></div>
+<!-- ========================================================================= -->
+<!-- 4. BOTTOM NAVIGATION BAR (Home, Self Care [Active], SOS, Transport, Account) -->
+<!-- ========================================================================= -->
+<nav class="fixed bottom-0 left-0 right-0 w-full z-50 flex justify-around items-center px-space-xs py-1.5 max-w-md mx-auto bg-surface-container-lowest text-primary shadow-lg border-t border-outline-variant/20">
+<!-- 1. Home -->
+<button aria-label="Home" class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-1 hover:bg-surface-container transition-colors rounded-xl">
+<span class="material-symbols-outlined text-[22px]">home</span>
+<span class="font-label-sm text-[11px] mt-0.5">Home</span>
+</button>
+<!-- 2. Self Care (Active Destination) -->
+<button aria-label="Self Care" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-3 py-1 shadow-xs">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">ecg_heart</span>
+<span class="font-label-sm text-[11px] font-bold mt-0.5">Self Care</span>
+</button>
+<!-- 3. SOS (Emergency Highlight Red) -->
+<button aria-label="SOS" class="flex flex-col items-center justify-center text-error px-space-sm py-1 hover:bg-error-container/40 transition-colors rounded-xl">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<span class="font-label-sm text-[11px] font-bold mt-0.5 text-error">SOS</span>
+</button>
+<!-- 4. Transport -->
+<a href="javascript:void(0)" aria-label="Records" class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-1 hover:bg-surface-container transition-colors rounded-xl"><span class="material-symbols-outlined text-[22px]">folder_shared</span><span class="font-label-sm text-[11px] mt-0.5">Records</span></a>
+<!-- 5. Account -->
+<button aria-label="Account" class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-1 hover:bg-surface-container transition-colors rounded-xl">
+<span class="material-symbols-outlined text-[22px]">person</span>
+<span class="font-label-sm text-[11px] mt-0.5">Account</span>
+</button>
+</nav>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>
