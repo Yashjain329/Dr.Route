@@ -130,8 +130,8 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
   });
 
   const handlePatientAction = (patient: QueuePatient) => {
+    // Per user feedback: when clicked on the circled queue action buttons, nothing should open / navigate
     onSelectPatient(patient.id);
-    onNavigate('prescription');
   };
 
   return (
@@ -379,13 +379,10 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
         {/* Footer Link to All Queue */}
         <div className="p-3 bg-surface-container-low/40 border-t border-outline-variant/40 flex items-center justify-between text-xs font-mono text-on-surface-variant">
           <span>Showing {filteredQueue.length} queue entries</span>
-          <button 
-            onClick={() => onNavigate('prescription')}
-            className="flex items-center gap-1 text-primary-container hover:underline font-bold"
-          >
-            <span>Proceed to Prescription Hub</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
+          <span className="text-[11px] font-mono text-secondary flex items-center gap-1 font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-secondary inline-block"></span>
+            Real-time OPD Priority Sync Active
+          </span>
         </div>
 
       </div>

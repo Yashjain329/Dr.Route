@@ -84,6 +84,7 @@ export function App() {
                 <PrescriptionHubScreen
                   onNavigate={(screen) => setCurrentScreen(screen)}
                   onSelectPatient={handleSelectPatient}
+                  selectedPatient={selectedPatient}
                   prescriptions={prescriptions}
                 />
               )}
