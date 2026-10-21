@@ -1,520 +1,807 @@
 import React, { useState } from 'react';
 import { 
-  PlusCircle, 
-  Trash2, 
+  ArrowLeft, 
   AlertTriangle, 
   CheckCircle2, 
-  ShieldCheck, 
-  Activity, 
-  Pill, 
-  Heart, 
-  Clock, 
+  ChevronDown, 
+  ChevronUp, 
+  Plus, 
+  Trash2, 
   Sparkles, 
-  ArrowRight,
-  Info
+  FileText, 
+  Activity, 
+  Heart, 
+  Stethoscope, 
+  ShieldAlert, 
+  Pill, 
+  Utensils, 
+  Video, 
+  Calendar, 
+  Send,
+  Layers,
+  Thermometer,
+  Wind,
+  Droplet,
+  Search
 } from 'lucide-react';
-import { ScreenId, Patient, Medication, Prescription } from '../types';
-import { mockDoctor, mockPatients } from '../data/mockData';
+import { ScreenId, Patient, Prescription } from '../types';
 
 interface NewPrescriptionScreenProps {
   onNavigate: (screen: ScreenId) => void;
   selectedPatient: Patient;
   onSelectPatient: (patientId: string) => void;
-  onPrescriptionSubmitted?: (newRx: Prescription) => void;
+  onPrescriptionSubmitted: (prescription: Prescription) => void;
+}
+
+interface MedicineRow {
+  name: string;
+  dosage: string;
+  frequency: string;
+  timing: string;
+  duration: string;
+  notes: string;
 }
 
 export const NewPrescriptionScreen: React.FC<NewPrescriptionScreenProps> = ({
   onNavigate,
   selectedPatient,
   onSelectPatient,
-  onPrescriptionSubmitted
+  onPrescriptionSubmitted,
 }) => {
-  const [primaryDiagnosis, setPrimaryDiagnosis] = useState("Essential (Primary) Hypertension with Early Cardiomegaly");
-  const [icd10Code, setIcd10Code] = useState("I10.9");
-  const [secondaryDiagnosis, setSecondaryDiagnosis] = useState("Type 2 Diabetes Mellitus without complications (E11.9)");
-  
-  const [medications, setMedications] = useState<Medication[]>([
+  // Collapsible box state (all open by default or toggleable)
+  const [openBoxes, setOpenBoxes] = useState<Record<number, boolean>>({
+    1: true,
+    2: true,
+    3: true,
+    4: true,
+    5: true,
+    6: true,
+    7: true,
+    8: true,
+    9: true,
+    10: true,
+    11: true,
+    12: true,
+    13: true,
+  });
+
+  const toggleBox = (num: number) => {
+    setOpenBoxes(prev => ({ ...prev, [num]: !prev[num] }));
+  };
+
+  const expandAll = () => {
+    const all: Record<number, boolean> = {};
+    for (let i = 1; i <= 13; i++) all[i] = true;
+    setOpenBoxes(all);
+  };
+
+  const collapseAll = () => {
+    const all: Record<number, boolean> = {};
+    for (let i = 1; i <= 13; i++) all[i] = false;
+    setOpenBoxes(all);
+  };
+
+  // Prescription Form State
+  const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([
+    'Chest Discomfort',
+    'Productive Cough',
+    'Dizziness / Vertigo'
+  ]);
+  const [diagnosis, setDiagnosis] = useState('Stage 2 Essential Hypertension with CAD & Dyslipidemia (I10 / I25.1)');
+  const [medicines, setMedicines] = useState<MedicineRow[]>([
     {
-      id: "MED-101",
-      name: "Telmisartan (Telma 40)",
-      genericName: "Telmisartan 40 mg",
-      dosage: "40 mg",
-      frequency: "1-0-0",
-      timing: "Morning after breakfast",
-      duration: "90 Days",
-      route: "Oral",
-      instructions: "Take consistently at the same time each morning. Monitor standing BP.",
-      refillsAllowed: 2
+      name: 'Tab. Telmisartan 40mg',
+      dosage: '1 Tablet (40mg)',
+      frequency: '1 - 0 - 0',
+      timing: 'Morning after breakfast',
+      duration: '30 Days',
+      notes: 'Check BP weekly, monitor potassium',
     },
     {
-      id: "MED-102",
-      name: "Metformin ER (Glycomet SR 500)",
-      genericName: "Metformin Hydrochloride Extended-Release 500 mg",
-      dosage: "500 mg",
-      frequency: "1-0-1",
-      timing: "With principal meals (Lunch & Dinner)",
-      duration: "90 Days",
-      route: "Oral",
-      instructions: "Swallow whole, do not crush or chew. Take with meals.",
-      refillsAllowed: 2
-    }
+      name: 'Tab. Amlodipine 5mg',
+      dosage: '1 Tablet (5mg)',
+      frequency: '0 - 0 - 1',
+      timing: 'Bedtime',
+      duration: '30 Days',
+      notes: 'Watch for pedal edema',
+    },
+    {
+      name: 'Tab. Atorvastatin 20mg',
+      dosage: '1 Tablet (20mg)',
+      frequency: '0 - 0 - 1',
+      timing: 'After dinner at night',
+      duration: '30 Days',
+      notes: 'Lipid lowering profile repeat at 6 weeks',
+    },
   ]);
 
-  const [newDrugName, setNewDrugName] = useState("");
-  const [newDosage, setNewDosage] = useState("10 mg");
-  const [newFrequency, setNewFrequency] = useState("0-0-1");
-  const [newTiming, setNewTiming] = useState("At bedtime");
-  const [newDuration, setNewDuration] = useState("90 Days");
-  const [newRoute, setNewRoute] = useState("Oral");
-  const [newInstructions, setNewInstructions] = useState("Take after food with water.");
-  
-  const [notes, setNotes] = useState("Patient shows favorable BP control response. Salt restricted to <5g/day. Continue moderate exercise.");
-  const [selectedAdvice, setSelectedAdvice] = useState<string[]>([
-    "Strict DASH diet adherence (low sodium <5g/day)",
-    "Daily 40-minute brisk walk before breakfast",
-    "Log blood pressure twice weekly via PulseBand v2"
-  ]);
+  const [dietPlan, setDietPlan] = useState('DASH Cardioprotective Diet (Low Sodium < 2.4g/day, High Fiber)');
+  const [exercisePlan, setExercisePlan] = useState('Supervised 30-min brisk walk daily, 5 days/week on level ground');
+  const [followUpDays, setFollowUpDays] = useState('14 Days (05 May 2025)');
 
-  const [allergyAlert, setAllergyAlert] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Common diagnosis chips
-  const diagnosisSuggestions = [
-    { name: "Essential Hypertension", code: "I10.9" },
-    { name: "Type 2 Diabetes Mellitus", code: "E11.9" },
-    { name: "Moderate Bronchial Asthma", code: "J45.41" },
-    { name: "Coronary Artery Disease (CAD)", code: "I25.10" },
-    { name: "Dengue Fever with Thrombocytopenia", code: "A90" },
-    { name: "Dyslipidemia", code: "E78.5" }
+  const availableSymptoms = [
+    '+ Chest Discomfort',
+    '+ High Fever (Chills)',
+    '+ Productive Cough',
+    '+ Burning Micturition',
+    '+ Dizziness / Vertigo',
+    '+ Dyspnea on Exertion',
+    '+ Headache (Occipital)',
   ];
 
-  const handleAddMedication = () => {
-    if (!newDrugName.trim()) return;
-
-    // Check allergy safety
-    if (selectedPatient.allergies.some(a => a.toLowerCase().includes('penicillin')) && 
-        (newDrugName.toLowerCase().includes('amoxicillin') || newDrugName.toLowerCase().includes('augmentin') || newDrugName.toLowerCase().includes('penicillin'))) {
-      setAllergyAlert(`CRITICAL ALLERGY ALERT: Patient ${selectedPatient.name} has a documented Penicillin allergy! Prescribing ${newDrugName} may trigger anaphylaxis.`);
-      return;
-    }
-
-    setAllergyAlert(null);
-
-    const newMed: Medication = {
-      id: `MED-${Date.now()}`,
-      name: newDrugName,
-      genericName: newDrugName,
-      dosage: newDosage,
-      frequency: newFrequency,
-      timing: newTiming,
-      duration: newDuration,
-      route: newRoute,
-      instructions: newInstructions,
-      refillsAllowed: 1
-    };
-
-    setMedications([...medications, newMed]);
-    setNewDrugName("");
-  };
-
-  const handleRemoveMedication = (id: string) => {
-    setMedications(medications.filter(m => m.id !== id));
-  };
-
-  const toggleAdvice = (adv: string) => {
-    if (selectedAdvice.includes(adv)) {
-      setSelectedAdvice(selectedAdvice.filter(a => a !== adv));
+  const handleToggleSymptom = (sym: string) => {
+    const clean = sym.replace('+ ', '');
+    if (selectedSymptoms.includes(clean)) {
+      setSelectedSymptoms(selectedSymptoms.filter(s => s !== clean));
     } else {
-      setSelectedAdvice([...selectedAdvice, adv]);
+      setSelectedSymptoms([...selectedSymptoms, clean]);
     }
   };
 
-  // Primary Action: Submit & Open Chart (takes user straight to Screen 4)
-  const handleSubmitAndOpenChart = () => {
-    setIsSubmitting(true);
+  const handleAddMedicine = () => {
+    setMedicines([
+      ...medicines,
+      {
+        name: 'Tab. Pantoprazole 40mg',
+        dosage: '1 Tablet (40mg)',
+        frequency: '1 - 0 - 0',
+        timing: '30 mins before breakfast',
+        duration: '14 Days',
+        notes: 'Gastric mucosal protection',
+      },
+    ]);
+  };
 
-    const generatedRx: Prescription = {
-      id: `RX-2026-${Math.floor(10000 + Math.random() * 90000)}`,
+  const handleRemoveMedicine = (index: number) => {
+    setMedicines(medicines.filter((_, i) => i !== index));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newRx: Prescription = {
+      id: `RX-${Date.now().toString().slice(-5)}`,
       patientId: selectedPatient.id,
       patientName: selectedPatient.name,
-      abhaId: selectedPatient.abhaId,
-      age: selectedPatient.age,
-      gender: selectedPatient.gender,
-      doctorName: mockDoctor.name,
-      doctorId: mockDoctor.regNumber,
-      date: "21 Oct 2026",
-      primaryDiagnosis,
-      icd10Code,
-      secondaryDiagnosis,
-      medications,
-      notes,
-      lifestyleAdvice: selectedAdvice,
-      status: "Active",
-      interactionRisk: "None",
-      adherenceRate: 95,
-      digitalSignatureHash: `0x${Array.from({length: 32}, () => Math.floor(Math.random()*16).toString(16)).join('').toUpperCase()}`
+      patientUhid: selectedPatient.uhid || selectedPatient.abhaId,
+      doctorName: 'Dr. Deshraj Burdak, MD',
+      department: 'Cardiology & General Medicine',
+      date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+      diagnosis,
+      vitals: {
+        bp: '132/84 mmHg',
+        pulse: '76 bpm',
+        spo2: '99%',
+        temp: '98.4°F',
+        respRate: '16 /min',
+        weight: '80.5 kg',
+      },
+      allergies: ['Penicillin G (Severe)', 'Beta-Lactams'],
+      medicines: medicines.map((m, idx) => ({
+        id: `m-${idx}`,
+        name: m.name,
+        dosage: m.dosage,
+        frequency: m.frequency,
+        duration: m.duration,
+        timing: m.timing,
+      })),
+      dietaryAdvice: dietPlan,
+      exerciseAdvice: exercisePlan,
+      followUpDate: followUpDays,
+      status: 'Active',
+      isSigned: true,
     };
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      if (onPrescriptionSubmitted) {
-        onPrescriptionSubmitted(generatedRx);
-      }
-      onNavigate('submit-open-chart');
-    }, 700);
+    onPrescriptionSubmitted(newRx);
+    alert('New Prescription Registered! Launching Submit & Open Chart View.');
+    onNavigate('submit-open-chart');
   };
 
   return (
-    <div className="space-y-6">
+    <div className="max-w-6xl mx-auto space-y-6 animate-fade-in py-2 pb-16">
       
-      {/* Top Banner */}
-      <div className="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="bg-primary text-white text-xs font-bold px-2 py-0.5 rounded-md">6th</span>
-            <span className="text-xs font-bold text-secondary uppercase tracking-wider">
-              Inside New Prescription • e-Rx Authoring Suite
-            </span>
-          </div>
-          <h1 className="text-2xl font-black text-slate-900 font-display mt-1">
-            Author New e-Prescription
-          </h1>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Real-time allergy checking, ICD-10 codification & 1-click transition to Clinical Chart
-          </p>
-        </div>
-
-        <button
-          onClick={handleSubmitAndOpenChart}
-          disabled={isSubmitting || medications.length === 0}
-          className="bg-secondary hover:bg-secondary-light active:scale-95 text-white text-sm font-bold px-5 py-3 rounded-2xl shadow-md hover:shadow-lg flex items-center gap-2 transition-all disabled:opacity-50"
-        >
-          {isSubmitting ? (
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              <span>Cryptographically Signing...</span>
-            </div>
-          ) : (
-            <>
-              <Activity className="w-4 h-4" />
-              <span>Submit & Open Chart (4th)</span>
-              <ArrowRight className="w-4 h-4" />
-            </>
-          )}
-        </button>
-      </div>
-
-      {/* Patient Selector & Critical Allergy Strip */}
-      <div className="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-primary text-white flex items-center justify-center font-bold text-xs">
-              {selectedPatient.bloodGroup}
-            </div>
-            <div>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Prescribing For:</span>
-              <div className="flex items-center gap-2">
-                <select
-                  value={selectedPatient.id}
-                  onChange={(e) => onSelectPatient(e.target.value)}
-                  className="text-base font-bold text-slate-900 bg-transparent border-b border-dashed border-slate-300 focus:outline-none cursor-pointer"
-                >
-                  {mockPatients.map(p => (
-                    <option key={p.id} value={p.id}>
-                      {p.name} ({p.gender}, {p.age}y)
-                    </option>
-                  ))}
-                </select>
-                <span className="text-xs text-slate-500 font-mono">ABHA: {selectedPatient.abhaId}</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-xs text-slate-600">
-            Vitals: <strong className="text-slate-800">{selectedPatient.currentVitals.bloodPressure} mmHg</strong> • 
-            HR: <strong className="text-slate-800">{selectedPatient.currentVitals.heartRate} bpm</strong> • 
-            SpO2: <strong className="text-secondary-teal">{selectedPatient.currentVitals.spo2}%</strong>
-          </div>
-        </div>
-
-        {/* Allergy Alert Banner */}
-        <div className="p-3 rounded-2xl bg-rose-50 border border-rose-200 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-xs">
-            <AlertTriangle className="w-4 h-4 text-emergency flex-shrink-0" />
-            <span className="font-bold text-rose-900">Documented Allergies:</span>
-            <div className="flex flex-wrap gap-1">
-              {selectedPatient.allergies.map((allergy, idx) => (
-                <span key={idx} className="bg-white text-emergency text-[11px] font-bold px-2 py-0.5 rounded border border-rose-200">
-                  ⚠️ {allergy}
-                </span>
-              ))}
-            </div>
-          </div>
-          <span className="text-[10px] text-rose-600 font-semibold hidden sm:inline">
-            Automatic collision check active
-          </span>
-        </div>
-
-        {allergyAlert && (
-          <div className="p-3 rounded-2xl bg-emergency text-white text-xs font-bold flex items-center gap-2 animate-pulse">
-            <AlertTriangle className="w-5 h-5 flex-shrink-0" />
-            <span>{allergyAlert}</span>
-          </div>
-        )}
-      </div>
-
-      {/* Clinical Diagnosis with ICD-10 Suggestion Chips */}
-      <div className="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
-        <h3 className="text-base font-bold text-slate-900 font-display flex items-center gap-2">
-          <Heart className="w-4 h-4 text-secondary" />
-          <span>Clinical Diagnosis & ICD-10 Codification</span>
-        </h3>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <div className="md:col-span-2">
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              Primary Diagnosis
-            </label>
-            <input
-              type="text"
-              value={primaryDiagnosis}
-              onChange={(e) => setPrimaryDiagnosis(e.target.value)}
-              className="w-full p-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-secondary focus:bg-white text-slate-800 font-medium"
-            />
-          </div>
+      {/* Top Header & Breadcrumb Bar */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-surface-container-lowest p-4 rounded-2xl border border-outline-variant/60 shadow-clinical">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => onNavigate('prescription')}
+            className="p-2 rounded-xl text-outline hover:text-on-surface hover:bg-surface-container-low transition-colors"
+            title="Back to Prescription Selection"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </button>
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-              ICD-10 Code
-            </label>
-            <input
-              type="text"
-              value={icd10Code}
-              onChange={(e) => setIcd10Code(e.target.value)}
-              className="w-full p-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-secondary focus:bg-white text-slate-800 font-mono font-bold"
-            />
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-mono font-bold bg-primary text-primary-fixed px-2 py-0.5 rounded">
+                6th Screen
+              </span>
+              <span className="text-xs font-mono font-bold text-secondary uppercase tracking-wider">
+                Clinical Workspace
+              </span>
+            </div>
+            <h1 className="text-xl font-extrabold text-primary font-headline">
+              New Prescription Protocol Workspace (Structured Modules)
+            </h1>
           </div>
         </div>
 
-        {/* Quick Suggestion Chips */}
-        <div>
-          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
-            Quick ICD-10 Presets:
-          </span>
-          <div className="flex flex-wrap gap-1.5">
-            {diagnosisSuggestions.map((d, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => {
-                  setPrimaryDiagnosis(d.name);
-                  setIcd10Code(d.code);
-                }}
-                className="text-[11px] font-semibold bg-slate-100 hover:bg-teal-50 hover:text-secondary-teal text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200 transition-colors"
-              >
-                {d.name} <span className="font-mono text-[10px] text-slate-400">({d.code})</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Medication Formulary Adder */}
-      <div className="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
-        <h3 className="text-base font-bold text-slate-900 font-display flex items-center gap-2">
-          <Pill className="w-4 h-4 text-secondary" />
-          <span>Prescribed Medications ({medications.length})</span>
-        </h3>
-
-        {/* Current Meds List */}
-        <div className="space-y-3">
-          {medications.map((med) => (
-            <div key={med.id} className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-sm font-bold text-slate-900">{med.name}</span>
-                  <span className="text-xs font-bold text-secondary-teal bg-teal-50 px-2 py-0.5 rounded border border-teal-200">
-                    {med.dosage}
-                  </span>
-                  <span className="text-xs font-semibold text-slate-600 bg-white px-2 py-0.5 rounded border border-slate-200">
-                    {med.frequency} • {med.timing}
-                  </span>
-                </div>
-                <div className="text-xs text-slate-500">
-                  Duration: <strong className="text-slate-700">{med.duration}</strong> • Route: {med.route} • Instructions: {med.instructions}
-                </div>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => handleRemoveMedication(med.id)}
-                className="p-2 text-slate-400 hover:text-emergency hover:bg-rose-50 rounded-xl transition-colors self-end sm:self-center"
-                title="Remove Medication"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
-            </div>
-          ))}
-        </div>
-
-        {/* Add Drug Sub-form */}
-        <div className="p-4 rounded-2xl bg-teal-50/40 border border-teal-200/60 space-y-3">
-          <span className="text-xs font-bold text-secondary-teal uppercase tracking-wider block">
-            + Add Molecule to Regimen
-          </span>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div>
-              <label className="block text-[11px] font-bold text-slate-600 mb-1">Drug Name / Brand</label>
-              <input
-                type="text"
-                placeholder="e.g. Atorvastatin (Atorva)"
-                value={newDrugName}
-                onChange={(e) => setNewDrugName(e.target.value)}
-                className="w-full p-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-secondary"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] font-bold text-slate-600 mb-1">Dosage</label>
-              <input
-                type="text"
-                placeholder="e.g. 10 mg"
-                value={newDosage}
-                onChange={(e) => setNewDosage(e.target.value)}
-                className="w-full p-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-secondary"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] font-bold text-slate-600 mb-1">Frequency</label>
-              <select
-                value={newFrequency}
-                onChange={(e) => setNewFrequency(e.target.value)}
-                className="w-full p-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-secondary"
-              >
-                <option value="1-0-0">1-0-0 (Morning only)</option>
-                <option value="1-0-1">1-0-1 (Morning & Night)</option>
-                <option value="0-0-1">0-0-1 (Bedtime)</option>
-                <option value="1-1-1">1-1-1 (Thrice daily)</option>
-                <option value="SOS">SOS (As needed)</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div>
-              <label className="block text-[11px] font-bold text-slate-600 mb-1">Timing</label>
-              <select
-                value={newTiming}
-                onChange={(e) => setNewTiming(e.target.value)}
-                className="w-full p-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-secondary"
-              >
-                <option value="After Meals">After Meals</option>
-                <option value="Before Breakfast">Before Breakfast</option>
-                <option value="With Meals">With Meals</option>
-                <option value="At bedtime">At Bedtime</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-[11px] font-bold text-slate-600 mb-1">Duration</label>
-              <select
-                value={newDuration}
-                onChange={(e) => setNewDuration(e.target.value)}
-                className="w-full p-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-secondary"
-              >
-                <option value="15 Days">15 Days</option>
-                <option value="30 Days">30 Days</option>
-                <option value="60 Days">60 Days</option>
-                <option value="90 Days">90 Days</option>
-                <option value="180 Days">180 Days (Long-term)</option>
-              </select>
-            </div>
-            <div className="flex items-end">
-              <button
-                type="button"
-                onClick={handleAddMedication}
-                className="w-full bg-primary hover:bg-primary-light text-white text-xs font-bold py-2 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all"
-              >
-                <PlusCircle className="w-3.5 h-3.5" />
-                <span>Add Medication</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Dietary & Lifestyle Prescriptions */}
-      <div className="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
-        <h3 className="text-base font-bold text-slate-900 font-display flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-secondary" />
-          <span>Lifestyle & Dietary Protocol</span>
-        </h3>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-          {[
-            "Strict DASH diet adherence (low sodium <5g/day)",
-            "Daily 40-minute brisk walk before breakfast",
-            "Log blood pressure twice weekly via PulseBand v2",
-            "Avoid grapefruit juice with statin medication",
-            "Adequate hydration (2.5 - 3.0 Litres/day)",
-            "Limit screen time 1 hour before sleep for circadian BP dip"
-          ].map((adv, idx) => {
-            const isChecked = selectedAdvice.includes(adv);
-
-            return (
-              <label 
-                key={idx}
-                className={`p-3 rounded-2xl border flex items-center gap-2.5 cursor-pointer transition-all ${
-                  isChecked ? 'bg-teal-50/70 border-secondary/50 text-slate-900 font-bold' : 'bg-slate-50 border-slate-200 text-slate-600'
-                }`}
-              >
-                <input
-                  type="checkbox"
-                  checked={isChecked}
-                  onChange={() => toggleAdvice(adv)}
-                  className="rounded text-secondary focus:ring-secondary"
-                />
-                <span className="text-xs">{adv}</span>
-              </label>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Clinical Notes & Big Submit Action */}
-      <div className="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
-        <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
-          Doctor Clinical Observations & Audit Notes
-        </label>
-        <textarea
-          rows={3}
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-          className="w-full p-3 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-secondary focus:bg-white text-slate-800 font-medium"
-        />
-
-        <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-slate-100">
-          <div className="flex items-center gap-2 text-xs text-slate-500">
-            <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>Digital Signature will be attached: {mockDoctor.name} ({mockDoctor.regNumber})</span>
-          </div>
-
+        {/* Global Expand / Collapse Controls */}
+        <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={handleSubmitAndOpenChart}
-            disabled={isSubmitting || medications.length === 0}
-            className="bg-secondary hover:bg-secondary-light active:scale-95 text-white text-sm font-bold px-6 py-3 rounded-2xl shadow-md hover:shadow-lg flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+            onClick={expandAll}
+            className="px-3 py-1.5 rounded-lg border border-outline-variant bg-surface-container-low hover:bg-surface-container text-xs font-mono font-semibold text-primary transition-colors"
           >
-            {isSubmitting ? (
-              <span>Signing and Dispatching...</span>
-            ) : (
-              <>
-                <Activity className="w-4 h-4" />
-                <span>Submit & Open Chart (4th)</span>
-                <ArrowRight className="w-4 h-4" />
-              </>
-            )}
+            Expand All Boxes
+          </button>
+          <button
+            type="button"
+            onClick={collapseAll}
+            className="px-3 py-1.5 rounded-lg border border-outline-variant bg-surface-container-low hover:bg-surface-container text-xs font-mono font-semibold text-outline hover:text-on-surface transition-colors"
+          >
+            Collapse All
           </button>
         </div>
       </div>
+
+      {/* Patient Demographic Banner (Rohit Mehta, PID-2025-88412) */}
+      <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/70 shadow-clinical p-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-primary-container text-on-primary font-mono font-bold flex items-center justify-center text-xl shadow-xs">
+              B+
+            </div>
+            <div>
+              <div className="flex items-center gap-3">
+                <h2 className="text-2xl font-extrabold text-on-surface font-headline tracking-tight">
+                  Rohit Mehta
+                </h2>
+                <span className="bg-primary text-primary-fixed text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full uppercase">
+                  PID-2025-88412
+                </span>
+                <span className="bg-surface-container text-outline text-[10px] font-mono font-bold px-2 py-0.5 rounded">
+                  OPD Morning Session
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-on-surface-variant pt-1">
+                <span>Age/Sex: <strong>34 Yrs / Male</strong></span>
+                <span>•</span>
+                <span>Status: <strong>Married</strong></span>
+                <span>•</span>
+                <span>Blood: <strong className="text-error">B+ Positive</strong></span>
+                <span>•</span>
+                <span>Visit: <strong>21 Apr 2025, 10:15 AM</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex md:flex-col items-start md:items-end gap-1 text-xs font-mono">
+            <span className="text-on-surface-variant">Attending: <strong>Dr. Ritesh Khandelwal, MD</strong></span>
+            <span className="text-outline">Height: 175 cm • Weight: 80.5 kg • BMI: <strong className="text-secondary">26.2 kg/m²</strong></span>
+            <span className="text-[10px] text-tertiary font-bold bg-tertiary-fixed/30 px-2 py-0.2 rounded">Verified Identity</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Main 13 Structured Boxes Form */}
+      <form onSubmit={handleSubmit} className="space-y-4">
+        
+        {/* BOX 1: Critical Clinical Alerts & Patient Flags */}
+        <div className="bg-surface-container-lowest rounded-2xl border-2 border-error/50 shadow-clinical overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleBox(1)}
+            className="w-full p-4 bg-error-container/20 flex items-center justify-between text-left border-b border-error/20"
+          >
+            <div className="flex items-center gap-2.5 text-error font-headline font-bold text-sm">
+              <ShieldAlert className="w-5 h-5 flex-shrink-0" />
+              <span>Box 1: Critical Clinical Alerts &amp; Patient Flags</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-mono font-bold bg-error text-on-error px-2 py-0.5 rounded-full uppercase">
+                High Risk
+              </span>
+              {openBoxes[1] ? <ChevronUp className="w-4 h-4 text-error" /> : <ChevronDown className="w-4 h-4 text-error" />}
+            </div>
+          </button>
+          
+          {openBoxes[1] && (
+            <div className="p-4 space-y-2 text-xs font-mono bg-error-container/10">
+              <div className="p-3 rounded-xl bg-surface-container-lowest border border-error/30 flex items-center justify-between">
+                <div className="space-y-0.5">
+                  <div className="font-bold text-error flex items-center gap-1.5">
+                    <AlertTriangle className="w-4 h-4" />
+                    <span>HIGH ALERT: AVOID BETA-LACTAM ANTIBIOTICS</span>
+                  </div>
+                  <div className="text-[11px] text-on-surface-variant font-sans">
+                    Documented severe anaphylactoid hypersensitivity to Penicillin G, Ampicillin &amp; Cephalosporins.
+                  </div>
+                </div>
+                <span className="text-[10px] font-bold text-tertiary bg-tertiary-fixed/40 px-2 py-1 rounded">
+                  Validated by Pharmacy Safety Bot • 10:16 AM
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* BOX 2: Family Medical History */}
+        <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleBox(2)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container-low transition-colors"
+          >
+            <div className="flex items-center gap-2.5 text-primary font-headline font-bold text-sm">
+              <Heart className="w-4 h-4 flex-shrink-0 text-secondary" />
+              <span>Box 2: Family Medical History</span>
+            </div>
+            {openBoxes[2] ? <ChevronUp className="w-4 h-4 text-outline" /> : <ChevronDown className="w-4 h-4 text-outline" />}
+          </button>
+          {openBoxes[2] && (
+            <div className="p-4 pt-0 border-t border-outline-variant/40 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono">
+              <div className="p-3 rounded-xl bg-surface-container-low border border-outline-variant/40">
+                <span className="text-outline font-bold">Father:</span>
+                <div className="font-bold text-on-surface mt-1">Essential HTN &amp; CAD (Post-CABG 2018)</div>
+              </div>
+              <div className="p-3 rounded-xl bg-surface-container-low border border-outline-variant/40">
+                <span className="text-outline font-bold">Mother:</span>
+                <div className="font-bold text-on-surface mt-1">Type-2 Diabetes Mellitus (On Oral Hypoglycemics)</div>
+              </div>
+              <div className="p-3 rounded-xl bg-surface-container-low border border-outline-variant/40">
+                <span className="text-outline font-bold">Siblings:</span>
+                <div className="font-bold text-on-surface mt-1">No premature cardiovascular diseases reported</div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* BOX 3: Social & Habitual History */}
+        <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleBox(3)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container-low transition-colors"
+          >
+            <div className="flex items-center gap-2.5 text-primary font-headline font-bold text-sm">
+              <Activity className="w-4 h-4 flex-shrink-0 text-primary" />
+              <span>Box 3: Social &amp; Habitual History</span>
+            </div>
+            {openBoxes[3] ? <ChevronUp className="w-4 h-4 text-outline" /> : <ChevronDown className="w-4 h-4 text-outline" />}
+          </button>
+          {openBoxes[3] && (
+            <div className="p-4 pt-0 border-t border-outline-variant/40 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono">
+              <div className="p-3 rounded-xl bg-surface-container-low border border-outline-variant/40">
+                <span className="text-outline font-bold">Tobacco / Smoking:</span>
+                <div className="font-bold text-on-surface mt-1">Non-smoker (Occasional secondhand exposure)</div>
+              </div>
+              <div className="p-3 rounded-xl bg-surface-container-low border border-outline-variant/40">
+                <span className="text-outline font-bold">Alcohol Intake:</span>
+                <div className="font-bold text-on-surface mt-1">Social drinker (1-2 drinks/month)</div>
+              </div>
+              <div className="p-3 rounded-xl bg-surface-container-low border border-outline-variant/40">
+                <span className="text-outline font-bold">Physical Activity:</span>
+                <div className="font-bold text-error mt-1">Sedentary (Desk job 9-10 hrs daily)</div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* BOX 4: General Physical Examination (Systemic Signs) */}
+        <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleBox(4)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container-low transition-colors"
+          >
+            <div className="flex items-center gap-2.5 text-primary font-headline font-bold text-sm">
+              <Stethoscope className="w-4 h-4 flex-shrink-0 text-secondary" />
+              <span>Box 4: General Physical Examination (Systemic Signs)</span>
+            </div>
+            {openBoxes[4] ? <ChevronUp className="w-4 h-4 text-outline" /> : <ChevronDown className="w-4 h-4 text-outline" />}
+          </button>
+          {openBoxes[4] && (
+            <div className="p-4 pt-0 border-t border-outline-variant/40 flex flex-wrap gap-2 text-xs font-mono">
+              {[
+                { label: 'Pallor', val: 'Absent (No clinical anemia)', ok: true },
+                { label: 'Icterus', val: 'Absent (Sclera normal)', ok: true },
+                { label: 'Cyanosis', val: 'Absent', ok: true },
+                { label: 'Clubbing', val: 'Absent', ok: true },
+                { label: 'Lymphadenopathy', val: 'No cervical or axillary enlargement', ok: true },
+                { label: 'Pedal Edema', val: 'Mild bilateral pitting (+1)', ok: false },
+              ].map((s, idx) => (
+                <div key={idx} className={`p-2.5 rounded-xl border flex items-center gap-2 ${
+                  s.ok ? 'bg-surface-container-low border-outline-variant/40' : 'bg-secondary-container/40 border-secondary'
+                }`}>
+                  <span className="font-bold text-on-surface">{s.label}:</span>
+                  <span className={s.ok ? 'text-on-surface-variant' : 'text-secondary font-bold'}>{s.val}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* BOX 5: Clinical Vitals Strip (Real-time telemetry) */}
+        <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleBox(5)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container-low transition-colors"
+          >
+            <div className="flex items-center gap-2.5 text-primary font-headline font-bold text-sm">
+              <Activity className="w-4 h-4 flex-shrink-0 text-error" />
+              <span>Box 5: Clinical Vitals Strip (Real-time telemetry)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-mono font-bold bg-secondary text-on-secondary px-2 py-0.5 rounded">
+                Live Telemetry
+              </span>
+              {openBoxes[5] ? <ChevronUp className="w-4 h-4 text-outline" /> : <ChevronDown className="w-4 h-4 text-outline" />}
+            </div>
+          </button>
+          {openBoxes[5] && (
+            <div className="p-4 pt-0 border-t border-outline-variant/40 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-xs font-mono text-center">
+              <div className="p-3 rounded-xl bg-surface-container-low border border-primary/20">
+                <div className="text-[10px] text-outline uppercase">BP (Today)</div>
+                <div className="text-base font-bold text-primary mt-1">132/84</div>
+                <div className="text-[9px] text-secondary">Controlled</div>
+              </div>
+              <div className="p-3 rounded-xl bg-surface-container-low border border-outline-variant/40">
+                <div className="text-[10px] text-outline uppercase">Pulse / HR</div>
+                <div className="text-base font-bold text-on-surface mt-1">76 bpm</div>
+                <div className="text-[9px] text-outline">Normal Sinus</div>
+              </div>
+              <div className="p-3 rounded-xl bg-surface-container-low border border-outline-variant/40">
+                <div className="text-[10px] text-outline uppercase">SpO2</div>
+                <div className="text-base font-bold text-on-surface mt-1">99%</div>
+                <div className="text-[9px] text-outline">Room Air</div>
+              </div>
+              <div className="p-3 rounded-xl bg-surface-container-low border border-outline-variant/40">
+                <div className="text-[10px] text-outline uppercase">Resp Rate</div>
+                <div className="text-base font-bold text-on-surface mt-1">16 /min</div>
+                <div className="text-[9px] text-outline">Regular</div>
+              </div>
+              <div className="p-3 rounded-xl bg-surface-container-low border border-outline-variant/40">
+                <div className="text-[10px] text-outline uppercase">Temp</div>
+                <div className="text-base font-bold text-on-surface mt-1">98.4°F</div>
+                <div className="text-[9px] text-outline">Afebrile</div>
+              </div>
+              <div className="p-3 rounded-xl bg-surface-container-low border border-outline-variant/40">
+                <div className="text-[10px] text-outline uppercase">RBS</div>
+                <div className="text-base font-bold text-on-surface mt-1">118 mg/dL</div>
+                <div className="text-[9px] text-secondary">Euglycemic</div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* BOX 6: Chief Presenting Complaints */}
+        <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleBox(6)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container-low transition-colors"
+          >
+            <div className="flex items-center gap-2.5 text-primary font-headline font-bold text-sm">
+              <FileText className="w-4 h-4 flex-shrink-0 text-primary" />
+              <span>Box 6: Chief Presenting Complaints</span>
+            </div>
+            {openBoxes[6] ? <ChevronUp className="w-4 h-4 text-outline" /> : <ChevronDown className="w-4 h-4 text-outline" />}
+          </button>
+          {openBoxes[6] && (
+            <div className="p-4 pt-0 border-t border-outline-variant/40 space-y-3">
+              <div className="flex flex-wrap gap-2">
+                {availableSymptoms.map((sym, idx) => {
+                  const clean = sym.replace('+ ', '');
+                  const isSelected = selectedSymptoms.includes(clean);
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => handleToggleSymptom(sym)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-mono font-semibold transition-all ${
+                        isSelected
+                          ? 'bg-primary-container text-on-primary shadow-xs'
+                          : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container'
+                      }`}
+                    >
+                      {isSelected ? `✓ ${clean}` : sym}
+                    </button>
+                  );
+                })}
+              </div>
+              <textarea
+                rows={2}
+                placeholder="Detailed clinical notes on symptom onset, duration, triggers..."
+                defaultValue="Patient presents with intermittent exertional tightness in chest since 5 days, aggravated after heavy meals. Dry morning cough with occasional white phlegm."
+                className="w-full p-3 rounded-xl border border-outline-variant bg-surface-container-low text-xs font-body text-on-surface focus:outline-none focus:border-primary"
+              />
+            </div>
+          )}
+        </div>
+
+        {/* BOX 7: Laboratory Investigation Requisitions */}
+        <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleBox(7)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container-low transition-colors"
+          >
+            <div className="flex items-center gap-2.5 text-primary font-headline font-bold text-sm">
+              <Droplet className="w-4 h-4 flex-shrink-0 text-secondary" />
+              <span>Box 7: Laboratory Investigation Requisitions</span>
+            </div>
+            {openBoxes[7] ? <ChevronUp className="w-4 h-4 text-outline" /> : <ChevronDown className="w-4 h-4 text-outline" />}
+          </button>
+          {openBoxes[7] && (
+            <div className="p-4 pt-0 border-t border-outline-variant/40 grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs font-mono">
+              {['Complete Blood Count (CBC)', 'Lipid Profile Fasting', 'HbA1c & Fasting Glucose', 'Liver Function Test (LFT)', 'Serum Creatinine & Electrolytes', 'Urine Routine & Microalbumin', 'Thyroid Stimulating Hormone (TSH)', 'Serum Uric Acid'].map((lab, idx) => (
+                <label key={idx} className="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low border border-outline-variant/40 cursor-pointer hover:bg-surface-container">
+                  <input type="checkbox" defaultChecked={idx < 4} className="rounded text-primary focus:ring-primary" />
+                  <span className="truncate">{lab}</span>
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* BOX 8: Radiology & Imaging Orders */}
+        <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleBox(8)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container-low transition-colors"
+          >
+            <div className="flex items-center gap-2.5 text-primary font-headline font-bold text-sm">
+              <Layers className="w-4 h-4 flex-shrink-0 text-primary" />
+              <span>Box 8: Radiology &amp; Imaging Orders</span>
+            </div>
+            {openBoxes[8] ? <ChevronUp className="w-4 h-4 text-outline" /> : <ChevronDown className="w-4 h-4 text-outline" />}
+          </button>
+          {openBoxes[8] && (
+            <div className="p-4 pt-0 border-t border-outline-variant/40 grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs font-mono">
+              {['ECG 12-Lead Rest', 'Chest X-Ray (PA View)', '2D Transthoracic Echo', 'Treadmill Stress Test (TMT)', 'Ultrasound Whole Abdomen', 'Carotid Doppler'].map((rad, idx) => (
+                <label key={idx} className="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low border border-outline-variant/40 cursor-pointer hover:bg-surface-container">
+                  <input type="checkbox" defaultChecked={idx < 3} className="rounded text-primary focus:ring-primary" />
+                  <span className="truncate">{rad}</span>
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* BOX 9: Final Diagnosis / Clinical Diagnosis */}
+        <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleBox(9)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container-low transition-colors"
+          >
+            <div className="flex items-center gap-2.5 text-primary font-headline font-bold text-sm">
+              <Stethoscope className="w-4 h-4 flex-shrink-0 text-primary" />
+              <span>Box 9: Final Diagnosis / Clinical Diagnosis</span>
+            </div>
+            {openBoxes[9] ? <ChevronUp className="w-4 h-4 text-outline" /> : <ChevronDown className="w-4 h-4 text-outline" />}
+          </button>
+          {openBoxes[9] && (
+            <div className="p-4 pt-0 border-t border-outline-variant/40 space-y-2">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={diagnosis}
+                  onChange={(e) => setDiagnosis(e.target.value)}
+                  className="flex-1 p-2.5 rounded-xl border border-outline-variant bg-surface-container-low text-xs font-mono font-bold text-primary focus:outline-none focus:border-primary"
+                />
+                <button
+                  type="button"
+                  className="px-4 py-2 rounded-xl bg-surface-container font-mono text-xs font-bold text-primary hover:bg-surface-container-high"
+                >
+                  ICD-10 Search
+                </button>
+              </div>
+              <div className="flex items-center gap-2 text-[11px] font-mono text-outline">
+                <span>ICD-10 Matches:</span>
+                <span className="bg-surface-container-low px-2 py-0.5 rounded border border-outline-variant">I10 (Essential HTN)</span>
+                <span className="bg-surface-container-low px-2 py-0.5 rounded border border-outline-variant">I25.1 (Atherosclerotic Heart Disease)</span>
+                <span className="bg-surface-container-low px-2 py-0.5 rounded border border-outline-variant">E78.5 (Dyslipidemia)</span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* BOX 10: Digital Prescription & Pharmacotherapy Plan */}
+        <div className="bg-surface-container-lowest rounded-2xl border-2 border-primary/50 shadow-clinical overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleBox(10)}
+            className="w-full p-4 bg-primary/5 flex items-center justify-between text-left border-b border-primary/20"
+          >
+            <div className="flex items-center gap-2.5 text-primary font-headline font-bold text-sm">
+              <Pill className="w-5 h-5 flex-shrink-0" />
+              <span>Box 10: Digital Prescription &amp; Pharmacotherapy Plan</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); handleAddMedicine(); }}
+                className="px-3 py-1 rounded-lg bg-primary text-on-primary text-xs font-mono font-bold hover:bg-primary-container"
+              >
+                + Add Medication
+              </button>
+              {openBoxes[10] ? <ChevronUp className="w-4 h-4 text-primary" /> : <ChevronDown className="w-4 h-4 text-primary" />}
+            </div>
+          </button>
+          {openBoxes[10] && (
+            <div className="p-4 space-y-3">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs font-mono">
+                  <thead>
+                    <tr className="border-b border-outline-variant/60 text-outline uppercase text-[10px]">
+                      <th className="py-2 px-2">Drug Name &amp; Strength</th>
+                      <th className="py-2 px-2">Frequency</th>
+                      <th className="py-2 px-2">Timing</th>
+                      <th className="py-2 px-2">Duration</th>
+                      <th className="py-2 px-2 text-right">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-outline-variant/30">
+                    {medicines.map((med, idx) => (
+                      <tr key={idx} className="hover:bg-surface-container-low/40">
+                        <td className="py-2.5 px-2 font-bold text-primary">{med.name}</td>
+                        <td className="py-2.5 px-2"><span className="bg-surface-container px-2 py-0.5 rounded font-bold">{med.frequency}</span></td>
+                        <td className="py-2.5 px-2 text-on-surface-variant">{med.timing}</td>
+                        <td className="py-2.5 px-2 font-bold">{med.duration}</td>
+                        <td className="py-2.5 px-2 text-right">
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveMedicine(idx)}
+                            className="p-1 rounded text-outline hover:text-error transition-colors"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* BOX 11: Clinical Diet Protocol Selection (Diet Chart) */}
+        <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleBox(11)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container-low transition-colors"
+          >
+            <div className="flex items-center gap-2.5 text-primary font-headline font-bold text-sm">
+              <Utensils className="w-4 h-4 flex-shrink-0 text-secondary" />
+              <span>Box 11: Clinical Diet Protocol Selection (Diet Chart)</span>
+            </div>
+            {openBoxes[11] ? <ChevronUp className="w-4 h-4 text-outline" /> : <ChevronDown className="w-4 h-4 text-outline" />}
+          </button>
+          {openBoxes[11] && (
+            <div className="p-4 pt-0 border-t border-outline-variant/40 space-y-2">
+              <input
+                type="text"
+                value={dietPlan}
+                onChange={(e) => setDietPlan(e.target.value)}
+                className="w-full p-2.5 rounded-xl border border-outline-variant bg-surface-container-low text-xs font-mono text-on-surface focus:outline-none"
+              />
+              <div className="flex flex-wrap gap-2 text-xs font-mono">
+                {['DASH Diet', 'Low Sodium (<2g)', 'Diabetic High Fiber', 'Renal Low Potassium', 'Weight Loss (1600 kcal)'].map((d, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setDietPlan(d)}
+                    className="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high"
+                  >
+                    {d}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* BOX 12: Exercise & Physical Activity Selection */}
+        <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleBox(12)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container-low transition-colors"
+          >
+            <div className="flex items-center gap-2.5 text-primary font-headline font-bold text-sm">
+              <Activity className="w-4 h-4 flex-shrink-0 text-primary" />
+              <span>Box 12: Exercise &amp; Physical Activity Selection</span>
+            </div>
+            {openBoxes[12] ? <ChevronUp className="w-4 h-4 text-outline" /> : <ChevronDown className="w-4 h-4 text-outline" />}
+          </button>
+          {openBoxes[12] && (
+            <div className="p-4 pt-0 border-t border-outline-variant/40 space-y-2">
+              <input
+                type="text"
+                value={exercisePlan}
+                onChange={(e) => setExercisePlan(e.target.value)}
+                className="w-full p-2.5 rounded-xl border border-outline-variant bg-surface-container-low text-xs font-mono text-on-surface focus:outline-none"
+              />
+              <div className="flex flex-wrap gap-2 text-xs font-mono">
+                {['Brisk Walking 30 mins', 'Light Aerobics', 'Breathing Pranayama', 'Cardiac Rehab Phase-2'].map((ex, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setExercisePlan(ex)}
+                    className="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high"
+                  >
+                    {ex}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* BOX 13: Follow-Up & Emergency Escalation Protocol */}
+        <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleBox(13)}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-surface-container-low transition-colors"
+          >
+            <div className="flex items-center gap-2.5 text-primary font-headline font-bold text-sm">
+              <Calendar className="w-4 h-4 flex-shrink-0 text-secondary" />
+              <span>Box 13: Follow-Up &amp; Emergency Escalation Protocol</span>
+            </div>
+            {openBoxes[13] ? <ChevronUp className="w-4 h-4 text-outline" /> : <ChevronDown className="w-4 h-4 text-outline" />}
+          </button>
+          {openBoxes[13] && (
+            <div className="p-4 pt-0 border-t border-outline-variant/40 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
+              <div className="space-y-1">
+                <span className="text-outline font-bold">Follow-Up Schedule:</span>
+                <input
+                  type="text"
+                  value={followUpDays}
+                  onChange={(e) => setFollowUpDays(e.target.value)}
+                  className="w-full p-2.5 rounded-xl border border-outline-variant bg-surface-container-low font-bold text-primary focus:outline-none"
+                />
+              </div>
+              <div className="space-y-1">
+                <span className="text-error font-bold">SOS Red Flag Warnings:</span>
+                <div className="p-2.5 rounded-xl bg-error-container/30 border border-error/30 text-on-surface font-sans text-[11px]">
+                  Seek emergency ER care immediately if sudden chest pain, syncope, breathlessness at rest, or vision disturbance occurs.
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Master Submit Action Bar */}
+        <div className="sticky bottom-4 z-20 bg-surface-container-lowest p-4 rounded-2xl border-2 border-primary shadow-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="text-xs font-mono">
+            <span className="font-bold text-primary">All 13 Clinical Modules Completed</span>
+            <div className="text-outline text-[11px]">Ready for digital sign-off and EMR chart synthesis</div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => onNavigate('prescription')}
+              className="px-4 py-2.5 rounded-xl border border-outline-variant text-outline hover:text-on-surface font-mono text-xs font-semibold"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-mono text-xs font-bold shadow-clinical transition-all active:scale-95"
+            >
+              <Send className="w-4 h-4" />
+              <span>Submit Prescription &amp; Open Master Chart (4th)</span>
+            </button>
+          </div>
+        </div>
+
+      </form>
 
     </div>
   );

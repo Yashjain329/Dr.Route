@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
+  ImageBackground,
   TextInput,
   Alert,
   Linking,
@@ -96,7 +97,7 @@ export default function HospitalsScreen({ onNavigate, onSelectHospital }) {
     setBookingModalVisible(false);
     Alert.alert(
       'OPD Appointment Confirmed! 🩺',
-      `Hospital: ${activeHospitalForBooking?.name}\nDoctor: ${selectedDoctor?.name || 'Senior Consultant'}\nDepartment: ${selectedSpecialty}\nTime Slot: ${selectedSlot}\nToken ID: ${tokenNumber}\n\nFastTrack VIP OPD Entry: Present this token at the Dr.Route Priority Helpdesk for 0-minute waiting.`,
+      `Hospital: ${activeHospitalForBooking?.name}\nDoctor: ${selectedDoctor?.name || 'Senior Consultant'}\nDepartment: ${selectedSpecialty}\nTime Slot: ${selectedSlot}\nToken ID: ${tokenNumber}\n\nFastTrack VIP OPD Entry: Present this token at the Dr.Route Priority Helpdesk on Ground Floor for 0-minute waiting.`,
       [{ text: 'Great, Thank You!', style: 'default' }]
     );
   };
@@ -164,107 +165,107 @@ export default function HospitalsScreen({ onNavigate, onSelectHospital }) {
         showsVerticalScrollIndicator={false}
       >
         {/* 2. Featured Partner Hero Banner (Medanta - The Medicity) */}
-        <View style={styles.featuredCard}>
-          <Image
-            source={stitchImages.photoHospitalModern}
-            style={styles.featuredBgImage}
-            resizeMode="cover"
-          />
-          <View style={styles.featuredOverlay} />
-
-          <View style={styles.featuredTopRow}>
-            <View style={styles.partnerBadge}>
-              <ShieldCheck size={13} color={colors.secondaryContainer} />
-              <Text style={styles.partnerBadgeText}>FEATURED PARTNER</Text>
-            </View>
-            <View style={styles.featuredTopRight}>
-              <View style={styles.adPill}>
-                <Text style={styles.adPillText}>AD • PROMOTED</Text>
+        <ImageBackground
+          source={stitchImages.photoHospitalModern}
+          style={styles.featuredCard}
+          imageStyle={styles.featuredBgImage}
+          resizeMode="cover"
+        >
+          <View style={styles.featuredInner}>
+            <View style={styles.featuredTopRow}>
+              <View style={styles.partnerBadge}>
+                <ShieldCheck size={13} color={colors.secondaryContainer} />
+                <Text style={styles.partnerBadgeText}>FEATURED PARTNER</Text>
               </View>
-              <TouchableOpacity
-                style={styles.wishlistBtn}
-                onPress={() => toggleBookmark('h-medanta')}
-                activeOpacity={0.8}
-              >
-                <Bookmark
-                  size={15}
-                  color="#FFFFFF"
-                  fill={bookmarkedIds.includes('h-medanta') ? colors.secondaryContainer : 'transparent'}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <View style={styles.featuredTitleRow}>
-            <View style={{ flex: 1 }}>
-              <Text style={styles.featuredHospitalName}>Medanta - The Medicity</Text>
-              <Text style={styles.featuredSub}>
-                Super-Speciality Institute • Multi-Organ Transplant & Robotic Surgery Centre
-              </Text>
-            </View>
-            <View style={styles.ratingBadge}>
-              <Star size={13} color="#FFFFFF" fill="#FFFFFF" />
-              <Text style={styles.ratingText}>4.9</Text>
-            </View>
-          </View>
-
-          {/* 3 Key Promotional Highlights Grid */}
-          <View style={styles.highlightsGrid}>
-            <View style={styles.highlightCol}>
-              <Text style={styles.highlightMetric}>20% OFF</Text>
-              <Text style={styles.highlightSub}>Full Body Checkup</Text>
-            </View>
-            <View style={styles.highlightCol}>
-              <Text style={[styles.highlightMetric, { color: colors.secondaryContainer }]}>0 min</Text>
-              <Text style={styles.highlightSub}>VIP OPD Queue</Text>
-            </View>
-            <View style={styles.highlightCol}>
-              <Text style={[styles.highlightMetric, { color: colors.secondaryFixed }]}>Cashless</Text>
-              <Text style={styles.highlightSub}>PM-JAY & CGHS</Text>
-            </View>
-          </View>
-
-          {/* Action buttons: Desk Call, Details & Primary Book OPD Appointment */}
-          <View style={styles.featuredActionsCol}>
-            <View style={styles.featuredActionsRow}>
-              <TouchableOpacity
-                style={styles.featuredCallBtn}
-                onPress={() => handleCall('+91 124 4141 414', 'Medanta - The Medicity')}
-                activeOpacity={0.8}
-              >
-                <View style={styles.callIconBubble}>
-                  <PhoneCall size={14} color={colors.secondaryTeal} />
+              <View style={styles.featuredTopRight}>
+                <View style={styles.adPill}>
+                  <Text style={styles.adPillText}>AD • PROMOTED</Text>
                 </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.featuredCallNumber}>+91 124 4141 414</Text>
-                  <Text style={styles.featuredCallSub}>Emergency 24x7 • OPD 8 AM – 8 PM</Text>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.featuredDetailsBtn}
-                onPress={() => {
-                  if (onSelectHospital) onSelectHospital(hospitalsDirectory[0]);
-                  onNavigate('HospitalDetail');
-                }}
-                activeOpacity={0.8}
-              >
-                <Text style={styles.featuredDetailsText}>Details</Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.wishlistBtn}
+                  onPress={() => toggleBookmark('h-medanta')}
+                  activeOpacity={0.8}
+                >
+                  <Bookmark
+                    size={15}
+                    color="#FFFFFF"
+                    fill={bookmarkedIds.includes('h-medanta') ? colors.secondaryContainer : 'transparent'}
+                  />
+                </TouchableOpacity>
+              </View>
             </View>
 
-            {/* Primary Hero Button: Book OPD Appointment */}
-            <TouchableOpacity
-              style={styles.featuredBookOpdBtn}
-              onPress={() => openOpdBooking(hospitalsDirectory[0])}
-              activeOpacity={0.85}
-            >
-              <Calendar size={16} color="#FFFFFF" />
-              <Text style={styles.featuredBookOpdText}>Book OPD Appointment</Text>
-              <ChevronRight size={16} color="#FFFFFF" />
-            </TouchableOpacity>
+            <View style={styles.featuredTitleRow}>
+              <View style={{ flex: 1, paddingRight: 8 }}>
+                <Text style={styles.featuredHospitalName}>Medanta - The Medicity</Text>
+                <Text style={styles.featuredSub}>
+                  Super-Speciality Institute • Multi-Organ Transplant & Robotic Surgery Centre
+                </Text>
+              </View>
+              <View style={styles.ratingBadge}>
+                <Star size={13} color="#FFFFFF" fill="#FFFFFF" />
+                <Text style={styles.ratingText}>4.9</Text>
+              </View>
+            </View>
+
+            {/* 3 Key Promotional Highlights Grid */}
+            <View style={styles.highlightsGrid}>
+              <View style={styles.highlightCol}>
+                <Text style={styles.highlightMetric}>20% OFF</Text>
+                <Text style={styles.highlightSub}>Full Body Checkup</Text>
+              </View>
+              <View style={styles.highlightCol}>
+                <Text style={[styles.highlightMetric, { color: colors.secondaryContainer }]}>0 min</Text>
+                <Text style={styles.highlightSub}>VIP OPD Queue</Text>
+              </View>
+              <View style={styles.highlightCol}>
+                <Text style={[styles.highlightMetric, { color: colors.secondaryFixed }]}>Cashless</Text>
+                <Text style={styles.highlightSub}>PM-JAY & CGHS</Text>
+              </View>
+            </View>
+
+            {/* Action buttons: Desk Call, Details & Primary Book OPD Appointment */}
+            <View style={styles.featuredActionsCol}>
+              <View style={styles.featuredActionsRow}>
+                <TouchableOpacity
+                  style={styles.featuredCallBtn}
+                  onPress={() => handleCall('+91 124 4141 414', 'Medanta - The Medicity')}
+                  activeOpacity={0.8}
+                >
+                  <View style={styles.callIconBubble}>
+                    <PhoneCall size={14} color={colors.secondaryTeal} />
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.featuredCallNumber}>+91 124 4141 414</Text>
+                    <Text style={styles.featuredCallSub}>Emergency 24x7 • OPD 8 AM – 8 PM</Text>
+                  </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.featuredDetailsBtn}
+                  onPress={() => {
+                    if (onSelectHospital) onSelectHospital(hospitalsDirectory[0]);
+                    onNavigate('HospitalDetail');
+                  }}
+                  activeOpacity={0.8}
+                >
+                  <Text style={styles.featuredDetailsText}>Details</Text>
+                </TouchableOpacity>
+              </View>
+
+              {/* Primary Hero Button: Book OPD Appointment */}
+              <TouchableOpacity
+                style={styles.featuredBookOpdBtn}
+                onPress={() => openOpdBooking(hospitalsDirectory[0])}
+                activeOpacity={0.85}
+              >
+                <Calendar size={16} color="#FFFFFF" />
+                <Text style={styles.featuredBookOpdText}>Book OPD Appointment</Text>
+                <ChevronRight size={16} color="#FFFFFF" />
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
+        </ImageBackground>
 
         {/* 3. Specialty Quick Filter Chips (Matching Stitch) */}
         <View style={styles.filtersRow}>
@@ -378,7 +379,7 @@ export default function HospitalsScreen({ onNavigate, onSelectHospital }) {
                     <View style={styles.directDeskIcon}>
                       <PhoneCall size={14} color="#FFFFFF" />
                     </View>
-                    <View>
+                    <View style={{ flex: 1 }}>
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                         <Text style={styles.directDeskTag}>DIRECT DESK</Text>
                         <Text style={styles.directDeskNumber}>{hospital.phone}</Text>
@@ -466,9 +467,12 @@ export default function HospitalsScreen({ onNavigate, onSelectHospital }) {
                 })}
               </ScrollView>
 
-              {/* Select Doctor */}
-              <Text style={styles.modalSectionLabel}>2. Specialist on OPD Duty</Text>
-              {activeHospitalForBooking?.opdDoctors?.map((doc) => {
+              {/* Doctors List */}
+              <Text style={styles.modalSectionLabel}>2. Available OPD Specialists</Text>
+              {(activeHospitalForBooking?.opdDoctors || [
+                { id: 'd-1', name: 'Dr. Vivek Saxena', dept: 'Senior Consultant', slot: 'Today, 4:30 PM', fee: '₹800' },
+                { id: 'd-2', name: 'Dr. Meenakshi Rao', dept: 'Associate Director', slot: 'Today, 5:15 PM', fee: '₹950' },
+              ]).map((doc) => {
                 const isSelectedDoc = selectedDoctor?.id === doc.id;
                 return (
                   <TouchableOpacity
@@ -483,7 +487,7 @@ export default function HospitalsScreen({ onNavigate, onSelectHospital }) {
                     <View style={{ flex: 1 }}>
                       <Text style={styles.docName}>{doc.name}</Text>
                       <Text style={styles.docDept}>{doc.dept}</Text>
-                      <Text style={styles.docSlotText}>Slot: {doc.slot}</Text>
+                      <Text style={styles.docSlotText}>Available: {doc.slot}</Text>
                     </View>
                     <View style={{ alignItems: 'flex-end' }}>
                       <Text style={styles.docFeeText}>{doc.fee}</Text>
@@ -493,19 +497,19 @@ export default function HospitalsScreen({ onNavigate, onSelectHospital }) {
                 );
               })}
 
-              {/* Select Slot */}
-              <Text style={styles.modalSectionLabel}>3. Preferred Time Slot</Text>
+              {/* Time Slots */}
+              <Text style={styles.modalSectionLabel}>3. Select Appointment Slot</Text>
               <View style={styles.slotsGrid}>
-                {['Today, 4:30 PM', 'Today, 6:00 PM', 'Tomorrow, 10:30 AM', 'Tomorrow, 5:00 PM'].map((slot) => {
-                  const isSel = selectedSlot === slot;
+                {['Today, 4:30 PM', 'Today, 5:15 PM', 'Today, 6:00 PM', 'Tomorrow, 10:00 AM', 'Tomorrow, 11:30 AM'].map((slot) => {
+                  const isSelSlot = selectedSlot === slot;
                   return (
                     <TouchableOpacity
                       key={slot}
-                      style={[styles.slotPill, isSel && styles.slotPillActive]}
+                      style={[styles.slotPill, isSelSlot && styles.slotPillActive]}
                       onPress={() => setSelectedSlot(slot)}
                     >
-                      <Clock size={12} color={isSel ? '#FFFFFF' : colors.textSecondary} />
-                      <Text style={[styles.slotPillText, isSel && styles.slotPillTextActive]}>
+                      <Clock size={11} color={isSelSlot ? '#FFFFFF' : colors.textSecondary} />
+                      <Text style={[styles.slotPillText, isSelSlot && styles.slotPillTextActive]}>
                         {slot}
                       </Text>
                     </TouchableOpacity>
@@ -631,27 +635,28 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     padding: 16,
-    gap: 16,
     paddingBottom: 36,
   },
   featuredCard: {
     borderRadius: radius.xl,
     overflow: 'hidden',
-    position: 'relative',
-    backgroundColor: colors.primary,
-    padding: 16,
+    backgroundColor: '#001026',
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.15)',
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 3,
   },
   featuredBgImage: {
-    ...StyleSheet.absoluteFillObject,
-    width: '100%',
-    height: '100%',
-    opacity: 0.25,
+    borderRadius: radius.xl,
+    opacity: 0.22,
   },
-  featuredOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 16, 38, 0.75)',
+  featuredInner: {
+    padding: 16,
+    backgroundColor: 'rgba(0, 16, 38, 0.45)',
   },
   featuredTopRow: {
     flexDirection: 'row',
@@ -663,12 +668,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
-    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+    backgroundColor: 'rgba(255, 255, 255, 0.14)',
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: radius.full,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.2)',
+    borderColor: 'rgba(255, 255, 255, 0.25)',
   },
   partnerBadgeText: {
     fontSize: 9,
@@ -682,7 +687,7 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   adPill: {
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgba(255, 255, 255, 0.12)',
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: radius.xs,
@@ -697,7 +702,7 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: radius.full,
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    backgroundColor: 'rgba(255, 255, 255, 0.18)',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -714,8 +719,9 @@ const styles = StyleSheet.create({
   },
   featuredSub: {
     fontSize: 11,
-    color: 'rgba(255, 255, 255, 0.8)',
+    color: 'rgba(255, 255, 255, 0.85)',
     marginTop: 2,
+    lineHeight: 16,
   },
   ratingBadge: {
     flexDirection: 'row',
@@ -735,18 +741,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
     borderTopWidth: 1,
-    borderTopColor: 'rgba(255, 255, 255, 0.12)',
+    borderTopColor: 'rgba(255, 255, 255, 0.14)',
     paddingTop: 10,
     marginBottom: 14,
   },
   highlightCol: {
     flex: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderRadius: radius.md,
     padding: 8,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.1)',
+    borderColor: 'rgba(255, 255, 255, 0.15)',
   },
   highlightMetric: {
     fontSize: 14,
@@ -755,7 +761,7 @@ const styles = StyleSheet.create({
   },
   highlightSub: {
     fontSize: 9,
-    color: 'rgba(255, 255, 255, 0.8)',
+    color: 'rgba(255, 255, 255, 0.85)',
     marginTop: 2,
     textAlign: 'center',
   },
@@ -774,7 +780,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: radius.lg,
     paddingHorizontal: 10,
-    paddingVertical: 6,
+    paddingVertical: 7,
   },
   callIconBubble: {
     width: 28,
@@ -794,13 +800,13 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
   },
   featuredDetailsBtn: {
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    backgroundColor: 'rgba(255, 255, 255, 0.18)',
     paddingHorizontal: 14,
     borderRadius: radius.lg,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.25)',
+    borderColor: 'rgba(255, 255, 255, 0.28)',
   },
   featuredDetailsText: {
     fontSize: 12,
@@ -813,8 +819,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 6,
-    paddingVertical: 10,
+    paddingVertical: 11,
     borderRadius: radius.lg,
+    marginTop: 2,
   },
   featuredBookOpdText: {
     fontSize: 13,
@@ -824,6 +831,7 @@ const styles = StyleSheet.create({
   filtersRow: {
     flexDirection: 'row',
     gap: 8,
+    marginBottom: 16,
   },
   filterChip: {
     flex: 1,
@@ -832,10 +840,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 5,
     backgroundColor: '#FFFFFF',
-    paddingVertical: 8,
+    paddingVertical: 9,
     borderRadius: radius.lg,
     borderWidth: 1,
     borderColor: 'rgba(196, 198, 207, 0.4)',
+    elevation: 1,
   },
   filterChipActive: {
     backgroundColor: colors.primary,
@@ -850,7 +859,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   listHeaderRow: {
-    marginTop: 4,
+    marginBottom: 12,
   },
   listHeading: {
     fontSize: 17,
@@ -873,6 +882,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 6,
     elevation: 2,
+    marginBottom: 16,
   },
   cardImageContainer: {
     height: 150,

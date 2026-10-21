@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Menu, 
   Search, 
   Bell, 
   AlertTriangle, 
-  ShieldCheck, 
-  User, 
-  Activity,
   HeartPulse,
-  Radio
+  User,
+  ShieldCheck,
+  CheckCircle2
 } from 'lucide-react';
 import { ScreenId, Patient } from '../types';
-import { mockDoctor } from '../data/mockData';
+import Logo from './Logo';
 
 interface HeaderProps {
   currentScreen: ScreenId;
@@ -25,18 +24,18 @@ interface HeaderProps {
 }
 
 const screenMeta: Record<ScreenId, { number: string; title: string; category: string }> = {
-  'login': { number: '1st', title: 'Healthcare Provider Portal Login', category: 'Authentication' },
-  'dashboard': { number: '2nd', title: 'Clinical Navigation Command Center', category: 'Executive Dashboard' },
-  'prescription': { number: '3rd', title: 'Prescription Management Hub', category: 'Prescription Suite' },
-  'submit-open-chart': { number: '4th', title: 'Prescription Review & Interactive Clinical Chart', category: 'Prescription Suite' },
-  'old-records': { number: '5th', title: 'Inside Old Records & Electronic Health Vault', category: 'Prescription Suite' },
-  'new-prescription': { number: '6th', title: 'Inside New Prescription Console', category: 'Prescription Suite' },
-  'health-insights': { number: '7th', title: 'Inside AI Patient & Population Health Insights', category: 'Prescription Suite' },
-  'disease-epi': { number: '8th', title: 'Disease Epidemiology & Outbreak Intelligence', category: 'Surveillance' },
-  'drug-trends': { number: '9th', title: 'Pharmaceutical & Antimicrobial Drug Trends', category: 'Surveillance' },
-  'personal-profile': { number: '10th', title: 'Clinician Personal Profile & Credentials', category: 'Provider Practice' },
-  'qualifications': { number: '11th', title: 'Qualification, Experience & Academic Timeline', category: 'Provider Practice' },
-  'settings': { number: '12th', title: 'System, Interoperability & Practice Settings', category: 'System Configuration' },
+  'login': { number: '1st', title: 'Doctor Portal Entry & Duty Session', category: 'Authentication' },
+  'dashboard': { number: '2nd', title: 'OPD Clinical Dashboard', category: 'Executive Dashboard' },
+  'prescription': { number: '3rd', title: 'Prescription Selection Workspace', category: 'Prescription Suite' },
+  'submit-open-chart': { number: '4th', title: '7-Day Vitals & Clinical Protocol Record', category: 'Prescription Suite' },
+  'old-records': { number: '5th', title: 'Old Records & Patient Treatment History', category: 'Prescription Suite' },
+  'new-prescription': { number: '6th', title: 'New Prescription Protocol Workspace (Boxes 1-13)', category: 'Prescription Suite' },
+  'health-insights': { number: '7th', title: 'Patient Vitals, Disease Burden & Duration Analytics', category: 'Prescription Suite' },
+  'disease-epi': { number: '8th', title: 'Hospital Disease Epidemiology Surveillance', category: 'Public Health' },
+  'drug-trends': { number: '9th', title: 'Hospital Drug Trends & Pharmacy Analytics', category: 'Pharmacy Stewardship' },
+  'personal-profile': { number: '10th', title: 'Doctor Profile — Personal Information', category: 'Provider Practice' },
+  'qualifications': { number: '11th', title: 'Doctor Profile — Qualification & Experience', category: 'Provider Practice' },
+  'settings': { number: '12th', title: 'Doctor Profile Settings & Preferences', category: 'System Configuration' },
 };
 
 export const Header: React.FC<HeaderProps> = ({
@@ -50,112 +49,154 @@ export const Header: React.FC<HeaderProps> = ({
   onSearchChange
 }) => {
   const meta = screenMeta[currentScreen] || { number: '', title: 'Dr. Route', category: '' };
+  const [showSosAlert, setShowSosAlert] = useState(false);
 
   return (
-    <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-6 py-3 shadow-xs">
-      <div className="flex items-center justify-between gap-4">
-        
-        {/* Left: Hamburger + Screen Title Breadcrumbs */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={onToggleSidebar}
-            className="p-2 rounded-xl text-slate-600 hover:text-primary hover:bg-slate-100 lg:hidden transition-colors"
-            aria-label="Toggle menu"
-          >
-            <Menu className="w-5 h-5" />
-          </button>
+    <>
+      <header className="sticky top-0 z-30 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/60 px-4 sm:px-6 py-2.5 shadow-clinical">
+        <div className="flex items-center justify-between gap-3">
+          
+          {/* Left: Hamburger + Brand Context */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={onToggleSidebar}
+              className="p-2 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container-low lg:hidden transition-colors"
+              aria-label="Toggle menu"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
 
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-md tracking-wider">
+            <div className="flex items-center gap-2.5">
+              <span className="hidden sm:inline-flex bg-primary text-primary-fixed text-[10px] font-mono font-bold px-2 py-0.5 rounded tracking-wider">
                 {meta.number}
               </span>
-              <span className="text-[11px] font-semibold text-secondary uppercase tracking-wider hidden sm:inline">
-                {meta.category}
-              </span>
+              <div className="flex items-center gap-2">
+                <h1 className="text-sm sm:text-base font-bold text-on-surface font-headline truncate max-w-[200px] sm:max-w-xs md:max-w-md">
+                  {meta.title}
+                </h1>
+                <span className="hidden md:inline text-outline/60">|</span>
+                <span className="hidden md:inline text-xs font-mono text-on-surface-variant font-medium">
+                  Station 4B • Cardiology Wing
+                </span>
+              </div>
             </div>
-            <h1 className="text-base sm:text-lg font-bold text-slate-900 font-display leading-tight truncate">
-              {meta.title}
-            </h1>
-          </div>
-        </div>
-
-        {/* Center: Search & Patient Context Selector */}
-        <div className="hidden md:flex items-center gap-3 flex-1 max-w-md mx-4">
-          <div className="relative w-full">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => onSearchChange(e.target.value)}
-              placeholder="Search patients, medicines, ICD-10..."
-              className="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-100/80 border border-slate-200/80 rounded-xl focus:outline-none focus:border-secondary focus:bg-white transition-all"
-            />
           </div>
 
-          {/* Active Patient Pill Selector */}
-          <div className="flex items-center gap-1.5 bg-teal-50/70 border border-teal-200/70 px-2.5 py-1 rounded-xl flex-shrink-0">
-            <HeartPulse className="w-3.5 h-3.5 text-secondary flex-shrink-0" />
-            <span className="text-[10px] font-medium text-slate-500">Patient:</span>
-            <select
-              value={selectedPatient.id}
-              onChange={(e) => onSelectPatient(e.target.value)}
-              className="bg-transparent text-xs font-bold text-slate-800 focus:outline-none cursor-pointer max-w-[130px] truncate"
+          {/* Center: Search Bar */}
+          <div className="hidden lg:flex items-center flex-1 max-w-sm mx-3">
+            <div className="relative w-full">
+              <Search className="w-3.5 h-3.5 text-outline absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => onSearchChange(e.target.value)}
+                placeholder="Search patient UHID, ICD-10, medicine..."
+                className="w-full pl-9 pr-3 py-1.5 text-xs bg-surface-container-low border border-outline-variant rounded-lg focus:outline-none focus:border-primary-container focus:bg-surface-container-lowest text-on-surface font-mono"
+              />
+            </div>
+          </div>
+
+          {/* Right: Telemetry + SOS Trigger + Doctor Context */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            
+            {/* Real-time Telemetry Pill */}
+            <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-tertiary text-[11px] font-mono font-semibold border border-outline-variant/50">
+              <span className="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+              <span>System Online</span>
+            </div>
+
+            {/* Patient Context Dropdown */}
+            <div className="flex items-center gap-1.5 bg-surface-container-low border border-outline-variant/60 px-2 py-1 rounded-lg">
+              <HeartPulse className="w-3.5 h-3.5 text-secondary flex-shrink-0" />
+              <select
+                value={selectedPatient.id}
+                onChange={(e) => onSelectPatient(e.target.value)}
+                className="bg-transparent text-xs font-mono font-semibold text-on-surface focus:outline-none cursor-pointer max-w-[120px] sm:max-w-[160px] truncate"
+              >
+                {allPatients.map(p => (
+                  <option key={p.id} value={p.id}>
+                    {p.name} ({p.uhid || p.id})
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Emergency Blood SOS Trigger Button */}
+            <button
+              onClick={() => setShowSosAlert(true)}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-error hover:bg-error/90 text-on-error text-xs font-mono font-bold shadow-sos transition-all active:scale-95"
+              title="Emergency Hospital Blood Requisition"
             >
-              {allPatients.map(p => (
-                <option key={p.id} value={p.id}>
-                  {p.name} ({p.id})
-                </option>
-              ))}
-            </select>
+              <AlertTriangle className="w-3.5 h-3.5 animate-bounce" />
+              <span className="hidden sm:inline">Blood SOS</span>
+            </button>
+
+            {/* Doctor Profile Quick Icon */}
+            <button
+              onClick={() => onNavigate('personal-profile')}
+              className="flex items-center gap-2 p-1 pl-2 pr-2.5 rounded-lg hover:bg-surface-container-low transition-colors border border-transparent hover:border-outline-variant/40"
+            >
+              <div className="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-xs">
+                RD
+              </div>
+              <div className="hidden xl:block text-left">
+                <div className="text-xs font-bold text-on-surface font-headline leading-tight">Dr. Deshraj Burdak</div>
+                <div className="text-[10px] font-mono text-on-surface-variant">Attending MD</div>
+              </div>
+            </button>
+
+          </div>
+
+        </div>
+      </header>
+
+      {/* Emergency SOS Modal */}
+      {showSosAlert && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+          <div className="bg-surface-container-lowest max-w-lg w-full rounded-2xl border-2 border-error p-6 shadow-2xl space-y-4">
+            <div className="flex items-center gap-3 text-error">
+              <div className="p-3 rounded-full bg-error-container text-on-error-container">
+                <AlertTriangle className="w-8 h-8" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold font-headline">CRITICAL BLOOD BANK SOS DISPATCH</h3>
+                <p className="text-xs font-mono text-on-surface-variant">Protocol #SOS-CARDIOLOGY-4B-991</p>
+              </div>
+            </div>
+
+            <div className="p-3 rounded-xl bg-error-container/30 border border-error/40 text-xs font-body space-y-2">
+              <p className="font-semibold text-error">
+                Immediate Cross-Match & Transfusion Requisition Initiated:
+              </p>
+              <ul className="list-disc pl-5 font-mono text-on-surface space-y-1">
+                <li>Patient: <strong>{selectedPatient.name}</strong> ({selectedPatient.uhid || selectedPatient.abhaId})</li>
+                <li>Blood Group: <strong>{selectedPatient.bloodGroup}</strong> • Station 4B Bed 12</li>
+                <li>Required: <strong>2 Units Packed Red Blood Cells (PRBC)</strong></li>
+                <li>Emergency Status: O-Negative emergency donor stock dispatched from Central Blood Vault.</li>
+              </ul>
+            </div>
+
+            <div className="flex items-center justify-end gap-3 pt-2">
+              <button
+                onClick={() => setShowSosAlert(false)}
+                className="px-4 py-2 rounded-lg text-xs font-semibold text-outline hover:text-on-surface hover:bg-surface-container-low"
+              >
+                Dismiss Alert
+              </button>
+              <button
+                onClick={() => {
+                  alert(`SOS Emergency Dispatch Confirmed for ${selectedPatient.name}. Blood Bank Runner Dispatched.`);
+                  setShowSosAlert(false);
+                }}
+                className="px-5 py-2 rounded-lg text-xs font-bold font-mono bg-error text-on-error shadow-sos hover:bg-error/90"
+              >
+                CONFIRM RUNNER DISPATCH
+              </button>
+            </div>
           </div>
         </div>
-
-        {/* Right: Emergency Telemetry, Notifications & Doctor Pill */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* Live GPS / Emergency Beacon */}
-          <div className="hidden xl:flex items-center gap-2 px-2.5 py-1 rounded-full bg-emergency-container/40 border border-emergency/20 text-emergency text-[11px] font-semibold">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emergency opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emergency"></span>
-            </span>
-            <span>Surveillance Alert: Dengue DENV-2 Active</span>
-          </div>
-
-          {/* Telemetry status */}
-          <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-100 text-slate-600 text-[11px] font-medium">
-            <Radio className="w-3.5 h-3.5 text-emerald-500 animate-pulse" />
-            <span>ABDM Sync: Online</span>
-          </div>
-
-          {/* Notification Bell */}
-          <button 
-            onClick={() => onNavigate('dashboard')}
-            className="relative p-2 rounded-xl text-slate-500 hover:text-primary hover:bg-slate-100 transition-colors"
-            title="Notifications"
-          >
-            <Bell className="w-4 h-4" />
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-emergency rounded-full ring-2 ring-white"></span>
-          </button>
-
-          {/* Doctor Profile Quick Switch */}
-          <button
-            onClick={() => onNavigate('personal-profile')}
-            className="flex items-center gap-2 p-1 pl-2 sm:pr-2.5 rounded-xl hover:bg-slate-100 transition-colors border border-slate-200/70"
-            title="View Doctor Profile"
-          >
-            <div className="w-7 h-7 rounded-lg bg-primary text-white flex items-center justify-center text-xs font-bold font-display">
-              AM
-            </div>
-            <div className="text-left hidden sm:block">
-              <div className="text-xs font-bold text-slate-800 leading-none">{mockDoctor.name}</div>
-              <div className="text-[10px] text-slate-400 leading-tight">Cardiology</div>
-            </div>
-          </button>
-        </div>
-
-      </div>
-    </header>
+      )}
+    </>
   );
 };
 

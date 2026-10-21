@@ -21,6 +21,7 @@ export interface Patient {
   gender: 'Male' | 'Female' | 'Other';
   bloodGroup: string;
   abhaId: string;
+  uhid?: string;
   phone: string;
   email: string;
   allergies: string[];
@@ -43,36 +44,46 @@ export interface Patient {
 export interface Medication {
   id: string;
   name: string;
-  genericName: string;
+  genericName?: string;
   dosage: string;
   frequency: string;      // e.g. "1-0-1", "1-0-0", "SOS"
   timing: string;         // e.g. "After Meals", "Before Breakfast"
   duration: string;       // e.g. "30 Days"
-  route: string;          // e.g. "Oral", "Inhalation"
-  instructions: string;
-  refillsAllowed: number;
+  route?: string;         // e.g. "Oral", "Inhalation"
+  instructions?: string;
+  refillsAllowed?: number;
 }
 
 export interface Prescription {
   id: string;
   patientId: string;
   patientName: string;
-  abhaId: string;
-  age: number;
-  gender: string;
+  patientUhid?: string;
+  abhaId?: string;
+  age?: number;
+  gender?: string;
   doctorName: string;
-  doctorId: string;
+  doctorId?: string;
+  department?: string;
   date: string;
-  primaryDiagnosis: string;
-  icd10Code: string;
+  primaryDiagnosis?: string;
+  diagnosis?: string;
+  icd10Code?: string;
   secondaryDiagnosis?: string;
-  medications: Medication[];
-  notes: string;
-  lifestyleAdvice: string[];
+  medications?: Medication[];
+  medicines?: any[];
+  vitals?: any;
+  allergies?: string[];
+  notes?: string;
+  dietaryAdvice?: string;
+  exerciseAdvice?: string;
+  lifestyleAdvice?: string[];
+  followUpDate?: string;
   status: 'Active' | 'Needs Renewal' | 'Discontinued' | 'Flagged';
-  interactionRisk: 'None' | 'Low' | 'Moderate' | 'Severe';
-  adherenceRate: number;
-  digitalSignatureHash: string;
+  interactionRisk?: 'None' | 'Low' | 'Moderate' | 'Severe';
+  adherenceRate?: number;
+  digitalSignatureHash?: string;
+  isSigned?: boolean;
 }
 
 export interface LabReport {

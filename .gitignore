@@ -22,6 +22,7 @@ yarn-debug.log*
 yarn-error.log*
 .DS_Store
 Thumbs.db
+stitch_html/
 
 # Environment variables
 .env

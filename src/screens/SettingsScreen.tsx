@@ -1,289 +1,372 @@
 import React, { useState } from 'react';
 import { 
-  Settings as SettingsIcon, 
-  ShieldCheck, 
-  Lock, 
-  Radio, 
-  Bell, 
-  FileText, 
-  Database, 
-  Save, 
-  CheckCircle2, 
-  RefreshCw, 
-  Download, 
+  User, 
+  GraduationCap, 
+  Settings, 
+  Sliders, 
   KeyRound, 
-  Server,
-  ArrowRight,
-  User
+  ShieldCheck, 
+  FileCheck, 
+  Bell, 
+  Printer, 
+  Globe, 
+  Lock, 
+  CheckCircle2, 
+  Smartphone,
+  Save,
+  RotateCcw
 } from 'lucide-react';
 import { ScreenId } from '../types';
-import { mockDoctor } from '../data/mockData';
 
 interface SettingsScreenProps {
   onNavigate: (screen: ScreenId) => void;
 }
 
 export const SettingsScreen: React.FC<SettingsScreenProps> = ({
-  onNavigate
+  onNavigate,
 }) => {
-  const [twoFactorAuth, setTwoFactorAuth] = useState(true);
-  const [biometricLogin, setBiometricLogin] = useState(true);
-  const [sessionTimeout, setSessionTimeout] = useState('30 mins');
-  const [genericFirst, setGenericFirst] = useState(true);
+  // Settings State
   const [autoSign, setAutoSign] = useState(true);
-  const [abdmConnected, setAbdmConnected] = useState(true);
-  const [erAlertSound, setErAlertSound] = useState(true);
-  const [labPanicAlerts, setLabPanicAlerts] = useState(true);
-  const [outbreakAlerts, setOutbreakAlerts] = useState(true);
-  const [saveSuccess, setSaveSuccess] = useState(false);
+  const [audioChime, setAudioChime] = useState(true);
+  const [rapidIcd, setRapidIcd] = useState(true);
+  const [allergyModal, setAllergyModal] = useState(true);
+  const [printFormat, setPrintFormat] = useState<'A4' | 'Thermal' | 'FHIR'>('A4');
+  const [dispenseDays, setDispenseDays] = useState('7 Days');
+  const [stationPin, setStationPin] = useState('4821');
+  const [sessionTimeout, setSessionTimeout] = useState('30 Minutes');
+  const [language, setLanguage] = useState<'English' | 'Hindi'>('English');
 
   const handleSave = () => {
-    setSaveSuccess(true);
-    setTimeout(() => setSaveSuccess(false), 3000);
+    alert('Physician Practice Preferences & Security Settings Saved Successfully.');
   };
 
   return (
-    <div className="space-y-6">
+    <div className="max-w-5xl mx-auto space-y-6 animate-fade-in py-2 pb-16">
       
-      {/* Top Banner */}
-      <div className="bg-gradient-to-r from-primary via-slate-900 to-primary-container text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-700/60">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <span className="bg-secondary text-white text-xs font-bold px-2.5 py-0.5 rounded-md">
-                12th
-              </span>
-              <span className="text-xs font-bold text-secondary-fixed uppercase tracking-wider">
-                System Configuration • ABDM Standards & Practice
-              </span>
-            </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold font-display tracking-tight text-white">
-              System & Practice Settings
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-300">
-              ABHA M1–M3 gateway configuration, clinical security, emergency alerts, and prescription defaults
+      {/* Top Header & Breadcrumbs */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-surface-container-lowest p-4 rounded-2xl border border-outline-variant/60 shadow-clinical">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-mono font-bold bg-primary text-primary-fixed px-2 py-0.5 rounded">
+              12th Screen
+            </span>
+            <span className="text-xs font-mono font-bold text-secondary uppercase tracking-wider">
+              Practice Configuration
+            </span>
+          </div>
+          <h1 className="text-xl font-extrabold text-primary font-headline">
+            Doctor Profile Settings &amp; Practice Preferences
+          </h1>
+          <p className="text-xs font-body text-on-surface-variant">
+            Simplified, doctor-friendly configuration for clinical workflows, digital signatures, and station security
+          </p>
+        </div>
+
+        <button 
+          onClick={handleSave}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-on-primary text-xs font-mono font-bold hover:bg-primary-container transition-colors shadow-xs active:scale-95"
+        >
+          <Save className="w-4 h-4" />
+          <span>Save Preferences</span>
+        </button>
+      </div>
+
+      {/* 3 Linked Profile Tabs Strip (Exact Stitch Linked Tabs) */}
+      <div className="flex items-center gap-2 border-b border-outline-variant/60 pb-1 text-xs font-mono font-bold">
+        <button
+          onClick={() => onNavigate('personal-profile')}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"
+        >
+          <User className="w-4 h-4" />
+          <span>10th - Personal Information</span>
+        </button>
+        <button
+          onClick={() => onNavigate('qualifications')}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"
+        >
+          <GraduationCap className="w-4 h-4" />
+          <span>11th - Qualification &amp; Experience</span>
+        </button>
+        <button
+          onClick={() => onNavigate('settings')}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-on-primary shadow-xs"
+        >
+          <Settings className="w-4 h-4" />
+          <span>12th - Doctor Settings</span>
+        </button>
+      </div>
+
+      {/* SECTION 1: Consultation & OPD Preferences */}
+      <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical p-6 space-y-5">
+        <div className="border-b border-outline-variant/40 pb-3 flex items-center justify-between">
+          <div>
+            <h3 className="text-base font-extrabold text-primary font-headline flex items-center gap-2">
+              <Sliders className="w-5 h-5 text-primary" />
+              <span>Consultation &amp; OPD Preferences</span>
+            </h3>
+            <p className="text-xs font-body text-on-surface-variant">
+              Streamline your day-to-day clinic flow and prescription actions
             </p>
           </div>
+          <span className="text-xs font-mono font-bold text-secondary">Doctor Friendly</span>
+        </div>
 
-          <div className="flex items-center gap-2">
+        <div className="space-y-4">
+          
+          {/* Toggle 1: Prescription Auto-Signature */}
+          <div className="flex items-center justify-between p-4 rounded-xl bg-surface-container-low/60 border border-outline-variant/60">
+            <div className="space-y-0.5 max-w-xl">
+              <div className="font-bold text-sm text-on-surface flex items-center gap-2 font-headline">
+                <span>Prescription Auto-Signature</span>
+                <span className="bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-mono font-bold px-2 py-0.2 rounded">
+                  Verified
+                </span>
+              </div>
+              <p className="text-xs text-on-surface-variant font-body">
+                Automatically append digital signature and medical council seal to outgoing approved prescriptions.
+              </p>
+            </div>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input 
+                type="checkbox" 
+                checked={autoSign} 
+                onChange={(e) => setAutoSign(e.target.checked)} 
+                className="sr-only peer" 
+              />
+              <div className="w-11 h-6 bg-outline-variant/60 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+            </label>
+          </div>
+
+          {/* Toggle 2: OPD Chime */}
+          <div className="flex items-center justify-between p-4 rounded-xl bg-surface-container-low/60 border border-outline-variant/60">
+            <div className="space-y-0.5 max-w-xl">
+              <div className="font-bold text-sm text-on-surface font-headline">
+                OPD Consultation Queue Audio Chime
+              </div>
+              <p className="text-xs text-on-surface-variant font-body">
+                Play soft chime in Chamber 402 whenever the next waiting patient token is queued or triage priority arrives.
+              </p>
+            </div>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input 
+                type="checkbox" 
+                checked={audioChime} 
+                onChange={(e) => setAudioChime(e.target.checked)} 
+                className="sr-only peer" 
+              />
+              <div className="w-11 h-6 bg-outline-variant/60 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+            </label>
+          </div>
+
+          {/* Toggle 3: Rapid ICD-10 Search */}
+          <div className="flex items-center justify-between p-4 rounded-xl bg-surface-container-low/60 border border-outline-variant/60">
+            <div className="space-y-0.5 max-w-xl">
+              <div className="font-bold text-sm text-on-surface font-headline">
+                Rapid ICD-10 Search &amp; EMR Auto-complete
+              </div>
+              <p className="text-xs text-on-surface-variant font-body">
+                Display intelligent ICD-10 disease suggestions and Indian formulary codes while typing in provisional diagnosis.
+              </p>
+            </div>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input 
+                type="checkbox" 
+                checked={rapidIcd} 
+                onChange={(e) => setRapidIcd(e.target.checked)} 
+                className="sr-only peer" 
+              />
+              <div className="w-11 h-6 bg-outline-variant/60 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+            </label>
+          </div>
+
+          {/* Toggle 4: High-Risk Allergy Warning Modal */}
+          <div className="flex items-center justify-between p-4 rounded-xl bg-surface-container-low/60 border border-outline-variant/60">
+            <div className="space-y-0.5 max-w-xl">
+              <div className="font-bold text-sm text-error font-headline flex items-center gap-1.5">
+                <span>High-Risk Allergy Warning Modal</span>
+              </div>
+              <p className="text-xs text-on-surface-variant font-body">
+                Mandate explicit double physician sign-off if prescribing Beta-Lactams, NSAIDs, or Sulfa to flagged patients.
+              </p>
+            </div>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input 
+                type="checkbox" 
+                checked={allergyModal} 
+                onChange={(e) => setAllergyModal(e.target.checked)} 
+                className="sr-only peer" 
+              />
+              <div className="w-11 h-6 bg-outline-variant/60 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-error"></div>
+            </label>
+          </div>
+
+          {/* Selector 1: Print Format */}
+          <div className="p-4 rounded-xl bg-surface-container-low/60 border border-outline-variant/60 space-y-2">
+            <div className="font-bold text-sm text-on-surface font-headline">
+              Preferred Prescription Print Layout
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-mono">
+              {[
+                { id: 'A4', label: 'A4 Standard Clinical PDF', desc: 'Hospital letterhead with Rx Rx boxes' },
+                { id: 'Thermal', label: '80mm Thermal Receipt', desc: 'Fast OPD counter pharmacy print' },
+                { id: 'FHIR', label: 'HL7 FHIR JSON Bundle', desc: 'Direct National Health Stack push' },
+              ].map(fmt => (
+                <button
+                  key={fmt.id}
+                  type="button"
+                  onClick={() => setPrintFormat(fmt.id as any)}
+                  className={`p-3 rounded-xl border text-left transition-all ${
+                    printFormat === fmt.id
+                      ? 'bg-primary-container text-on-primary border-primary shadow-xs'
+                      : 'bg-surface-container-lowest border-outline-variant text-on-surface hover:bg-surface-container'
+                  }`}
+                >
+                  <div className="font-bold">{fmt.label}</div>
+                  <div className={`text-[10px] ${printFormat === fmt.id ? 'text-primary-fixed' : 'text-outline'}`}>{fmt.desc}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Selector 2: Default Dispense Days */}
+          <div className="p-4 rounded-xl bg-surface-container-low/60 border border-outline-variant/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div className="font-bold text-sm text-on-surface font-headline">
+                Default Medication Dispensation Duration
+              </div>
+              <div className="text-xs text-on-surface-variant font-body">Pre-selected duration for acute OPD prescriptions</div>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs font-mono">
+              {['5 Days', '7 Days', '14 Days', '30 Days'].map(d => (
+                <button
+                  key={d}
+                  type="button"
+                  onClick={() => setDispenseDays(d)}
+                  className={`px-3 py-1.5 rounded-lg font-bold transition-all ${
+                    dispenseDays === d
+                      ? 'bg-primary text-on-primary shadow-xs'
+                      : 'bg-surface-container-lowest border border-outline-variant text-outline hover:text-on-surface'
+                  }`}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* SECTION 2: Doctor's Digital Signature & Stamp */}
+      <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical p-6 space-y-4">
+        <div className="border-b border-outline-variant/40 pb-3 flex items-center justify-between">
+          <div>
+            <h3 className="text-base font-extrabold text-primary font-headline flex items-center gap-2">
+              <FileCheck className="w-5 h-5 text-secondary" />
+              <span>Doctor's Digital Signature &amp; Council Seal</span>
+            </h3>
+            <p className="text-xs font-body text-on-surface-variant">
+              Class-3 DSC Token attestation for legally valid electronic prescriptions
+            </p>
+          </div>
+          <span className="text-xs font-mono font-bold text-tertiary bg-tertiary-fixed/30 px-3 py-1 rounded-full">
+            Valid until 31 Dec 2026
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 rounded-xl bg-surface-container-low border border-dashed border-primary/50 flex flex-col items-center justify-center text-center p-6 space-y-2">
+            <div className="font-serif italic text-2xl font-bold text-primary">
+              Dr. Ritesh Khandelwal
+            </div>
+            <div className="text-[11px] font-mono text-outline">
+              MD (Medicine) • Reg. No: 12345 (RMC)
+            </div>
+            <div className="text-[9px] font-mono text-tertiary bg-tertiary-fixed/40 px-2 py-0.5 rounded">
+              Digitally Encrypted 2048-bit RSA Key
+            </div>
+          </div>
+
+          <div className="p-4 rounded-xl bg-surface-container-low border border-outline-variant/40 space-y-2 text-xs font-mono">
+            <div className="font-bold text-on-surface">DSC Security Details:</div>
+            <div className="text-[11px] text-on-surface-variant space-y-1">
+              <div>Certificate Issuer: eMudhra Sub-CA Medical Class 3</div>
+              <div>Serial Number: 4B-9912-E5-2025</div>
+              <div>Hash Algorithm: SHA-256 with RSA Encryption</div>
+              <div>Hospital Node: Station 4B Dr. Route Gateway</div>
+            </div>
             <button
-              onClick={handleSave}
-              className="bg-secondary hover:bg-secondary-light active:scale-95 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-md flex items-center gap-2 transition-all"
+              type="button"
+              onClick={() => alert('Certificate Sync & Renewal wizard loaded.')}
+              className="text-primary-container font-bold hover:underline text-xs pt-1 block"
             >
-              <Save className="w-4 h-4" />
-              <span>{saveSuccess ? 'Preferences Saved!' : 'Save Changes'}</span>
+              Re-sync or Replace Token →
             </button>
           </div>
         </div>
       </div>
 
-      {saveSuccess && (
-        <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold flex items-center gap-2 animate-fadeIn">
-          <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-          <span>System configuration and security preferences synchronized to Dr. Route Cloud.</span>
-        </div>
-      )}
-
-      {/* Settings Sections Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        {/* Section 1: Clinical Security & 2FA */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm space-y-4">
-          <div className="flex items-center gap-2 pb-3 border-b border-slate-100">
+      {/* SECTION 3: Security & Station PIN */}
+      <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical p-6 space-y-5">
+        <div className="border-b border-outline-variant/40 pb-3">
+          <h3 className="text-base font-extrabold text-primary font-headline flex items-center gap-2">
             <Lock className="w-5 h-5 text-primary" />
-            <h2 className="text-base font-bold text-slate-900 font-display">
-              Authentication & Practice Security
-            </h2>
-          </div>
-
-          <div className="space-y-3 text-xs">
-            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-200">
-              <div>
-                <span className="font-bold text-slate-800 block">Two-Factor Authentication (2FA)</span>
-                <span className="text-[11px] text-slate-500">Require OTP token on untrusted clinic devices</span>
-              </div>
-              <input
-                type="checkbox"
-                checked={twoFactorAuth}
-                onChange={() => setTwoFactorAuth(!twoFactorAuth)}
-                className="w-4 h-4 rounded text-secondary focus:ring-secondary cursor-pointer"
-              />
-            </div>
-
-            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-200">
-              <div>
-                <span className="font-bold text-slate-800 block">Biometric / Passkey Login</span>
-                <span className="text-[11px] text-slate-500">Allow TouchID / FaceID instant authentication</span>
-              </div>
-              <input
-                type="checkbox"
-                checked={biometricLogin}
-                onChange={() => setBiometricLogin(!biometricLogin)}
-                className="w-4 h-4 rounded text-secondary focus:ring-secondary cursor-pointer"
-              />
-            </div>
-
-            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-200">
-              <div>
-                <span className="font-bold text-slate-800 block">Clinical Session Auto-Lock</span>
-                <span className="text-[11px] text-slate-500">HIPAA requirement for inactive terminals</span>
-              </div>
-              <select
-                value={sessionTimeout}
-                onChange={(e) => setSessionTimeout(e.target.value)}
-                className="p-1.5 text-xs font-bold bg-white border border-slate-200 rounded-lg text-slate-700"
-              >
-                <option value="15 mins">15 mins</option>
-                <option value="30 mins">30 mins</option>
-                <option value="60 mins">60 mins</option>
-              </select>
-            </div>
-          </div>
+            <span>Security &amp; Workstation Access</span>
+          </h3>
+          <p className="text-xs font-body text-on-surface-variant">
+            Station 4B quick lock credentials and dual-factor authentication parameters
+          </p>
         </div>
 
-        {/* Section 2: ABDM & Health Interoperability */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-            <div className="flex items-center gap-2">
-              <Server className="w-5 h-5 text-secondary" />
-              <h2 className="text-base font-bold text-slate-900 font-display">
-                ABDM National Gateway Sync
-              </h2>
-            </div>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-              Milestone M1–M3 Online
-            </span>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
+          <div className="p-3.5 rounded-xl bg-surface-container-low border border-outline-variant/40 space-y-1.5">
+            <div className="text-outline uppercase text-[10px]">Quick 4-Digit Station PIN</div>
+            <input
+              type="password"
+              maxLength={4}
+              value={stationPin}
+              onChange={(e) => setStationPin(e.target.value)}
+              className="h-10 w-full px-3 text-center text-lg font-bold font-mono tracking-widest bg-surface-container-lowest border border-outline-variant rounded-lg text-primary focus:outline-none"
+            />
+            <div className="text-[10px] text-outline text-center">Fast terminal resume</div>
           </div>
 
-          <div className="space-y-3 text-xs">
-            <div className="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Gateway Endpoint</span>
-              <span className="font-mono text-xs font-semibold text-primary block">
-                https://gateway.abdm.gov.in/v0.5/dr-route
-              </span>
-              <span className="text-[10px] text-slate-500">Bridge Identifier: IN-HPR-DELHI-54921</span>
-            </div>
-
-            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-200">
-              <div>
-                <span className="font-bold text-slate-800 block">FHIR R4 Format Transmission</span>
-                <span className="text-[11px] text-slate-500">Standardized clinical document exchange</span>
-              </div>
-              <span className="text-[10px] font-bold text-emerald-600 bg-white px-2 py-0.5 rounded border border-slate-200">
-                Active
-              </span>
-            </div>
-
-            <button
-              onClick={() => alert('ABDM Gateway Health: PING 24ms • 100% SLA')}
-              className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-2 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors"
+          <div className="p-3.5 rounded-xl bg-surface-container-low border border-outline-variant/40 space-y-1.5">
+            <div className="text-outline uppercase text-[10px]">Session Idle Lock</div>
+            <select
+              value={sessionTimeout}
+              onChange={(e) => setSessionTimeout(e.target.value)}
+              className="h-10 w-full px-3 text-xs font-mono font-bold bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface focus:outline-none"
             >
-              <RefreshCw className="w-3.5 h-3.5 text-secondary" />
-              <span>Test ABDM Gateway Health</span>
-            </button>
+              <option value="15 Minutes">15 Minutes</option>
+              <option value="30 Minutes">30 Minutes</option>
+              <option value="1 Hour">1 Hour</option>
+              <option value="Never during OPD">Never during OPD</option>
+            </select>
+            <div className="text-[10px] text-outline text-center">Auto HIPAA Screen Blanking</div>
+          </div>
+
+          <div className="p-3.5 rounded-xl bg-surface-container-low border border-outline-variant/40 space-y-1.5">
+            <div className="text-outline uppercase text-[10px]">Portal Language</div>
+            <div className="flex items-center gap-1.5 pt-1">
+              {(['English', 'Hindi'] as const).map(lang => (
+                <button
+                  key={lang}
+                  type="button"
+                  onClick={() => setLanguage(lang)}
+                  className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
+                    language === lang
+                      ? 'bg-primary text-on-primary shadow-xs'
+                      : 'bg-surface-container-lowest border border-outline-variant text-outline'
+                  }`}
+                >
+                  {lang === 'Hindi' ? 'हिंदी (Hindi)' : 'English'}
+                </button>
+              ))}
+            </div>
+            <div className="text-[10px] text-outline text-center">Bilingual EMR Support</div>
           </div>
         </div>
-
-        {/* Section 3: Notification & Emergency Triage Preferences */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm space-y-4">
-          <div className="flex items-center gap-2 pb-3 border-b border-slate-100">
-            <Bell className="w-5 h-5 text-amber-600" />
-            <h2 className="text-base font-bold text-slate-900 font-display">
-              Emergency & Triage Alerts
-            </h2>
-          </div>
-
-          <div className="space-y-3 text-xs">
-            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-200">
-              <div>
-                <span className="font-bold text-slate-800 block">Code Blue / ER Triage Sound Alert</span>
-                <span className="text-[11px] text-slate-500">Immediate priority override for acute cardiac admissions</span>
-              </div>
-              <input
-                type="checkbox"
-                checked={erAlertSound}
-                onChange={() => setErAlertSound(!erAlertSound)}
-                className="w-4 h-4 rounded text-secondary focus:ring-secondary cursor-pointer"
-              />
-            </div>
-
-            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-200">
-              <div>
-                <span className="font-bold text-slate-800 block">Critical Lab Panic Value SMS</span>
-                <span className="text-[11px] text-slate-500">Direct alert for extreme potassium, troponin, or platelets</span>
-              </div>
-              <input
-                type="checkbox"
-                checked={labPanicAlerts}
-                onChange={() => setLabPanicAlerts(!labPanicAlerts)}
-                className="w-4 h-4 rounded text-secondary focus:ring-secondary cursor-pointer"
-              />
-            </div>
-
-            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-200">
-              <div>
-                <span className="font-bold text-slate-800 block">Epidemiology Outbreak Warnings</span>
-                <span className="text-[11px] text-slate-500">District-level surge alerts for vector-borne diseases</span>
-              </div>
-              <input
-                type="checkbox"
-                checked={outbreakAlerts}
-                onChange={() => setOutbreakAlerts(!outbreakAlerts)}
-                className="w-4 h-4 rounded text-secondary focus:ring-secondary cursor-pointer"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Section 4: Practice & Prescription Defaults */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm space-y-4">
-          <div className="flex items-center gap-2 pb-3 border-b border-slate-100">
-            <FileText className="w-5 h-5 text-secondary" />
-            <h2 className="text-base font-bold text-slate-900 font-display">
-              Prescription & Clinical Defaults
-            </h2>
-          </div>
-
-          <div className="space-y-3 text-xs">
-            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-200">
-              <div>
-                <span className="font-bold text-slate-800 block">Generic-First Drug Nomenclature</span>
-                <span className="text-[11px] text-slate-500">Jan Aushadhi & NMC generic compliance mandate</span>
-              </div>
-              <input
-                type="checkbox"
-                checked={genericFirst}
-                onChange={() => setGenericFirst(!genericFirst)}
-                className="w-4 h-4 rounded text-secondary focus:ring-secondary cursor-pointer"
-              />
-            </div>
-
-            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-200">
-              <div>
-                <span className="font-bold text-slate-800 block">Auto-Attach Cryptographic Signature</span>
-                <span className="text-[11px] text-slate-500">Attach SHA-256 digital stamp upon submission</span>
-              </div>
-              <input
-                type="checkbox"
-                checked={autoSign}
-                onChange={() => setAutoSign(!autoSign)}
-                className="w-4 h-4 rounded text-secondary focus:ring-secondary cursor-pointer"
-              />
-            </div>
-
-            <div className="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
-              <span className="font-bold text-slate-800 block">Audit & Regulatory Log Export</span>
-              <button
-                onClick={() => alert('Full Clinical Audit Log CSV exported successfully.')}
-                className="w-full bg-white hover:bg-slate-100 text-slate-700 py-2 rounded-xl font-bold text-xs border border-slate-200 flex items-center justify-center gap-1.5 transition-colors"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Download Clinical Audit Log (CSV)</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
       </div>
 
     </div>

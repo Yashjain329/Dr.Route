@@ -1,190 +1,248 @@
 import React from 'react';
 import { 
-  GraduationCap, 
-  Award, 
-  Briefcase, 
-  BookOpen, 
-  Calendar, 
-  Building2, 
-  CheckCircle2, 
-  ShieldCheck, 
-  ArrowRight, 
   User, 
-  Settings,
-  ExternalLink
+  GraduationCap, 
+  Settings, 
+  Award, 
+  Calendar, 
+  Building, 
+  CheckCircle2, 
+  Clock, 
+  Briefcase, 
+  ShieldCheck, 
+  FileCheck,
+  ChevronRight,
+  BookOpen
 } from 'lucide-react';
 import { ScreenId } from '../types';
-import { mockDoctor } from '../data/mockData';
 
 interface QualificationExperienceScreenProps {
   onNavigate: (screen: ScreenId) => void;
 }
 
 export const QualificationExperienceScreen: React.FC<QualificationExperienceScreenProps> = ({
-  onNavigate
+  onNavigate,
 }) => {
+  const qualifications = [
+    {
+      degree: 'MD in Internal Medicine',
+      institution: 'Sawai Man Singh (SMS) Medical College, Jaipur',
+      period: '2021 - 2024',
+      grade: 'Gold Medalist • First Order of Merit',
+      council: 'National Medical Commission (NMC) Certified',
+    },
+    {
+      degree: 'MBBS (Bachelor of Medicine & Bachelor of Surgery)',
+      institution: 'Rajasthan University of Health Sciences (RUHS), Jaipur',
+      period: '2015 - 2021',
+      grade: 'First Class with Honours in Pharmacology & Pathology',
+      council: 'Rajasthan Medical Council Reg. #12345',
+    },
+    {
+      degree: 'Fellowship in Non-Invasive Cardiology',
+      institution: 'Apollo Hospitals Education & Research Foundation',
+      period: '2024 - 2025',
+      grade: 'Specialized Training in 2D Echo & Telemetry',
+      council: 'Indian Academy of Echocardiography Certified',
+    },
+    {
+      degree: 'Higher Secondary School Certificate (Science Biology)',
+      institution: 'Central Board of Secondary Education (CBSE)',
+      period: '2014',
+      grade: '96.4% Aggregate • State Science Merit',
+      council: 'Pre-Medical Entrance AIR 412',
+    },
+  ];
+
+  const experience = [
+    {
+      role: 'Senior Consultant Physician',
+      hospital: 'Dr. Route Memorial Super-Specialty Hospital, Jaipur',
+      period: '2024 - Present (Current)',
+      type: 'Full-Time Inpatient & Emergency Triage',
+      responsibilities: 'Head of Station 4B Cardiology & Medical Floor, daily 50+ OPD consultations, inpatient ICU telemetry surveillance.',
+    },
+    {
+      role: 'Senior Resident / Registrar (Dept. of Medicine)',
+      hospital: 'SMS Medical College & Attached Hospitals, Jaipur',
+      period: '2022 - 2024 (2 Years)',
+      type: 'Postgraduate Residency',
+      responsibilities: 'Supervised acute poisoning emergency, CCU hemodynamic management, clinical bedside student teaching.',
+    },
+    {
+      role: 'Junior Resident Doctor',
+      hospital: 'Mahatma Gandhi Medical College & Hospital, Jaipur',
+      period: '2021 - 2022 (1 Year)',
+      type: 'Critical Care & CCU Unit',
+      responsibilities: 'Invasive arterial line placement, mechanical ventilation, emergency cardioversion protocols.',
+    },
+    {
+      role: 'Compulsory Rotatory Residential Internship (CRRI)',
+      hospital: 'Government Medical College Hospital, Kota',
+      period: '2020 - 2021 (1 Year)',
+      type: 'Clinical Internship',
+      responsibilities: 'Rotations in Medicine, Surgery, OBGYN, Pediatrics, and Rural Community Health Centers.',
+    },
+  ];
+
+  const skills = [
+    'Advanced Cardiac Life Support (ACLS)',
+    'Basic Life Support (BLS)',
+    '2D Transthoracic Echocardiography',
+    'Mechanical Ventilation & NIV',
+    'Arterial Blood Gas (ABG) Analysis',
+    'Central Venous Line Cannulation',
+    'Endotracheal Intubation',
+    'Lumbar Puncture & Thoracentesis',
+    'Antimicrobial Stewardship',
+    'Clinical Pharmacovigilance',
+    'National Health Stack ABDM Interoperability',
+    'HL7 FHIR EMR Protocol',
+  ];
+
   return (
-    <div className="space-y-6">
+    <div className="max-w-5xl mx-auto space-y-6 animate-fade-in py-2 pb-16">
       
-      {/* Top Banner */}
-      <div className="bg-gradient-to-r from-primary via-slate-900 to-primary-container text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-700/60">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <span className="bg-secondary text-white text-xs font-bold px-2.5 py-0.5 rounded-md">
-                11th
-              </span>
-              <span className="text-xs font-bold text-secondary-fixed uppercase tracking-wider">
-                Academic Pedigree • Clinical Career Journey
-              </span>
-            </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold font-display tracking-tight text-white">
-              Qualifications & Clinical Experience
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-300">
-              AIIMS & PGIMER medical education, international cardiology fellowships, and 16-year career timeline
+      {/* Top Header & Breadcrumbs */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-surface-container-lowest p-4 rounded-2xl border border-outline-variant/60 shadow-clinical">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-mono font-bold bg-primary text-primary-fixed px-2 py-0.5 rounded">
+              11th Screen
+            </span>
+            <span className="text-xs font-mono font-bold text-secondary uppercase tracking-wider">
+              Doctor Credentials
+            </span>
+          </div>
+          <h1 className="text-xl font-extrabold text-primary font-headline">
+            Doctor Qualifications &amp; Clinical Experience
+          </h1>
+          <p className="text-xs font-body text-on-surface-variant">
+            Verified academic milestones, medical degrees, hospital appointments, and clinical procedures
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2 text-xs font-mono font-bold text-tertiary bg-tertiary-fixed/30 px-3 py-1.5 rounded-xl border border-tertiary/20">
+          <ShieldCheck className="w-4 h-4 text-tertiary" />
+          <span>NMC Verified Credentials</span>
+        </div>
+      </div>
+
+      {/* 3 Linked Profile Tabs Strip (Exact Stitch Linked Tabs) */}
+      <div className="flex items-center gap-2 border-b border-outline-variant/60 pb-1 text-xs font-mono font-bold">
+        <button
+          onClick={() => onNavigate('personal-profile')}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"
+        >
+          <User className="w-4 h-4" />
+          <span>10th - Personal Information</span>
+        </button>
+        <button
+          onClick={() => onNavigate('qualifications')}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-on-primary shadow-xs"
+        >
+          <GraduationCap className="w-4 h-4" />
+          <span>11th - Qualification &amp; Experience</span>
+        </button>
+        <button
+          onClick={() => onNavigate('settings')}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"
+        >
+          <Settings className="w-4 h-4" />
+          <span>12th - Doctor Settings</span>
+        </button>
+      </div>
+
+      {/* SECTION 1: Medical Qualifications & Academic Timeline */}
+      <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical p-6 space-y-5">
+        <div className="border-b border-outline-variant/40 pb-3 flex items-center justify-between">
+          <div>
+            <h3 className="text-base font-extrabold text-primary font-headline flex items-center gap-2">
+              <Award className="w-5 h-5 text-secondary" />
+              <span>Medical Qualifications &amp; Degrees</span>
+            </h3>
+            <p className="text-xs font-body text-on-surface-variant">
+              Postgraduate medical specializations accredited by the Medical Council
             </p>
           </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => onNavigate('personal-profile')}
-              className="bg-white/10 hover:bg-white/20 active:scale-95 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl border border-white/20 backdrop-blur-md flex items-center gap-1.5 transition-all"
-            >
-              <User className="w-4 h-4" />
-              <span>Personal Profile (10th)</span>
-            </button>
-            <button
-              onClick={() => onNavigate('settings')}
-              className="bg-secondary hover:bg-secondary-light active:scale-95 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-md flex items-center gap-1.5 transition-all"
-            >
-              <Settings className="w-4 h-4" />
-              <span>Practice Settings (12th)</span>
-            </button>
-          </div>
+          <span className="text-xs font-mono text-outline">4 Qualifications</span>
         </div>
-      </div>
 
-      {/* Academic Degrees & Honors */}
-      <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4">
-        <h2 className="text-lg font-bold text-slate-900 font-display flex items-center gap-2">
-          <GraduationCap className="w-5 h-5 text-secondary" />
-          <span>Medical Education & University Degrees</span>
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {mockDoctor.qualifications.map((q, idx) => (
-            <div key={idx} className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2 flex flex-col justify-between">
-              <div className="space-y-1.5">
-                <span className="text-xs font-bold text-secondary-teal bg-teal-50 px-2 py-0.5 rounded border border-teal-200 inline-block">
-                  Class of {q.year}
-                </span>
-                <h3 className="text-sm font-bold text-slate-900">{q.degree}</h3>
-                <p className="text-xs text-slate-600 font-medium">{q.institution}</p>
-              </div>
-
-              {q.honor && (
-                <div className="p-2.5 bg-amber-50/70 border border-amber-200 rounded-xl text-[11px] text-amber-900 font-semibold flex items-center gap-1.5 mt-2">
-                  <Award className="w-4 h-4 text-amber-600 flex-shrink-0" />
-                  <span>{q.honor}</span>
+        <div className="space-y-4">
+          {qualifications.map((q, idx) => (
+            <div key={idx} className="p-4 rounded-xl bg-surface-container-low/60 border border-outline-variant/60 flex flex-col md:flex-row md:items-center justify-between gap-3">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <h4 className="text-sm font-bold text-on-surface font-headline">{q.degree}</h4>
+                  <span className="bg-primary text-primary-fixed text-[10px] font-mono font-bold px-2 py-0.2 rounded">
+                    {q.period}
+                  </span>
                 </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* International Board Certifications & Fellowships */}
-      <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4">
-        <h2 className="text-lg font-bold text-slate-900 font-display flex items-center gap-2">
-          <Award className="w-5 h-5 text-primary" />
-          <span>International Cardiology Fellowships & Accreditations</span>
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-          {mockDoctor.fellowships.map((f, i) => (
-            <div key={i} className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-primary-container text-white flex items-center justify-center font-bold text-xs flex-shrink-0">
-                ★
+                <div className="text-xs font-mono text-primary font-semibold">{q.institution}</div>
+                <div className="text-[11px] font-mono text-outline">{q.grade}</div>
               </div>
-              <div>
-                <span className="font-bold text-slate-900 block">{f}</span>
-                <span className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1 mt-0.5">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  Active Peer Standing
-                </span>
+              <div className="text-left md:text-right text-[11px] font-mono text-secondary font-bold">
+                ✓ {q.council}
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Career Experience Timeline */}
-      <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4">
-        <h2 className="text-lg font-bold text-slate-900 font-display flex items-center gap-2">
-          <Briefcase className="w-5 h-5 text-secondary" />
-          <span>Chronological Clinical Career Milestones</span>
-        </h2>
+      {/* SECTION 2: Clinical Experience & Hospital Appointments */}
+      <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical p-6 space-y-5">
+        <div className="border-b border-outline-variant/40 pb-3 flex items-center justify-between">
+          <div>
+            <h3 className="text-base font-extrabold text-primary font-headline flex items-center gap-2">
+              <Briefcase className="w-5 h-5 text-primary" />
+              <span>Clinical Experience &amp; Hospital Appointments</span>
+            </h3>
+            <p className="text-xs font-body text-on-surface-variant">
+              Hospital clinical residency, senior registrar, and consultant postings
+            </p>
+          </div>
+          <span className="text-xs font-mono text-secondary font-bold">5+ Years Clinical Practice</span>
+        </div>
 
-        <div className="relative pl-6 space-y-6 before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200">
-          {mockDoctor.careerMilestones.map((milestone, idx) => (
-            <div key={idx} className="relative space-y-1">
-              <span className="absolute -left-6 top-1 w-3 h-3 rounded-full bg-secondary ring-4 ring-white"></span>
-              
-              <div className="text-xs font-bold text-secondary uppercase tracking-wider">
-                {milestone.period}
+        <div className="space-y-4">
+          {experience.map((exp, idx) => (
+            <div key={idx} className="p-4 rounded-xl bg-surface-container-low/60 border border-outline-variant/60 space-y-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs font-mono">
+                <div className="font-bold text-on-surface text-sm font-headline">
+                  {exp.role}
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="bg-secondary-container text-on-secondary-container font-bold px-2 py-0.5 rounded text-[10px]">
+                    {exp.type}
+                  </span>
+                  <span className="text-outline">{exp.period}</span>
+                </div>
               </div>
-              <h3 className="text-base font-bold text-slate-900 font-display">
-                {milestone.role}
-              </h3>
-              <div className="text-xs font-semibold text-slate-600">
-                {milestone.institution}
-              </div>
-              <p className="text-xs text-slate-500 leading-relaxed pt-1">
-                {milestone.description}
-              </p>
+              <div className="text-xs font-mono font-semibold text-primary">{exp.hospital}</div>
+              <p className="text-xs font-body text-on-surface-variant">{exp.responsibilities}</p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Landmark Research Publications */}
-      <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-slate-900 font-display flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-primary" />
-            <span>Select Landmark Clinical Publications ({mockDoctor.publicationsCount})</span>
-          </h2>
-          <span className="text-xs font-bold text-slate-500">Google Scholar h-index: 18</span>
+      {/* SECTION 3: Clinical Skills & Competencies */}
+      <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-clinical p-6 space-y-4">
+        <div className="border-b border-outline-variant/40 pb-3">
+          <h3 className="text-base font-extrabold text-primary font-headline">
+            Clinical Procedures &amp; Procedural Competencies
+          </h3>
+          <p className="text-xs font-body text-on-surface-variant">
+            Certified technical procedures and patient clinical life-support certifications
+          </p>
         </div>
 
-        <div className="space-y-3 text-xs">
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
-            <div className="font-bold text-slate-900">
-              1. "Accelerated Atherosclerosis in South Asian Young Adults: Mechanistic Analysis of Microvascular Endothelial Dysfunction"
-            </div>
-            <div className="text-slate-500">
-              Mehta A., Aggarwal S.K., et al. — <strong className="text-primary font-semibold">The Lancet Regional Health (2025)</strong>
-            </div>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
-            <div className="font-bold text-slate-900">
-              2. "Long-Term Hemodynamic Outcomes in Bifurcation Percutaneous Coronary Intervention with Drug-Eluting Resorbable Scaffolds"
-            </div>
-            <div className="text-slate-500">
-              Mehta A., Sethi V., et al. — <strong className="text-primary font-semibold">Circulation: Cardiovascular Interventions (2023)</strong>
-            </div>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
-            <div className="font-bold text-slate-900">
-              3. "Interoperable Clinical Decision Support and ABHA Digital Health Data Standards in Acute Coronary Triage"
-            </div>
-            <div className="text-slate-500">
-              Mehta A., et al. — <strong className="text-primary font-semibold">Indian Heart Journal (2022)</strong>
-            </div>
-          </div>
+        <div className="flex flex-wrap gap-2 text-xs font-mono">
+          {skills.map((s, idx) => (
+            <span key={idx} className="px-3 py-1.5 rounded-xl bg-surface-container-low border border-outline-variant/60 font-semibold text-primary flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-secondary" />
+              <span>{s}</span>
+            </span>
+          ))}
         </div>
       </div>
 
