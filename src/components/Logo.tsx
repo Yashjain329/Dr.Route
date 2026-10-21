@@ -23,15 +23,16 @@ export const Logo: React.FC<LogoProps> = ({
     lg: 'text-2xl'
   };
 
+  const logoSrc = `${import.meta.env.BASE_URL}logo.png`;
+
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>
       <div className="relative flex items-center justify-center rounded-xl bg-white p-1 shadow-sm border border-slate-200/80 overflow-hidden">
         <img 
-          src="/logo.png" 
+          src={logoSrc} 
           alt="Dr. Route Healthcare Navigation Logo" 
           className={`${sizeClasses[size]} object-contain`}
           onError={(e) => {
-            // Fallback if image fails to render
             const target = e.currentTarget;
             target.style.display = 'none';
           }}

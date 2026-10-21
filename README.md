@@ -10,12 +10,26 @@
 </p>
 
 <p align="center">
+  <a href="https://yashjain329.github.io/Dr.Route/"><strong>🌐 Live Demo: https://yashjain329.github.io/Dr.Route/</strong></a>
+</p>
+
+<p align="center">
+  <a href="#-live-demo">Live Demo</a> •
   <a href="#-system-architecture">Architecture</a> •
   <a href="#-12-screen-clinical-suite-walkthrough">12-Screen Suite</a> •
   <a href="#-tech-stack">Tech Stack</a> •
   <a href="#-getting-started">Getting Started</a> •
   <a href="#-security--regulatory-compliance">Compliance</a>
 </p>
+
+---
+
+## 🌐 Live Demo
+
+The application is deployed and live on GitHub Pages:
+👉 **[https://yashjain329.github.io/Dr.Route/](https://yashjain329.github.io/Dr.Route/)**
+
+Reviewers can launch the full interactive 12-screen suite directly in any modern browser without local installation. Use the **1-Click Quick Demo Login** button on the login screen, or use the top **12-Screen Switcher** carousel to navigate across all screens instantly.
 
 ---
 
