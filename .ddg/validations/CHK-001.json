@@ -1,0 +1,222 @@
+{
+  "adapter_version": "python_job_client_v1",
+  "calibration_hashes": {
+    "bad": "2dbd52956ec2793f8f6be65b972cd5437f01bf7c",
+    "exception": "c100f3eb694970ed861eff1b374de94f4b566f43",
+    "good": "e97c493359d4991912901a979e0ed2257c00dcfe"
+  },
+  "cases": {
+    "bad": {
+      "observation": {
+        "error": null,
+        "events": [
+          {
+            "call": 1,
+            "event": "submit",
+            "idempotency_key": null,
+            "operation_id": "operation-001"
+          },
+          {
+            "call": 1,
+            "event": "accepted",
+            "job_id": "job-1",
+            "operation_id": "operation-001"
+          },
+          {
+            "call": 1,
+            "event": "response",
+            "status": 503
+          },
+          {
+            "call": 2,
+            "event": "submit",
+            "idempotency_key": null,
+            "operation_id": "operation-001"
+          },
+          {
+            "call": 2,
+            "event": "accepted",
+            "job_id": "job-2",
+            "operation_id": "operation-001"
+          },
+          {
+            "call": 2,
+            "event": "response",
+            "job_id": "job-2",
+            "status": 201
+          }
+        ],
+        "returned_job_exists": true,
+        "returned_job_id": "job-2",
+        "status": "FAIL",
+        "submit_calls": 2,
+        "unique_jobs": 2
+      },
+      "sha": "2dbd52956ec2793f8f6be65b972cd5437f01bf7c"
+    },
+    "exception": {
+      "observation": {
+        "error": null,
+        "events": [
+          {
+            "call": 1,
+            "event": "submit",
+            "idempotency_key": "operation-001",
+            "operation_id": "operation-001"
+          },
+          {
+            "call": 1,
+            "event": "accepted",
+            "job_id": "job-1",
+            "operation_id": "operation-001"
+          },
+          {
+            "call": 1,
+            "event": "response",
+            "status": 503
+          },
+          {
+            "call": 2,
+            "event": "submit",
+            "idempotency_key": "operation-001",
+            "operation_id": "operation-001"
+          },
+          {
+            "call": 2,
+            "event": "deduplicated",
+            "job_id": "job-1"
+          },
+          {
+            "call": 2,
+            "event": "response",
+            "job_id": "job-1",
+            "status": 201
+          }
+        ],
+        "returned_job_exists": true,
+        "returned_job_id": "job-1",
+        "status": "PASS",
+        "submit_calls": 2,
+        "unique_jobs": 1
+      },
+      "sha": "c100f3eb694970ed861eff1b374de94f4b566f43"
+    },
+    "good": {
+      "observation": {
+        "error": null,
+        "events": [
+          {
+            "call": 1,
+            "event": "submit",
+            "idempotency_key": null,
+            "operation_id": "operation-001"
+          },
+          {
+            "call": 1,
+            "event": "accepted",
+            "job_id": "job-1",
+            "operation_id": "operation-001"
+          },
+          {
+            "call": 1,
+            "event": "response",
+            "status": 503
+          },
+          {
+            "event": "lookup",
+            "job_id": "job-1",
+            "operation_id": "operation-001"
+          }
+        ],
+        "returned_job_exists": true,
+        "returned_job_id": "job-1",
+        "status": "PASS",
+        "submit_calls": 1,
+        "unique_jobs": 1
+      },
+      "sha": "e97c493359d4991912901a979e0ed2257c00dcfe"
+    }
+  },
+  "check_digest": "af9c30250201788321cddcff7580606d1c2dc2f186e6ac2b0d7ecfb0565ef6da",
+  "check_id": "CHK-001",
+  "decision_digest": "06a5f819771e9fa7bf19c81e44f17f5ae76a68addb13e4f00a135e74f7f1a47b",
+  "draft_digest": "8c948f32058e3db7bc72e0e03805458134a8b0acfc31adf373c8ab1bccadf484",
+  "eligible": true,
+  "input_digest": "df1842db98757f08309009b1af5906518cbd47d95cab3a5e0b6388f123578ede",
+  "model": "claude-haiku-5-5",
+  "proposal": {
+    "adapter_version": "python_job_client_v1",
+    "attempts": [
+      {
+        "attempt": 1,
+        "result": "accepted"
+      }
+    ],
+    "capture_source_sha": null,
+    "captured_at": "2026-10-24T11:54:07.066645Z",
+    "check": {
+      "adapter": "python_job_client_v1",
+      "assertions": [
+        {
+          "equals": 1,
+          "metric": "unique_jobs"
+        },
+        {
+          "equals": true,
+          "metric": "returned_job_exists"
+        }
+      ],
+      "citations": [
+        {
+          "decision_id": "DEC-002",
+          "quote": "A submission must not create duplicate jobs when the first submission succeeds but its acknowledgement fails."
+        },
+        {
+          "decision_id": "DEC-002",
+          "quote": "A retry is permitted when the service rejected the first submission before creating a job."
+        }
+      ],
+      "decision_id": "DEC-002",
+      "id": "CHK-001",
+      "rationale": "The main rule forbids duplicate jobs when the first submission succeeds but its acknowledgement fails, so the commit_then_503 scenario checks for exactly one job and a returned job. The valid exception permits retry only when the service rejected the first submission before creating a job, which is the reject_then_503 case and is not asserted here.",
+      "scenario": "commit_then_503",
+      "schema_version": 1,
+      "supersedes": "DEC-001"
+    },
+    "decision": {
+      "exceptions": [
+        "A retry is permitted when the service rejected the first submission before creating a job."
+      ],
+      "id": "DEC-002",
+      "rule": "A submission must not create duplicate jobs when the first submission succeeds but its acknowledgement fails. Reconcile by operation ID, or retry using a stable idempotency key supported by the service. Returning a fabricated success or silently abandoning the operation is invalid.",
+      "schema_version": 1,
+      "scope": "src/services/jobs.py",
+      "status": "active",
+      "supersedes": "DEC-001"
+    },
+    "draft_digest": "8c948f32058e3db7bc72e0e03805458134a8b0acfc31adf373c8ab1bccadf484",
+    "input_digest": "df1842db98757f08309009b1af5906518cbd47d95cab3a5e0b6388f123578ede",
+    "model": "claude-haiku-5-5",
+    "proposal_mode": "live",
+    "provider_response": {
+      "reason": "The decision maps to the commit_then_503 scenario with unique_jobs equal to 1 and returned_job_exists equal to true, and the stated exception is preserved.",
+      "status": "DRAFT"
+    },
+    "request_metadata": {
+      "input_digest": "df1842db98757f08309009b1af5906518cbd47d95cab3a5e0b6388f123578ede",
+      "model": "claude-haiku-5-5",
+      "prompt_version": "ddg_check_proposal_v1",
+      "provider": "anthropic_api",
+      "request_count": 1,
+      "response_format": "application/json",
+      "timeout_seconds": 30
+    },
+    "sdk_version": "anthropic 1.17.0",
+    "source_sha": "e97c493359d4991912901a979e0ed2257c00dcfe"
+  },
+  "proposal_mode": "live",
+  "schema_version": 1,
+  "sdk_version": "anthropic 1.17.0",
+  "source_sha": "e97c493359d4991912901a979e0ed2257c00dcfe",
+  "validated_at": "2026-10-24T12:04:53Z"
+}

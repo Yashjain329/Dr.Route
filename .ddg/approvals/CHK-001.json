@@ -1,0 +1,14 @@
+{
+  "approved_at": "2026-10-24T12:05:04Z",
+  "bundle_digest": "e8a09c7dca2fc698e7491fe22f9975479282f0d23835240d4ce4c7f39017cd3d",
+  "calibration_hashes": {
+    "bad": "2dbd52956ec2793f8f6be65b972cd5437f01bf7c",
+    "exception": "c100f3eb694970ed861eff1b374de94f4b566f43",
+    "good": "e97c493359d4991912901a979e0ed2257c00dcfe"
+  },
+  "check_id": "CHK-001",
+  "reason": "Approve check CHK-001 for DEC-002 deduplicated jobs",
+  "reviewer": "yashjain9350@gmail.com",
+  "schema_version": 1,
+  "validation_digest": "7e3303b8e05c5311387fb75f8c718756fc1aa7dd8055737d94021f8c7b4d473f"
+}

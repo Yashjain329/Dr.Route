@@ -1,0 +1,29 @@
+{
+  "adapter": "python_job_client_v1",
+  "assertions": [
+    {
+      "equals": 1,
+      "metric": "unique_jobs"
+    },
+    {
+      "equals": true,
+      "metric": "returned_job_exists"
+    }
+  ],
+  "citations": [
+    {
+      "decision_id": "DEC-002",
+      "quote": "A submission must not create duplicate jobs when the first submission succeeds but its acknowledgement fails."
+    },
+    {
+      "decision_id": "DEC-002",
+      "quote": "A retry is permitted when the service rejected the first submission before creating a job."
+    }
+  ],
+  "decision_id": "DEC-002",
+  "id": "CHK-001",
+  "rationale": "The main rule forbids duplicate jobs when the first submission succeeds but its acknowledgement fails, so the commit_then_503 scenario checks for exactly one job and a returned job. The valid exception permits retry only when the service rejected the first submission before creating a job, which is the reject_then_503 case and is not asserted here.",
+  "scenario": "commit_then_503",
+  "schema_version": 1,
+  "supersedes": "DEC-001"
+}
