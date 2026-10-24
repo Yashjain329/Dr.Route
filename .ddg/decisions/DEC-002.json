@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "DEC-002",
+  "status": "active",
+  "supersedes": "DEC-001",
+  "scope": "src/services/jobs.py",
+  "rule": "A submission must not create duplicate jobs when the first submission succeeds but its acknowledgement fails. Reconcile by operation ID, or retry using a stable idempotency key supported by the service. Returning a fabricated success or silently abandoning the operation is invalid.",
+  "exceptions": [
+    "A retry is permitted when the service rejected the first submission before creating a job."
+  ]
+}
